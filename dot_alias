@@ -1,0 +1,22 @@
+alias xmod='/usr/X11R6/xmodmap /home/phil/.xmodmaprc'
+alias se='export td=$PWD'
+alias whatdefg++='echo '"'"'int main(void){return 0;}'"'"' > /var/tmp/tmp$$.cpp; g++ -E -v $@ /var/tmp/tmp$$.cpp; rm -f /var/tmp/tmp$$.cpp'
+
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+alias p='cd -'
+alias ardapush='cd /home/phil/repos/arda_home;hg commit;hg push --remotecmd=/home/paustin/usr/bin/hgremote'
+alias addroc='cd /home/phil/.ssh;ssh-add roc'
+alias readmepush='cd /home/phil/public_html/readmes;hg commit;hg push'
+alias readmepull='cd /home/phil/public_html/readmes;hg commit;hg pull --update ssh://phil@roc//home/phil/public_html/readmes'
+alias ardapull='cd /home/phil/repos/arda_home;hg commit;hg pull --remotecmd=/home/paustin/usr/bin/hgremote ssh://paustin@arda//home/paustin -u'
+alias ardapush='cd /home/phil/repos/arda_home;hg commit;hg push --remotecmd=/home/paustin/usr/bin/hgremote ssh://paustin@arda//home/paustin'
+alias nsync="rsync --quiet --progress --stats -az  /users/phil/NOTES/ -e ssh phil@roc:/home/phil/NOTES/"
+alias ryanpull='cd /home/phil/public_html/readmes/;hg commit;hg pull /nfs/kite/home/rquon/readmes'
+
+alias fire1='/home/phil/bin/fire1/firefox'
+alias fire2='/home/phil/bin/fire2/firefox'
+alias firefox='/home/phil/bin/fire1/firefox'
+alias dropbox='/home/phil/bin/dbcli.py status &'
+

@@ -1,0 +1,24 @@
+[user]
+        name = Phil Austin
+        email = paustin@eos.ubc.ca
+[core]
+        pager =
+[man]
+                viewer = konqueror
+                viewer = woman
+[alias]
+        ci = commit -a
+        co = checkout
+        st = status -a
+        stat = status -a
+        br = branch
+        wdiff = diff --color-words
+        lg = log --oneline --graph
+        sname = show --pretty="format:" --name-only
+[merge]
+        summary = true
+	tool = kdiff3
+[diff]
+	external = /home/phil/usr64/bin//gitdiff.py
+[instaweb]
+        httpd=webrick

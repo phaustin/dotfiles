@@ -1,0 +1,35 @@
+[ui]
+username = Phil Austin <paustin@eos.ubc.ca>
+#remotecmd = /home/paustin/usr/bin/hgremote
+ignore = /home/phil/.hgignore
+
+[extensions]
+hgext.mq =
+hgext.extdiff =
+hgext.graphlog = 
+#rdiff=/home/phil/lib/python/rdiff.py
+
+
+#or, if keyword.py is not in the hgext folder:
+#keyword=/path/to/keyword.py
+
+[merge-tools]
+kdiff3.args = $base $local $other -o $output
+
+[extdiff]
+# GNU diffutils 2.8.1
+cmd.cdiff = /usr/local/bin/diff
+cmd.kdiff3 =
+
+# filename patterns for expansion are configured in this section
+[keyword]
+# expand keywords in all python files in working dir
+dot* =
+*tex =
+# do not expand keywords in files matching "x*" in working dir
+*~ = ignore
+
+[trusted]
+user=*
+groups=*
+

@@ -1,0 +1,100 @@
+# .bashrc
+# User specific aliases and functions
+
+#http://mah.everybody.org/docs/ssh
+SSH_ENV="$HOME/.ssh/environment"
+
+. ~/.alias
+
+export rm='/home/phil/public_html/readmes'
+
+export outlines='/home/phil/public_html/outlines'
+
+
+# Read first /etc/inputrc if the variable is not defined, and after the /etc/inputrc 
+# include the ~/.inputrc
+[ -z $INPUTRC ] && export INPUTRC=/etc/inputrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+umask 022
+
+PATH=/home/phil/bin:/home/phil/usr64/bin/thunderbird:/home/phil/usr64/bin/firefox:/home/phil/usr64/bin:.:$PATH
+PATH=/users/user-soft/matlab74/bin:$PATH
+export PYTHONPATH='/home/phil/lib/python/sphinxext:/home/phil/lib/python:.:/home/phil/repos'
+export EDITOR="emacsclient"
+export VISUAL="emacsclient"
+export TEXINPUTS=:/home/phil/TeX/style//:.:..:/usr/share/texmf//:/nfs/kite/common/xemacs/xemacs-packages/lisp/auctex//
+export BIBINPUTS=.:/home/phil/TeX/bibfiles//
+export BSTINPUTS=.:/home/phil/TeX/bibfiles//:/home/phil/TeX/style/agu.dir//
+export outlines=/home/phil/public_html/outlines
+export transfer=/home/phil/public_html/test/transfer
+export papers=/home/phil/public_html/papers
+export banff=/home/phil/public_html/test/toronto/talks.dir/convection/banfftalk
+export savefigs=/home/phil/public_html/savefigs
+export hg=ssh://phil@tern//home/phil/public_html/readmes
+export gcsslocal=/nfs/kite/home/web/main/data/gcss
+export rweb=/nfs/kite/home/rquon/public_html/develop/atsc_website
+export pweb=/nfs/kite/home/phil/public_html/develop/atsc_website
+export hg=ssh://phil@tern//home/phil/public_html/readmes
+
+#set up prompt for emacs dirtrack see
+#.emacs file
+unset PS1
+PS1="\w \u@\h% "
+
+if [ $EMACS ]; then
+    unset PS1
+    PS1='|Pr0mPT|\w|\w \u@\h% '
+fi
+
+function cd() { command cd "$@"; }
+function pd() { command pushd "$@"; }
+function s() { command pushd +"$@"; }
+function dt() { command popd +"$@"; }
+alias d='dirs'
+
+# Export Xauthority for users not for root.
+
+if [ ! -z "$DISPLAY" ];then
+	if [ "`id -u`" -gt 14 ];then
+		if [ -z $XAUTHORITY ];then
+		    export XAUTHORITY=$HOME/.Xauthority
+		fi
+	fi
+fi
+
+
+function smallp()
+{
+    unset PS1
+    if [ $EMACS ]; then
+        PS1='|Pr0mPT|\w|\W \u@\h% '
+    else
+        PS1="\W \u@\h% "
+    fi
+}
+
+
+function newp()
+{
+    unset PS1
+    if [ $EMACS ]; then
+        PS1='|Pr0mPT|\w|$1 '
+    else
+        PS1=$1
+    fi
+}
+
+function oldp()
+{
+    unset PS1
+    if [ $EMACS ]; then
+        PS1='|Pr0mPT|\w|\w \u@\h% '
+    else
+        PS1="\w \u@\h% "
+    fi
+}

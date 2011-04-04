@@ -3,6 +3,7 @@
         email = paustin@eos.ubc.ca
 [core]
         pager =
+        excludesfile = /home/phil/.gitignore
 [man]
                 viewer = konqueror
                 viewer = woman
@@ -15,10 +16,21 @@
         wdiff = diff --color-words
         lg = log --oneline --graph
         sname = show --pretty="format:" --name-only
+        changes=diff --name-status -r
+        grcol = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
+        gr = log --graph --full-history --all  --pretty=tformat:"%h%x09%d%x20%s%x20(%an)"
 [merge]
         summary = true
-	tool = kdiff3
+        tool = kdiff3
 [diff]
-	external = /home/phil/usr64/bin//gitdiff.py
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = diffuse $LOCAL $REMOTE
+[difftool]
+    prompt = false
+[branch]
+        autosetupmerge = true
+[push]
+  default=tracking
 [instaweb]
         httpd=webrick

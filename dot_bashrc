@@ -24,7 +24,7 @@ fi
 umask 022
 
 export LD_LIBRARY_PATH=/home/phil/usr_py26/lib
-PATH=/home/phil/usr64/bin:/home/phil/usr_py26/bin:/home/phil/usr64_nc4/bin:/home/phil/bin:.:$PATH
+PATH=/home/datatmp/phil/repos/git/scmtools/read_plot_model_output:/usr/local/firefox:/home/phil/usr64/bin:/home/phil/usr_py26/bin:/home/phil/usr64_nc4/bin:/home/phil/bin:.:$PATH
 PATH=/usr/lib64/openmpi/1.4-gcc/bin:/users/user-soft/matlab74/bin:/usr/sbin:$PATH
 export PYTHONPATH='/home/phil/lib/python/sphinxext:/home/phil/lib/python:.:/home/phil/repos:/home/phil/usr64/gtk/lib/python2.5/site-packages'
 export EDITOR="emacsclient"
@@ -51,7 +51,7 @@ export numweb=/home/phil/public_html/numeric/docs
 export hg=ssh://phil@tern//home/phil/public_html/readmes
 export NUMERIC_HOME=/home/phil/public_html/numeric
 export sols=/home/datatmp/phil/numeric/develop/solutions
-export projweb=/home/phil/public_html/projects/docs
+export proj=/home/phil/public_html/projects
 export ptalk=/home/phil/public_html/courses/eosc340/eaglesync/toronto2010
 export lr=/home/phil/repos/satellite/modis_libRadtran/MODIS_libRadtran
 export fm=/home/phil/repos/satellite/fwdmodel

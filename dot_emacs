@@ -1,3 +1,8 @@
+(add-to-list 'vc-handled-backends 'Git)
+(add-to-list 'load-path "/home/phil/elisp/git")
+(require 'git)
+(require 'git-blame)
+
 (setq load-path (cons (expand-file-name "~phil/usr64/share/emacs/site-lisp") load-path))
 (setq load-path (cons (expand-file-name "~phil/elisp") load-path))
 (setq load-path (cons (expand-file-name "~phil/elisp/misc") load-path))
@@ -8,10 +13,10 @@
 ;(setq load-path (cons (expand-file-name "~phil/elisp/site-lisp") load-path))
 
    ;http://www.emacswiki.org/emacs/CopyAndPaste#toc5
-   (setq transient-mark-mode t)  ;  makes the region act quite like the text "highlight" in many apps.
-   (setq mouse-drag-copy-region nil)  ; stops selection with a mouse being immediately injected to the kill ring
-   (setq x-select-enable-primary nil)  ; stops killing/yanking interacting with primary X11 selection 
-   (setq x-select-enable-clipboard t)  ; makes killing/yanking interact with clipboard X11 selection
+;   (setq transient-mark-mode t)  ;  makes the region act quite like the text "highlight" in many apps.
+;   (setq mouse-drag-copy-region nil)  ; stops selection with a mouse being immediately injected to the kill ring
+;   (setq x-select-enable-primary nil)  ; stops killing/yanking interacting with primary X11 selection 
+;   (setq x-select-enable-clipboard t)  ; makes killing/yanking interact with clipboard X11 selection
 
    ;; these will probably be already set to these values, leave them that way if so!
    ; (setf interprogram-cut-function 'x-select-text)
@@ -22,8 +27,8 @@
    ; if you're used to other modern apps (that is to say, the mere act of highlighting doesn't
    ; overwrite the clipboard or alter the kill ring, but you can paste in merely highlighted 
    ; text with the mouse if you want to)
-   (setq select-active-regions t) ;  active region sets primary X11 selection
-   (global-set-key [mouse-2] 'mouse-yank-primary)  ; make mouse middle-click only paste from primary X11 selection, not clipboard and kill ring.
+;   (setq select-active-regions t) ;  active region sets primary X11 selection
+;   (global-set-key [mouse-2] 'mouse-yank-primary)  ; make mouse middle-click only paste from primary X11 selection, not clipboard and kill ring.
 
    ;; with this, doing an M-y will also affect the X11 clipboard, making emacs act as a sort of clipboard history, at
    ;; least of text you've pasted into it in the first place.
@@ -104,8 +109,8 @@ Everything past that can be tailored to your liking.
 (add-hook 'font-lock-mode-hook 'highlight-tabs)
 (require 'session)
 (add-hook 'after-init-hook 'session-initialize)
-(setq x-select-enable-clipboard t)
-(menu-bar-enable-clipboard)
+;(setq x-select-enable-clipboard t)
+;(menu-bar-enable-clipboard)
 
 ;(require 'table)
 
@@ -131,7 +136,7 @@ Everything past that can be tailored to your liking.
 
 (select-keys) ; choose-a-buffer for keys f9-f12
 
-(global-set-key [f8] 'compile)
+(global-set-key [f8] 'tex-frame)
 (global-set-key [f7] 'fill-paragraph)
 (global-set-key [f6] 'auto-fill-mode) 
 (global-set-key [f5] 'overwrite-mode) 
@@ -172,7 +177,7 @@ Everything past that can be tailored to your liking.
 
 ;; Bind this to control-X w (normally undefined):
 (setq browse-url-browser-function 'browse-url-netscape)
-(setq browse-url-netscape-program "firefox")
+(setq browse-url-netscape-program "/usr/local/firefox/firefox")
 (global-set-key "\C-xw" browse-url-browser-function)
 	;; Note: no quote       ^
 
@@ -254,9 +259,11 @@ Everything past that can be tailored to your liking.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(LaTeX-command "latex -file-line-error-style")
  '(load-home-init-file t t)
  '(rst-mode-lazy nil)
- '(vc-handled-backends (quote (Hg RCS CVS SVN SCCS Bzr Git Arch))))
+ '(tidy-shell-command "/usr/local/bin/tidy")
+ '(vc-handled-backends (quote (Git Hg))))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -302,7 +309,19 @@ Everything past that can be tailored to your liking.
 (quietly-read-abbrev-file) 
 (setq message-log-max 500)
 (setq log-message-max-size 500)
+;rtm functions
 (load-file "~/elisp/misc/my-text.el")
+
+; Tell XEmacs to load `my-latex.el' when opening LaTeX files
+(add-hook 'LaTeX-mode-hook
+  '(lambda()
+     (load-file "~/elisp/misc/my-latex.el")  ; load these LaTeX preferences
+     ))
+
+(add-hook 'python-mode-hook
+  '(lambda()
+     (load-file "~/elisp/misc/my-latex.el")  ; load these LaTeX preferences
+     ))
 
 (add-hook 'LaTeX-mode-hook
 	  (lambda ()
@@ -314,11 +333,6 @@ Everything past that can be tailored to your liking.
 (setq-default abbrev-mode t)                            ; enable abbreviations
 (setq save-abbrevs t)                                   ; save abbreviations upo
 
-; Tell XEmacs to load `my-latex.el' when opening LaTeX files
-(add-hook 'LaTeX-mode-hook
-  '(lambda()
-     (load-file "~/elisp/misc/my-latex.el")  ; load these LaTeX preferences
-     ))
 (setq-default abbrev-mode t)                            ; enable abbreviations
 (setq save-abbrevs t)                                   ; save abbreviations upon exiting xemacs
 ;;(setq abbrev-file-name "~/.xemacs/my-abbreviations.el") ; the file storing the abbreviations
@@ -355,3 +369,45 @@ Everything past that can be tailored to your liking.
 (require 'dvc-autoloads)
 (setq-default resize-mini-windows nil)
 ;(require 'ahg)
+
+(add-to-list 'load-path
+              "~/elisp/yasnippet")
+(require 'yasnippet-bundle)
+
+(autoload 'tidy-buffer "tidy" "Run Tidy HTML parser on current buffer" t)
+(autoload 'tidy-parse-config-file "tidy" "Parse the `tidy-config-file'" t)
+(autoload 'tidy-save-settings "tidy" "Save settings to `tidy-config-file'" t)
+(autoload 'tidy-build-menu  "tidy" "Install an options menu for HTML Tidy." t)
+;;
+;; If you use html-mode to edit HTML files then add something like
+;; this as well
+
+(defun my-html-mode-hook () "Customize my html-mode."
+   (tidy-build-menu html-mode-map)
+   (local-set-key [(control c) (control c)] 'tidy-buffer)
+   (setq sgml-validate-command "tidy"))
+(add-hook 'html-mode-hook 'my-html-mode-hook)
+(load-file "/home/phil/elisp/misc/beamer_style.el")
+;(my-beamer-mode)
+
+; Add cmake listfile names to the mode list.
+(setq auto-mode-alist
+	  (append
+	   '(("CMakeLists\\.txt\\'" . cmake-mode))
+	   '(("\\.cmake\\'" . cmake-mode))
+	   auto-mode-alist))
+(autoload 'cmake-mode "~/elisp/misc/cmake-mode.el" t)
+
+;; uniquify.el is a helper routine to help give buffer names a better unique name.
+(when (load "uniquify" 'NOERROR)
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'forward)
+  ;(setq uniquify-buffer-name-style 'post-forward)
+  )
+;(setq x-select-enable-clipboard t) ; as above
+;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+
+;(global-set-key "\C-w" 'clipboard-kill-region)
+;(global-set-key "\M-w" 'clipboard-kill-ring-save)
+;(global-set-key "\C-y" 'clipboard-yank)
+(setenv "PAGER" "cat")

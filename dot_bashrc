@@ -7,7 +7,9 @@ SSH_ENV="$HOME/.ssh/environment"
 . ~/.alias
 
 export rm='/home/phil/public_html/readmes'
-
+export BIBINPUTS=.:/home/phil/TeX/bibfiles//:/home/ccorbel/repos/bibliography_hg//:/home/phil/repos/ccorbel_thesis/PHIL_outline
+export ccbib=/home/ccorbel/repos/bibliography_hg/corbel_ref_cumul.bib
+export ccthesis=/home/phil/repos/ccorbel_thesis/PHIL_outline
 
 export outlines='/home/phil/public_html/outlines'
 
@@ -24,14 +26,30 @@ fi
 umask 022
 
 export LD_LIBRARY_PATH=/home/phil/usr_py26/lib
-PATH=/home/datatmp/phil/repos/git/scmtools/read_plot_model_output:/usr/local/firefox:/home/phil/usr64/bin:fgg/home/phil/usr_py26/bin:/home/phil/usr64_nc4/bin:/home/phil/bin:.:$PATH
+OS=$(lsb_release -si)
+PATH=/home/datatmp/phil/repos/git/scmtools/read_plot_model_output:/home/phil/bin:/usr/local/firefox:/home/phil/usr_py26/bin:/home/phil/usr64_nc4/bin:.:$PATH
 PATH=/usr/lib64/openmpi/1.4-gcc/bin:/users/user-soft/matlab74/bin:/usr/sbin:$PATH
+if [ "$OS" == "Ubuntu" ]; then
+   PATH=/usr/lib64/openmpi/1.4-gcc/bin:/users/user-soft/matlab74/bin:/usr/sbin/home/phil/usr64/bin::$PATH
+#   http://defindit.com/readme_files/bash_examples.html
+#   make sure you don't echo if not tty
+   if [ "$(echo $- | grep -c i)" == 1 ]
+   then
+     echo "setting PATH for ubuntu"
+   fi
+else
+  PATH=/home/ph
+  il/usr64/bin:/usr/lib64/openmpi/1.4-gcc/bin:/users/user-soft/matlab74/bin:/usr/sbin:$PATH
+   if [ "$(echo $- | grep -c i)" == 1 ]
+   then
+     echo "setting PATH for centos"
+   fi
+fi                    
+
 export PYTHONPATH='/home/phil/lib/python/sphinxext:/home/phil/lib/python:.:/home/phil/repos:/home/phil/usr64/gtk/lib/python2.5/site-packages'
+export PYTHONPATH='/home/phil/lib/python/sphinxext:/home/phil/lib/python:.:/home/phil/repos'
 export EDITOR="emacsclient"
 export VISUAL="emacsclient"
-#export TEXINPUTS=/home/phil/usr64/texlive/2009//:/home/phil/TeX/style:.:
-export TEXINPUTS=/home/phil/texmf//:/home/phil/TeX/style//:.:
-export BIBINPUTS=.:/home/phil/TeX/bibfiles//:/home/ccorbel/repos/ccorbel_thesis_writeup/biblio//
 export BSTINPUTS=.:/home/phil/TeX/bibfiles//:/home/phil/TeX/style/agu.dir//
 export outlines=/home/phil/public_html/outlines
 export transfer=/home/phil/public_html/test/transfer
@@ -51,7 +69,7 @@ export numweb=/home/phil/public_html/numeric/docs
 export hg=ssh://phil@tern//home/phil/public_html/readmes
 export NUMERIC_HOME=/home/phil/public_html/numeric
 export sols=/home/datatmp/phil/numeric/develop/solutions
-export proj=/home/phil/public_html/projecfts
+export proj=/home/phil/public_html/projects
 export ptalk=/home/phil/public_html/courses/eosc340/eaglesync/toronto2010
 export newgrads=/home/phil/philprojects/advising/newgrads
 export lr=/home/phil/repos/satellite/modis_libRadtran/MODIS_libRadtran

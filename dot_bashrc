@@ -1,36 +1,6 @@
-# .bashrc
-# User specific aliases and functions
-
-#http://mah.everybody.org/docs/ssh
-SSH_ENV="$HOME/.ssh/environment"
-
-. ~/.alias
-
-export rm='/home/phil/public_html/readmes'
-export BIBINPUTS=.:/home/phil/TeX/bibfiles//:/home/ccorbel/repos/bibliography_hg//:/home/phil/repos/ccorbel_thesis/PHIL_outline
-export ccbib=/home/ccorbel/repos/bibliography_hg/corbel_ref_cumul.bib
-export ccthesis=/home/phil/repos/ccorbel_thesis/PHIL_outline
-
-export outlines='/home/phil/public_html/outlines'
-
-
-# Read first /etc/inputrc if the variable is not defined, and after the /etc/inputrc 
-# include the ~/.inputrc
-[ -z $INPUTRC ] && export INPUTRC=/etc/inputrc
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
-umask 022
-
-export LD_LIBRARY_PATH=/home/phil/usr_py26/lib
 OS=$(lsb_release -si)
-PATH=/home/datatmp/phil/repos/git/scmtools/read_plot_model_output:/home/phil/bin:/usr/local/firefox:/home/phil/usr_py26/bin:/home/phil/usr64_nc4/bin:.:$PATH
-PATH=/usr/lib64/openmpi/1.4-gcc/bin:/users/user-soft/matlab74/bin:/usr/sbin:$PATH
 if [ "$OS" == "Ubuntu" ]; then
-   PATH=/usr/lib64/openmpi/1.4-gcc/bin:/users/user-soft/matlab74/bin:/usr/sbin/home/phil/usr64/bin::$PATH
+    PATH=/home/phil/bin:$PATH
 #   http://defindit.com/readme_files/bash_examples.html
 #   make sure you don't echo if not tty
    if [ "$(echo $- | grep -c i)" == 1 ]
@@ -38,50 +8,12 @@ if [ "$OS" == "Ubuntu" ]; then
      echo "setting PATH for ubuntu"
    fi
 else
-  PATH=/home/phil/usr64/bin:/usr/lib64/openmpi/1.4-gcc/bin:/users/user-soft/matlab74/bin:/usr/sbin:$PATH
+   PATH=/home/phil/usr64/bin:/home/phil/bin:$PATH
    if [ "$(echo $- | grep -c i)" == 1 ]
    then
      echo "setting PATH for centos"
    fi
 fi                    
-
-export PYTHONPATH='/home/phil/lib/python/sphinxext:/home/phil/lib/python:.:/home/phil/repos:/home/phil/usr64/gtk/lib/python2.5/site-packages'
-export PYTHONPATH='/home/phil/lib/python/sphinxext:/home/phil/lib/python:.:/home/phil/repos'
-export EDITOR="emacsclient"
-export VISUAL="emacsclient"
-export BSTINPUTS=.:/home/phil/TeX/bibfiles//:/home/phil/TeX/style/agu.dir//
-export outlines=/home/phil/public_html/outlines
-export transfer=/home/phil/public_html/test/transfer
-export papers=/home/phil/public_html/papers
-export banff=/home/phil/public_html/test/toronto/talks.dir/convection/banfftalk
-export savefigs=/home/phil/public_html/savefigs
-export git=ssh://phil@roc/space2/phil/repos/group_bare
-export gcsslocal=/nfs/kite/home/web/main/data/gcss
-export rweb=/nfs/kite/home/rquon/public_html/develop/atsc_website
-export pweb=/nfs/kite/home/phil/public_html/develop/atsc_website
-export a500web=/home/phil/public_html/courses/atsc500/docs
-export a405web=/home/phil/public_html/courses/atsc405
-export e2010=/home/phil/public_html/courses/eosc340_2010
-export e340=/home/phil/public_html/courses/eosc340
-export efigs=/home/phil/public_html/courses/eosc340/textfiles/figures1
-export numweb=/home/phil/public_html/numeric/docs
-export hg=ssh://phil@tern//home/phil/public_html/readmes
-export NUMERIC_HOME=/home/phil/public_html/numeric
-export sols=/home/datatmp/phil/numeric/develop/solutions
-export proj=/home/phil/public_html/projects
-export ptalk=/home/phil/public_html/courses/eosc340/eaglesync/toronto2010
-export newgrads=/home/phil/philprojects/advising/newgrads
-export lr=/home/phil/repos/satellite/modis_libRadtran/MODIS_libRadtran
-export fm=/home/phil/repos/satellite/fwdmodel
-export sat=/home/phil/repos/satellite
-export abbrev=/home/phil/.abbrev_defs
-export abbrevfuns=/home/phil/elisp/misc/my-latex.el
-export sfu=/home/phil/philprojects/talks.dir/sfu
-export scm=/home/datatmp/phil/repos/scm15h
-export sim=/home/datatmp/phil/ECSIMv1.4
-export a301=/home/phil/public_html/courses/atsc301/source
-export e582=/home/phil/public_html/courses/eosc582/source
-export NCARG_ROOT=/home/phil/usr64
 
 #set up prompt for emacs dirtrack see
 #.emacs file

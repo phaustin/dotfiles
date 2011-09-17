@@ -38,8 +38,7 @@ if [ "$OS" == "Ubuntu" ]; then
      echo "setting PATH for ubuntu"
    fi
 else
-  PATH=/home/ph
-  il/usr64/bin:/usr/lib64/openmpi/1.4-gcc/bin:/users/user-soft/matlab74/bin:/usr/sbin:$PATH
+  PATH=/home/phil/usr64/bin:/usr/lib64/openmpi/1.4-gcc/bin:/users/user-soft/matlab74/bin:/usr/sbin:$PATH
    if [ "$(echo $- | grep -c i)" == 1 ]
    then
      echo "setting PATH for centos"

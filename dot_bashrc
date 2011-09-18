@@ -1,6 +1,8 @@
+PATH=/home/MATLAB/R2010b/bin/:/home/phil/bin:$PATH
 OS=$(lsb_release -si)
+PATH=/home/phil/bin:$PATH
 if [ "$OS" == "Ubuntu" ]; then
-    PATH=/home/phil/bin:$PATH
+   PATH=/home/phil/usr_owl/bin:$PATH
 #   http://defindit.com/readme_files/bash_examples.html
 #   make sure you don't echo if not tty
    if [ "$(echo $- | grep -c i)" == 1 ]
@@ -8,7 +10,7 @@ if [ "$OS" == "Ubuntu" ]; then
      echo "setting PATH for ubuntu"
    fi
 else
-   PATH=/home/phil/usr64/bin:/home/phil/bin:$PATH
+   PATH=/home/phil/usr64/bin:$PATH
    if [ "$(echo $- | grep -c i)" == 1 ]
    then
      echo "setting PATH for centos"
@@ -72,3 +74,17 @@ function oldp()
         PS1="\w \u@\h% "
     fi
 }
+
+export rm='/home/phil/public_html/readmes'
+export BIBINPUTS=.:/home/phil/TeX/bibfiles//:/home/ccorbel/repos/bibliography_hg//:/home/phil/repos/ccorbel_thesis/PHIL_outline
+export ccbib=/home/ccorbel/repos/bibliography_hg/corbel_ref_cumul.bib
+export ccthesis=/home/phil/repos/ccorbel_thesis/PHIL_outline
+
+export outlines='/home/phil/public_html/outlines'
+umask 022
+export EDITOR="emacsclient"
+export VISUAL="emacsclient"
+export BSTINPUTS=.:/home/phil/TeX/bibfiles//:/home/phil/TeX/style/agu.dir//
+export proj=/home/phil/public_html/projects
+
+export a500=/home/phil/public_html/courses/atsc500

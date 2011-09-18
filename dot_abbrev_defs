@@ -50,6 +50,7 @@
     ("taulx" "\\tau_\\lambda" nil 0)
     ("teh" "the " nil 0)
     ("txx" "" my-text 0)
+    ("phax" "" my-comments 0)
     ("uh" "\\vect{u_H}" nil 0)
     ("whx" "W\\&H " nil 0)
     ("wm2un" "\\un{W\\,m^{-2}}" nil 0)

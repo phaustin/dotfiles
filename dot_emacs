@@ -121,6 +121,8 @@ Everything past that can be tailored to your liking.
 
 (setq auto-mode-alist (append '(("\\.ht$" . rst-mode)) auto-mode-alist))
 (setq auto-mode-alist (append '(("\\.rst$" . rst-mode)) auto-mode-alist))
+(add-hook 'rst-adjust-hook 'rst-toc-update)
+
 (setq auto-mode-alist (append '(("\\.pyx$" . python-mode)) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.nm\\'" . notes-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.txt\\'" . notes-mode) auto-mode-alist))
@@ -177,7 +179,7 @@ Everything past that can be tailored to your liking.
 
 ;; Bind this to control-X w (normally undefined):
 (setq browse-url-browser-function 'browse-url-netscape)
-(setq browse-url-netscape-program "/usr/local/firefox/firefox")
+(setq browse-url-netscape-program "firefox")
 (global-set-key "\C-xw" browse-url-browser-function)
 	;; Note: no quote       ^
 
@@ -262,6 +264,7 @@ Everything past that can be tailored to your liking.
  '(LaTeX-command "latex -file-line-error-style")
  '(load-home-init-file t t)
  '(rst-mode-lazy nil)
+ '(rst-toc-insert-style (quote plain))
  '(tidy-shell-command "/usr/local/bin/tidy")
  '(vc-handled-backends (quote (Git Hg))))
 
@@ -411,3 +414,32 @@ Everything past that can be tailored to your liking.
 ;(global-set-key "\M-w" 'clipboard-kill-ring-save)
 ;(global-set-key "\C-y" 'clipboard-yank)
 (setenv "PAGER" "cat")
+
+(defun color-theme-face-attr-construct (face frame)
+       (if (atom face)
+           (custom-face-attributes-get face frame)
+         (if (and (consp face) (eq (car face) 'quote))
+             (custom-face-attributes-get (cadr face) frame)
+           (custom-face-attributes-get (car face) frame))))
+
+(require 'color-theme)
+(defun color-theme-face-attr-construct (face frame)
+       (if (atom face)
+           (custom-face-attributes-get face frame)
+         (if (and (consp face) (eq (car face) 'quote))
+             (custom-face-attributes-get (cadr face) frame)
+           (custom-face-attributes-get (car face) frame))))
+
+(setq color-theme-is-global t)
+(color-theme-jedit-grey)
+(color-theme-snowish)
+(color-theme-dark-blue2)
+(require `doremi)
+(require `doremi-cmd)
+
+(setq my-color-themes (list 'color-theme-billw 'color-theme-jsc-dark 
+                              'color-theme-sitaramv-solaris 'color-theme-resolve
+                              'color-theme-classic 'color-theme-jonadabian-slate
+                              'color-theme-kingsajz 'color-theme-shaman
+                              'color-theme-subtle-blue 'color-theme-snowish
+                              'color-theme-sitaramv-nt 'color-theme-wheat))

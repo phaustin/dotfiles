@@ -262,6 +262,7 @@
 
 (define-abbrev-table 'python-mode-abbrev-table '(    ("addplot" "" my-addplot 0)
     ("startpy" "" my-startpy 0)
+    ("stdplot" "" standard-addplot 0)
     ))
 
 (define-abbrev-table 'rst-mode-abbrev-table '(    ("con" ".. contents::

@@ -1,6 +1,6 @@
-PATH=/home/MATLAB/R2010b/bin/:/home/phil/bin:$PATH
+PATH=/usr/NX/bin:/home/MATLAB/R2010b/bin/:/home/phil/bin:$PATH
 OS=$(lsb_release -si)
-PATH=/home/phil/bin:$PATH
+PATH=/home/phil/bin:/usr/local/bin:$PATH
 if [ "$OS" == "Ubuntu" ]; then
    PATH=/home/phil/usr_owl/bin:$PATH
 #   http://defindit.com/readme_files/bash_examples.html
@@ -10,7 +10,7 @@ if [ "$OS" == "Ubuntu" ]; then
      echo "setting PATH for ubuntu"
    fi
 else
-   PATH=/home/phil/usr64/bin:$PATH
+   PATH=/home/phil/usr_centos/bin:/home/phil/usr64/bin:$PATH
    if [ "$(echo $- | grep -c i)" == 1 ]
    then
      echo "setting PATH for centos"
@@ -85,6 +85,13 @@ umask 022
 export EDITOR="emacsclient"
 export VISUAL="emacsclient"
 export BSTINPUTS=.:/home/phil/TeX/bibfiles//:/home/phil/TeX/style/agu.dir//
-export proj=/home/phil/public_html/projects
+export proj=/home/phil/public_html/projects/index.rst
+export projdir=/home/phil/public_html/projects
 
 export a500=/home/phil/public_html/courses/atsc500
+export a405=/home/phil/public_html/courses/atsc405
+export numeric=/home/phil/public_html/numeric
+export thesis=/home/phil/public_html/thesis
+export papers=/home/phil/public_html/papers
+export git=ssh://phil@roc/tera/roc_space2
+

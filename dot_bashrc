@@ -1,8 +1,9 @@
 PATH=/usr/NX/bin:/home/MATLAB/R2010b/bin/:/home/phil/bin:$PATH
 OS=$(lsb_release -si)
-PATH=/home/phil/bin:/usr/local/bin:$PATH
+PATH=/home/texlive2011/bin/x86_64-linux:/home/phil/bin:/usr/local/bin:$PATH
 if [ "$OS" == "Ubuntu" ]; then
-   PATH=/home/phil/usr_owl/bin:$PATH
+   PATH=/home/phil/usr_owl/bin:$PATH:.
+   export PYTHONPATH=/home/phil/lib/python
 #   http://defindit.com/readme_files/bash_examples.html
 #   make sure you don't echo if not tty
    if [ "$(echo $- | grep -c i)" == 1 ]
@@ -43,6 +44,18 @@ if [ ! -z "$DISPLAY" ];then
 	fi
 fi
 
+export DOTBASH=~/.gitbash
+source $DOTBASH/main.sh
+
+function gitp()
+{
+    unset PS1
+    if [ $EMACS ]; then
+        PS1="\W $git_branch \u@\h% "
+    else
+        PS1="\W $git_branch \u@\h% "
+    fi
+}
 
 function smallp()
 {
@@ -53,6 +66,20 @@ function smallp()
         PS1="\W \u@\h% "
     fi
 }
+
+
+function gitp()
+{
+    unset PS1
+    if [ $EMACS ]; then
+        PS1="|Pr0mPT|\W\$git_branch \u@\h% "
+    else
+        PS1="\W\$git_branch \u@\h% "
+    fi
+}
+
+
+
 
 
 function newp()
@@ -85,8 +112,9 @@ umask 022
 export EDITOR="emacsclient"
 export VISUAL="emacsclient"
 export BSTINPUTS=.:/home/phil/TeX/bibfiles//:/home/phil/TeX/style/agu.dir//
-export proj=/home/phil/public_html/projects/index.rst
+export proj=/home/phil/public_html/projects
 export projdir=/home/phil/public_html/projects
+export JAVA_HOME=/home/phil/Downloads/jdk1.6.0_30
 
 export a500=/home/phil/public_html/courses/atsc500
 export a405=/home/phil/public_html/courses/atsc405
@@ -94,4 +122,10 @@ export numeric=/home/phil/public_html/numeric
 export thesis=/home/phil/public_html/thesis
 export papers=/home/phil/public_html/papers
 export git=ssh://phil@roc/tera/roc_space2
+export a405repo=/home/phil/public_html/courses/a405repos/a405
+export thermlib=/home/phil/public_html/courses/a405repos/a405/matlab/thermlib
+export a4052010=/home/phil/public_html/courses/atsc405_2010
+export current=/home/phil/public_html/papers/current
+
+
 

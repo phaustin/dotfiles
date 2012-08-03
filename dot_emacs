@@ -7,10 +7,14 @@
 (setq load-path (cons (expand-file-name "~phil/elisp") load-path))
 (setq load-path (cons (expand-file-name "~phil/elisp/misc") load-path))
 (setq load-path (cons (expand-file-name "~phil/elisp/bbdb-2.35/lisp") load-path))
-(setq load-path (cons (expand-file-name "~phil/elisp/python-mode") load-path))
+(setq load-path (cons (expand-file-name "~/elisp/python-mode") load-path))
 (setq load-path (cons "/home/phil/install/ahg/" load-path))
 ;(setq load-path (cons (expand-file-name "~phil/elisp/notes-mode-gnu/lisp") load-path))
 ;(setq load-path (cons (expand-file-name "~phil/elisp/site-lisp") load-path))
+(setq py-install-directory "/home/phil/elisp/python-mode/python-mode.el-6.0.8/")
+(setq py-shell-name "/home/phil/usr_owl/bin/ipython")
+(require `python-mode)
+(setq-default py-python-command-args '("--pylab" "--colors=LightBG"))
 
    ;http://www.emacswiki.org/emacs/CopyAndPaste#toc5
 ;   (setq transient-mark-mode t)  ;  makes the region act quite like the text "highlight" in many apps.
@@ -97,7 +101,7 @@ Everything past that can be tailored to your liking.
 (setq font-lock-maximum-decoration t)
 (add-hook 'python-mode-hook 'turn-on-font-lock)
 (load "psvn")
-(load "emacs-python")
+;(load "emacs-python")
 (setq-default calendar-latitude +49.2333)
 (setq-default calendar-longitude -123.25)
 
@@ -263,6 +267,7 @@ Everything past that can be tailored to your liking.
   ;; If there is more than one, they won't work right.
  '(LaTeX-command "latex -file-line-error-style")
  '(load-home-init-file t t)
+ '(py-shell-name "/home/phil/usr_owl/bin/ipython")
  '(rst-mode-lazy nil)
  '(rst-toc-insert-style (quote plain))
  '(tidy-shell-command "/usr/local/bin/tidy")
@@ -368,7 +373,9 @@ Everything past that can be tailored to your liking.
 ;; MS Windows clipboard is UTF-16LE 
 ;(set-clipboard-coding-system 'utf-16le-dos)
 
-(load-file "/home/phil/elisp/dvc-load.el")
+;(load-file "/home/phil/elisp/dvc-load.el")
+(setq load-path (cons (expand-file-name "/home/phil/usr_owl/share/emacs/dvc") load-path))
+(load-file "/home/phil/usr_owl/share/emacs/dvc/dvc-load.el")
 (require 'dvc-autoloads)
 (setq-default resize-mini-windows nil)
 ;(require 'ahg)
@@ -415,31 +422,3 @@ Everything past that can be tailored to your liking.
 ;(global-set-key "\C-y" 'clipboard-yank)
 (setenv "PAGER" "cat")
 
-(defun color-theme-face-attr-construct (face frame)
-       (if (atom face)
-           (custom-face-attributes-get face frame)
-         (if (and (consp face) (eq (car face) 'quote))
-             (custom-face-attributes-get (cadr face) frame)
-           (custom-face-attributes-get (car face) frame))))
-
-(require 'color-theme)
-(defun color-theme-face-attr-construct (face frame)
-       (if (atom face)
-           (custom-face-attributes-get face frame)
-         (if (and (consp face) (eq (car face) 'quote))
-             (custom-face-attributes-get (cadr face) frame)
-           (custom-face-attributes-get (car face) frame))))
-
-(setq color-theme-is-global t)
-(color-theme-jedit-grey)
-(color-theme-snowish)
-(color-theme-dark-blue2)
-(require `doremi)
-(require `doremi-cmd)
-
-(setq my-color-themes (list 'color-theme-billw 'color-theme-jsc-dark 
-                              'color-theme-sitaramv-solaris 'color-theme-resolve
-                              'color-theme-classic 'color-theme-jonadabian-slate
-                              'color-theme-kingsajz 'color-theme-shaman
-                              'color-theme-subtle-blue 'color-theme-snowish
-                              'color-theme-sitaramv-nt 'color-theme-wheat))

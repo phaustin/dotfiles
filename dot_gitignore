@@ -131,3 +131,6 @@ temp/
 
 .qgit*
 
+#elisp
+
+*.elc

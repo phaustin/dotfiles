@@ -1,6 +1,7 @@
 [user]
         name = Phil Austin
         email = paustin@eos.ubc.ca
+        signingkey = 7F2FB776
 [core]
         pager =
         excludesfile = /home/phil/.gitignore
@@ -9,6 +10,7 @@
                 viewer = woman
 [alias]
         ci = commit -a
+        cm = commit
         co = checkout
         st = status -a
         stat = status -a

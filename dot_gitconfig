@@ -4,10 +4,9 @@
         signingkey = 7F2FB776
 [core]
         pager =
-        excludesfile = /home/phil/.gitignore
+        excludesfile = /Users/phil/.gitignore
 [man]
-                viewer = konqueror
-                viewer = woman
+                viewer = emacsclient
 [alias]
         ci = commit -a
         cm = commit

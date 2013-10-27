@@ -1,55 +1,111 @@
-(add-to-list 'vc-handled-backends 'Git)
-(add-to-list 'load-path "/home/phil/elisp/git")
-(require 'git)
-(require 'git-blame)
-
-(setq load-path (cons (expand-file-name "~phil/usr64/share/emacs/site-lisp") load-path))
 (setq load-path (cons (expand-file-name "~phil/elisp") load-path))
+
+
+(when (locate-library "edit-server")
+  (require 'edit-server)
+  (setq edit-server-new-frame 1)
+  (edit-server-start))
+
+
+
+(setq load-path (cons (expand-file-name "~phil/elisp/notes/lisp") load-path))
+
+(setq load-path (cons (expand-file-name "~phil/elisp/mailcrypt/share/emacs/site-lisp") load-path))
+
 (setq load-path (cons (expand-file-name "~phil/elisp/misc") load-path))
-(setq load-path (cons (expand-file-name "~phil/elisp/bbdb-2.35/lisp") load-path))
-(setq load-path (cons (expand-file-name "~/elisp/python-mode") load-path))
-(setq load-path (cons "/home/phil/install/ahg/" load-path))
-;(setq load-path (cons (expand-file-name "~phil/elisp/notes-mode-gnu/lisp") load-path))
-;(setq load-path (cons (expand-file-name "~phil/elisp/site-lisp") load-path))
-(setq py-install-directory "/home/phil/elisp/python-mode/python-mode.el-6.0.8/")
-(setq py-shell-name "/home/phil/usr_owl/bin/ipython")
-(require `python-mode)
-(setq-default py-python-command-args '("--pylab" "--colors=LightBG"))
-
-   ;http://www.emacswiki.org/emacs/CopyAndPaste#toc5
-;   (setq transient-mark-mode t)  ;  makes the region act quite like the text "highlight" in many apps.
-;   (setq mouse-drag-copy-region nil)  ; stops selection with a mouse being immediately injected to the kill ring
-;   (setq x-select-enable-primary nil)  ; stops killing/yanking interacting with primary X11 selection 
-;   (setq x-select-enable-clipboard t)  ; makes killing/yanking interact with clipboard X11 selection
-
-   ;; these will probably be already set to these values, leave them that way if so!
-   ; (setf interprogram-cut-function 'x-select-text)
-   ; (setf interprogram-paste-function 'x-cut-buffer-or-selection-value)
-
-   ; this doesn't always quite work right at time of writing, see emacs bug #902, but when it does,
-   ; it makes "highlight/middlebutton" style (X11 primary selection based) copy-paste work as expected
-   ; if you're used to other modern apps (that is to say, the mere act of highlighting doesn't
-   ; overwrite the clipboard or alter the kill ring, but you can paste in merely highlighted 
-   ; text with the mouse if you want to)
-;   (setq select-active-regions t) ;  active region sets primary X11 selection
-;   (global-set-key [mouse-2] 'mouse-yank-primary)  ; make mouse middle-click only paste from primary X11 selection, not clipboard and kill ring.
-
-   ;; with this, doing an M-y will also affect the X11 clipboard, making emacs act as a sort of clipboard history, at
-   ;; least of text you've pasted into it in the first place.
-   ; (setq yank-pop-change-selection t)  ; makes rotating the kill
-   ; ring change the X11 clipboard.  
-
-
-;; Turn off the annoying default backup behaviour
-(if (file-directory-p "~/.emacs.d/backup")
-    (setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
-    (message "Directory does not exist: ~/.emacs.d/backup"))
-
-(setq debug-on-error t)
-;(setq-default py-python-command (getenv "MYIPYTHON"))
 
 (load-library "mailcrypt")
 (mc-setversion "gpg") ;; Alternately, "2.6" or "gpg"
+
+(define-key global-map "\C-xx" 'abbrev-mode)
+(setq save-abbrevs t)
+;(quietly-read-abbrev-file) 
+(setq message-log-max 500)
+(setq log-message-max-size 500)
+(load-file "~/elisp/misc/my-text.el")
+(load-file "~/elisp/misc/my-latex.el")
+
+(add-to-list 'load-path "~phil/elisp/python-mode.el-6.1.1") 
+(setq py-install-directory "~phil/elisp/python-mode.el-6.1.1")
+(setq py-shell-name "ipython")
+(require 'python-mode)
+
+;(load "browse-yank")
+;(global-set-key [?\C-x ?\C-y] 'browse-yank)
+
+
+;(setq ipython-command "/Library/Frameworks/EPD64.framework/Versions/7.3/bin/ipython")
+;(require 'ipython)
+
+
+;(add-hook 'python-mode-hook 'turn-on-font-lock)
+;(load "emacs-python")
+
+
+(add-hook 'LaTeX-mode-hook
+	  (lambda ()
+	    (quietly-read-abbrev-file "/Users/phil/.abbrev_defs")
+	    (setq local-abbrev-table LaTeX-mode-abbrev-table)
+ 	    (abbrev-mode t)
+ 	    ))
+
+(setq-default abbrev-mode t)                            ; enable abbreviations
+(setq save-abbrevs t)                                   ; save abbreviations upo
+
+; Tell XEmacs to load `my-latex.el' when opening LaTeX files
+(add-hook 'LaTeX-mode-hook
+  '(lambda()
+     (load-file "~/elisp/misc/my-latex.el")  ; load these LaTeX preferences
+     ))
+(setq-default abbrev-mode t)                            ; enable abbreviations
+(setq save-abbrevs t)                                   ; save abbreviations upon exiting xemacs
+;;(setq abbrev-file-name "~/.xemacs/my-abbreviations.el") ; the file storing the abbreviations
+(if (file-readable-p abbrev-file-name)                  ; read the abbreviations every
+  (read-abbrev-file abbrev-file-name)                   ; time xemacs is started
+  )
+
+(require 'notes-variables)
+(setq auto-mode-alist
+  	(cons (cons "/9[0-9][0-9][0-9][0-9][0-9].?$" 'notes-mode)
+  	      auto-mode-alist))
+(define-key global-map "\C-cn" 'notes-index-todays-link)
+(define-key global-map [(control c) (return)] 'notes-w3-follow-link)
+
+(setq auto-mode-alist (cons '("\\.txt\\'" . notes-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.nm\\'" . notes-mode) auto-mode-alist))
+
+(load-library "mailcrypt")
+
+(put 'upcase-region 'disabled nil)
+
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;; Bind this to control-X w (normally undefined):
+(setq browse-url-browser-function 'browse-url-firefox)
+(global-set-key "\C-xw" browse-url-browser-function)
+
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(browse-url-firefox-program "/Users/phil/bin/chromebash")
+ '(ispell-local-dictionary "english")
+ '(py-python-command-args (quote ("--pylab=osx"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 
 ;from: http://trey-jackson.blogspot.com/2008/08/emacs-tip-25-shell-dirtrack-by-prompt.html
 (add-hook 'shell-mode-hook
@@ -87,73 +143,32 @@ Everything past that can be tailored to your liking.
       (replace-match "" t t string 0))
   string))
 
-
-
-;; add my ~/elisp directory and all subdirectories to load-path
-;; (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-;;         (let* ((my-lisp-dir (expand-file-name "~/elisp"))
-;;               (default-directory my-lisp-dir))
-;;            (setq load-path (cons my-lisp-dir load-path))
-;;            (normal-top-level-add-subdirs-to-load-path)))
-
-
-
 (setq font-lock-maximum-decoration t)
 (add-hook 'python-mode-hook 'turn-on-font-lock)
-(load "psvn")
-;(load "emacs-python")
+
 (setq-default calendar-latitude +49.2333)
 (setq-default calendar-longitude -123.25)
 
-;(require 'moinmoin-mode)
-(require 'bbdb)
-(bbdb-initialize)
-
-(require 'show-wspace);
-(add-hook 'font-lock-mode-hook 'highlight-tabs)
-(require 'session)
-(add-hook 'after-init-hook 'session-initialize)
-;(setq x-select-enable-clipboard t)
-;(menu-bar-enable-clipboard)
-
-;(require 'table)
-
+(setq load-path (cons (expand-file-name "~phil/elisp/misc") load-path))
 (load "plocal")        ; local functions for geography
-;(load "dirtrack")     ; Follows the directory in shell mode (better)
-(load "dired-delete-direc") ;recursively delete directories
-(load "highlight-region") ; prepend text to a region
 
 (setq auto-mode-alist (append '(("\\.ht$" . rst-mode)) auto-mode-alist))
 (setq auto-mode-alist (append '(("\\.rst$" . rst-mode)) auto-mode-alist))
-(add-hook 'rst-adjust-hook 'rst-toc-update)
-
 (setq auto-mode-alist (append '(("\\.pyx$" . python-mode)) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.nm\\'" . notes-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.txt\\'" . notes-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tex\\'" . latex-mode) auto-mode-alist))
 
-(require 'notes-variables)
-(setq auto-mode-alist
-  	(cons (cons "/9[0-9][0-9][0-9][0-9][0-9].?$" 'notes-mode)
-  	      auto-mode-alist))
-(define-key global-map "\C-cn" 'notes-index-todays-link)
-(define-key global-map [(control c) (return)] 'notes-w3-follow-link)
+(select-keys) ; choose-a-buffer for keys f3 and f9-f12
 
-
-(select-keys) ; choose-a-buffer for keys f9-f12
-
-(global-set-key [f8] 'tex-frame)
+(global-set-key [f8] 'compile)
 (global-set-key [f7] 'fill-paragraph)
 (global-set-key [f6] 'auto-fill-mode) 
 (global-set-key [f5] 'overwrite-mode) 
 (global-set-key [f4] 'rst-mode) 
-(global-set-key [f3] 'choose-python) 
 (global-set-key [f2] 'choose-csh2) 
 (global-set-key [f1] 'choose-csh1) 
 
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
-(load "reftex")
 (setq reftex-insert-label-flags '("se" "sfte"))
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
 (setq reftex-enable-partial-scans t)
@@ -178,247 +193,220 @@ Everything past that can be tailored to your liking.
 (defun choose-python (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
-  (switch-to-buffer "*Python*"))
+  (switch-to-buffer "*IPython*"))
 
 
-;; Bind this to control-X w (normally undefined):
-(setq browse-url-browser-function 'browse-url-netscape)
-(setq browse-url-netscape-program "firefox")
-(global-set-key "\C-xw" browse-url-browser-function)
-	;; Note: no quote       ^
+(defun choose-research (&optional re-assign)
+  "Set a key to a buffer"
+  (interactive "P")
+  (switch-to-buffer "research.org"))
 
 
-(autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
-(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
-(autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
-(setq matlab-shell-command-switches '("-nojvm"))
-(setq visible-bell t)                 ; flash screen for bell
-(setq-default indent-tabs-mode nil)  ;no tabs for indentation
-(put 'set-goal-column 'disabled nil)
+(defun choose-teaching (&optional re-assign)
+  "Set a key to a buffer"
+  (interactive "P")
+  (switch-to-buffer "teaching.org"))
 
-(defun go-matching-paren ()
-  "Move cursor to the matching parenthesis."
-  (interactive)
-  (cond ((looking-at "[[({]") (forward-sexp 1) (backward-char 1))
-        ((looking-at "[])}]") (forward-char 1) (backward-sexp 1))
-        (t (ding) (message "Unbalanced parenthesis"))))
+(defun choose-admin (&optional re-assign)
+  "Set a key to a buffer"
+  (interactive "P")
+  (switch-to-buffer "admin.org"))
 
-(define-key global-map "\C-cg" 'go-matching-paren)
+(defun choose-personal (&optional re-assign)
+  "Set a key to a buffer"
+  (interactive "P")
+  (switch-to-buffer "personal.org"))
 
- (when (or (string-match "XEmacs\\|Lucid" emacs-version) window-system)
-    (require 'mic-paren) ; loading
-    (paren-activate)     ; activating
-    ;;; set here any of the customizable variables of mic-paren, e.g.:
-    ;;; ...
- )
+(defun choose-gtd (&optional re-assign)
+  "Set a key to a buffer"
+  (interactive "P")
+  (switch-to-buffer "gtd.org"))
 
+(defun choose-tasks (&optional re-assign)
+  "Set a key to a buffer"
+  (interactive "P")
+  (switch-to-buffer "tasks.org"))
 
-(require 'filladapt)
-(setq-default filladapt-mode t)
-
-
-
-(put 'scroll-left 'disabled nil)
-
-(put 'upcase-region 'disabled nil)
-
-(put 'downcase-region 'disabled nil)
-(require 'rst)
-
-(defun dired-do-shell-command-in-background (command)
-"In dired, do shell command in background on the file or directory named on this line."
-(interactive
-(list (dired-read-shell-command (concat "& on " "%s: ") nil (list (dired-get-filename)))))
-(call-process command nil 0 nil (dired-get-filename)))
-
-; http://www.gatago.com/gnu/emacs/help/16477675.html 
-
-(add-hook 'dired-load-hook
-(function (lambda ()
-(load "dired-x")
-(define-key dired-mode-map "&" 'dired-do-shell-command-in-background))))
-
-(setq dired-guess-shell-alist-user
-(list (list "\\.wav$" "snack") (list "\\.au$" "snack") (list "\\.pdf$" "acroread") (list "\\.mp3$" "xmms")
-(list "\\.m3u$" "xmms") (list "\\.txt$" "emacsclient") (list "\\.ppt$" "ooffice" )
-(list "\\.doc$" "ooffice" ) (list "\\.xls$" "ooffice" ) (list "\\.xls$" "ooffice") (list "\\.jpg$" "firefox") (list "\\.JPG$" "firefox")
-(list "\\.png$" "firefox") ))
-
-(global-set-key "\C-x\/" `point-to-register)
-(global-set-key "\C-xj" `jump-to-register)
-
-
-(load "browse-yank")
-(global-set-key [?\C-x ?\C-y] 'browse-yank)
-
-(load "dired-x")
-(define-key dired-mode-map "&" 'dired-do-shell-command-in-background)
-(server-start)
-
-(require 'tramp)
-;(load "magpie")
-
-(setq minibuffer-max-depth nil)
-
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(LaTeX-command "latex -file-line-error-style")
- '(load-home-init-file t t)
- '(py-shell-name "/home/phil/usr_owl/bin/ipython")
- '(rst-mode-lazy nil)
- '(rst-toc-insert-style (quote plain))
- '(tidy-shell-command "/usr/local/bin/tidy")
- '(vc-handled-backends (quote (Git Hg))))
-
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
-
+(defun choose-journal (&optional re-assign)
+  "Set a key to a buffer"
+  (interactive "P")
+  (switch-to-buffer "journal.org"))
 
 
 (make-shell "csh1")    ; Create a shell called "csh1"
 (other-window 1)
 (make-shell "csh2")    ; Create another shell in the other window
 
-(defun go-matching-paren ()
-  "Move cursor to the matching parenthesis."
-  (interactive)
-  (cond ((looking-at "[[({]") (forward-sexp 1) (backward-char 1))
-        ((looking-at "[])}]") (forward-char 1) (backward-sexp 1))
-        (t (ding) (message "Unbalanced parenthesis"))))
+(getenv "PATH")
+(setenv "PATH"
+(concat
+"/Users/phil/continuum/anaconda/bin" ":" "/usr/texbin" ":" "/Users/phil/bin" ":" "/usr/local/texlive/2012/bin/x86_64-darwin" ":"
+(getenv "PATH")))
 
-(define-key global-map "\C-cg" 'go-matching-paren)
+(autoload 'send-region-to-omnifocus-quickentry "omnifocus" "Send the selected region to OmniFocus's Quick Entry window" t)
+(global-set-key "\C-c\C-o" 'send-region-to-omnifocus-quickentry)
+(put 'downcase-region 'disabled nil)
+
+(require 'filladapt)
+(setq-default filladapt-mode t)
+
+(require 'show-wspace);
+(add-hook 'font-lock-mode-hook 'highlight-tabs)
+
+(load "highlight-region") ; prepend text to a region
+
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+
+;(eval-after-load "geiser" '(require quack))
+
+;(add-to-list 'load-path "~/emacs/org")
+(require 'org)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+(setq org-agenda-files '("~/Dropbox/org"))
 
 
-;;abbreviations -------------------
+; I prefer return to activate a link
+(setq org-return-follows-link t)
 
-(define-key global-map "\C-xx" 'abbrev-mode)
+(setq org-tags-exclude-from-inheritance '("PROJECT"))
+ 
+ 
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+
+(defun gtd ()
+   (interactive)
+   (find-file "~/Dropbox/org/gtd.org")
+)
 
 
-(setq hippie-expand-try-functions-list 
-   '(try-complete-file-name-partially 
-     try-complete-file-name 
-     try-expand-all-abbrevs 
-     try-expand-list 
-     try-expand-line 
-     try-expand-dabbrev 
-     try-expand-dabbrev-all-buffers 
-     try-expand-dabbrev-from-kill 
-     try-complete-lisp-symbol-partially 
-     try-complete-lisp-symbol)) 
+(defun research ()
+   (interactive)
+   (find-file "~/Dropbox/org/research.org")
+)
 
-(setq save-abbrevs t)
-(quietly-read-abbrev-file) 
-(setq message-log-max 500)
-(setq log-message-max-size 500)
-;rtm functions
-(load-file "~/elisp/misc/my-text.el")
+(defun teaching ()
+   (interactive)
+   (find-file "~/Dropbox/org/teaching.org")
+)
 
-; Tell XEmacs to load `my-latex.el' when opening LaTeX files
-(add-hook 'LaTeX-mode-hook
-  '(lambda()
-     (load-file "~/elisp/misc/my-latex.el")  ; load these LaTeX preferences
-     ))
+(defun admin ()
+   (interactive)
+   (find-file "~/Dropbox/org/admin.org")
+)
 
-(add-hook 'python-mode-hook
-  '(lambda()
-     (load-file "~/elisp/misc/my-latex.el")  ; load these LaTeX preferences
-     ))
 
-(add-hook 'LaTeX-mode-hook
-	  (lambda ()
-	    (quietly-read-abbrev-file "/home/phil/.abbrev_defs")
-	    (setq local-abbrev-table LaTeX-mode-abbrev-table)
- 	    (abbrev-mode t)
- 	    ))
+(defun personal ()
+   (interactive)
+   (find-file "~/Dropbox/org/personal.org")
+)
 
-(setq-default abbrev-mode t)                            ; enable abbreviations
-(setq save-abbrevs t)                                   ; save abbreviations upo
+(defun tasks ()
+   (interactive)
+   (find-file "~/Dropbox/org/tasks.org")
+)
 
-(setq-default abbrev-mode t)                            ; enable abbreviations
-(setq save-abbrevs t)                                   ; save abbreviations upon exiting xemacs
-;;(setq abbrev-file-name "~/.xemacs/my-abbreviations.el") ; the file storing the abbreviations
-(if (file-readable-p abbrev-file-name)                  ; read the abbreviations every
-  (read-abbrev-file abbrev-file-name)                   ; time xemacs is started
+(defun journal ()
+   (interactive)
+   (find-file "~/Dropbox/org/journal.org")
+)
+
+
+(setq org-return-follows-link t)
+ 
+
+(gtd)
+(research)
+(admin)
+(teaching)
+(personal)
+(tasks)
+(journal)
+
+
+(global-set-key "\C-cp" 'choose-personal)
+(global-set-key "\C-cr" 'choose-research)
+(global-set-key "\C-ci" 'choose-teaching)
+(global-set-key "\C-cw" 'choose-admin)
+(global-set-key "\C-cg" 'choose-gtd)
+(global-set-key "\C-ct" 'choose-tasks)
+(global-set-key "\C-cj" 'choose-journal)
+
+(setq org-agenda-custom-commands
+      '(("p" "Project List"
+          ( (tags "PROJECT")
+          )
+        )
+        ("w" todo "WAITING" nil) 
+        ("f" todo "FILED" nil) 
+        ("n" todo "NEXT" nil)
+        ("d" "Agenda + Next Actions" ((agenda) (todo "NEXT")))
+        ("O" "Office"
+          ( (agenda)
+            (tags-todo "OFFICE")
+          )
+        )
+        ("W" "Weekly Plan"
+          ( (agenda)
+            (todo "TODO")
+            (tags "PROJECT")
+          )
+        )
+        ("H" "Home NA Lists"
+          ( (agenda)
+            (tags-todo "HOME")
+            (tags-todo "COMPUTER")
+          )
+        )
+       )
   )
 
-(setq hippie-expand-try-functions-list 
-   '(try-complete-file-name-partially 
-     try-complete-file-name 
-     try-expand-all-abbrevs 
-     try-expand-list 
-     try-expand-line 
-     try-expand-dabbrev 
-     try-expand-dabbrev-all-buffers 
-     try-expand-dabbrev-from-kill 
-     try-complete-lisp-symbol-partially 
-     try-complete-lisp-symbol)) 
 
-;;;;;;;;;;;;;;;;;;;;
-;; set up unicode
-(prefer-coding-system       'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-;; This from a japanese individual.  I hope it works.
-(setq default-buffer-file-coding-system 'utf-8)
-;; From Emacs wiki
-(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
-;; MS Windows clipboard is UTF-16LE 
-;(set-clipboard-coding-system 'utf-16le-dos)
+;; (defun my-skip-unless-waiting ()
+;;        "Skip trees that are not waiting"
+;;        (let ((subtree-end (save-excursion (org-end-of-subtree t))))
+;;          (if (re-search-forward ":waiting:" subtree-end t)
+;;              nil          ; tag found, do not skip
+;;            subtree-end))) ; tag not found, continue after end of subtree
 
-;(load-file "/home/phil/elisp/dvc-load.el")
-(setq load-path (cons (expand-file-name "/home/phil/usr_owl/share/emacs/dvc") load-path))
-(load-file "/home/phil/usr_owl/share/emacs/dvc/dvc-load.el")
-(require 'dvc-autoloads)
-(setq-default resize-mini-windows nil)
-;(require 'ahg)
+;; (org-add-agenda-custom-command
+;;       '("b" todo "PROJECT"
+;;         ((org-agenda-skip-function 'my-skip-unless-waiting)
+;;          (org-agenda-overriding-header "Projects waiting for something: "))))
 
-(add-to-list 'load-path
-              "~/elisp/yasnippet")
-(require 'yasnippet-bundle)
+(setq org-default-notes-file "/Users/phil/Dropbox/org/tasks.org")
+(define-key global-map "\C-cc" 'org-capture)
 
-(autoload 'tidy-buffer "tidy" "Run Tidy HTML parser on current buffer" t)
-(autoload 'tidy-parse-config-file "tidy" "Parse the `tidy-config-file'" t)
-(autoload 'tidy-save-settings "tidy" "Save settings to `tidy-config-file'" t)
-(autoload 'tidy-build-menu  "tidy" "Install an options menu for HTML Tidy." t)
-;;
-;; If you use html-mode to edit HTML files then add something like
-;; this as well
 
-(defun my-html-mode-hook () "Customize my html-mode."
-   (tidy-build-menu html-mode-map)
-   (local-set-key [(control c) (control c)] 'tidy-buffer)
-   (setq sgml-validate-command "tidy"))
-(add-hook 'html-mode-hook 'my-html-mode-hook)
-(load-file "/home/phil/elisp/misc/beamer_style.el")
-;(my-beamer-mode)
 
-; Add cmake listfile names to the mode list.
-(setq auto-mode-alist
-	  (append
-	   '(("CMakeLists\\.txt\\'" . cmake-mode))
-	   '(("\\.cmake\\'" . cmake-mode))
-	   auto-mode-alist))
-(autoload 'cmake-mode "~/elisp/misc/cmake-mode.el" t)
+;(add-hook 'org-mode-hook
+;          '(lambda ()
+;             (define-key org-mode-map [(control l)] nil)))
 
-;; uniquify.el is a helper routine to help give buffer names a better unique name.
-(when (load "uniquify" 'NOERROR)
-  (require 'uniquify)
-  (setq uniquify-buffer-name-style 'forward)
-  ;(setq uniquify-buffer-name-style 'post-forward)
-  )
-;(setq x-select-enable-clipboard t) ; as above
-;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+(setenv "rm" "/Users/phil/Dropbox/readmes")
 
-;(global-set-key "\C-w" 'clipboard-kill-region)
-;(global-set-key "\M-w" 'clipboard-kill-ring-save)
-;(global-set-key "\C-y" 'clipboard-yank)
-(setenv "PAGER" "cat")
+(load "browse-yank")
+(global-set-key [?\C-x ?\C-y] 'browse-yank)
+
+
+     (setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
+             "* TODO %?\n  %i\n  %a")
+      '(("f" "Filed" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
+             "* FILED %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+             "* %?"))))
+
+;http://www.emacswiki.org/emacs/CuaMode
+;http://ergoemacs.org/emacs/modernization.html
+;(cua-mode t)
+;    (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+;    (transient-mark-mode 1) ;; No region when it is not highlighted
+;    (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 

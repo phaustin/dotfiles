@@ -8,7 +8,7 @@
 
 
 
-(setq load-path (cons (expand-file-name "~phil/elisp/notes/lisp") load-path))
+(setq load-path (cons (expand-file-name "~phil/elisp/notes-mode/lisp") load-path))
 
 (setq load-path (cons (expand-file-name "~phil/elisp/mailcrypt/share/emacs/site-lisp") load-path))
 
@@ -27,7 +27,7 @@
 
 (add-to-list 'load-path "~phil/elisp/python-mode.el-6.1.1") 
 (setq py-install-directory "~phil/elisp/python-mode.el-6.1.1")
-(setq py-shell-name "ipython")
+(setq py-shell-name "/Users/phil/anaconda/bin/ipython")
 (require 'python-mode)
 
 
@@ -71,8 +71,8 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
-(require 'yasnippet)
-(yas-global-mode 1)
+;(require 'yasnippet)
+;(yas-global-mode 1)
 
 ;; Bind this to control-X w (normally undefined):
 (setq browse-url-browser-function 'browse-url-firefox)
@@ -86,6 +86,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(browse-url-firefox-program "/Users/phil/bin/chromebash")
+ '(exec-path (quote ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin12.5.0" "/usr/local/bin")) nil nil "http://ergoemacs.org/emacs/emacs_env_var_paths.html")
  '(ispell-local-dictionary "english")
  '(py-python-command-args (quote ("--pylab=osx"))))
 (custom-set-faces
@@ -93,7 +94,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))) t))
 
 
 ;from: http://trey-jackson.blogspot.com/2008/08/emacs-tip-25-shell-dirtrack-by-prompt.html
@@ -148,6 +149,18 @@ Everything past that can be tailored to your liking.
 (setq auto-mode-alist (cons '("\\.txt\\'" . notes-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tex\\'" . latex-mode) auto-mode-alist))
 
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+(setq TeX-PDF-mode t)
+;(setq TeX-view-program-list
+;  '(("preview" "open -a/Applications/Preview.app/Contents/MacOS/Preview %.pdf")))
+
 (select-keys) ; choose-a-buffer for keys f3 and f9-f12
 
 (global-set-key [f8] 'compile)
@@ -159,12 +172,14 @@ Everything past that can be tailored to your liking.
 (global-set-key [f1] 'choose-csh1) 
 
 (setq reftex-insert-label-flags '("se" "sfte"))
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
+;(add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
 (setq reftex-enable-partial-scans t)
 (setq reftex-save-parse-info t)
 (setq reftex-use-multiple-selection-buffers t)
 (setq reftex-plug-into-AUCTeX t)
 (setq reftex-cite-format 'natbib)
+
+
 
 (setq grep-command "grep -n -H -i ")
 
@@ -229,7 +244,7 @@ Everything past that can be tailored to your liking.
 (getenv "PATH")
 (setenv "PATH"
 (concat
-"/Users/phil/continuum/anaconda/bin" ":" "/usr/texbin" ":" "/Users/phil/bin" ":" "/usr/local/texlive/2012/bin/x86_64-darwin" ":"
+"/usr/local/bin" ":" "/Users/phil/continuum/anaconda/bin" ":" "/usr/texbin" ":" "/Users/phil/bin" ":" "/usr/local/texlive/2012/bin/x86_64-darwin" ":"
 (getenv "PATH")))
 
 (autoload 'send-region-to-omnifocus-quickentry "omnifocus" "Send the selected region to OmniFocus's Quick Entry window" t)
@@ -380,6 +395,7 @@ Everything past that can be tailored to your liking.
 ;             (define-key org-mode-map [(control l)] nil)))
 
 (setenv "rm" "/Users/phil/Dropbox/readmes")
+(setenv "mac2" "/Volumes/mac2/phil")
 
 
 
@@ -406,6 +422,7 @@ Everything past that can be tailored to your liking.
 ;(load-library "org-compat")
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 (require 'org)
+(require 'org-habit)
 ;;
 ;; Standard key bindings
 (global-set-key "\C-cl" 'org-store-link)
@@ -545,24 +562,24 @@ Everything past that can be tailored to your liking.
                                  (org-agenda-files :maxlevel . 9))))
 
 ; Use full outline paths for refile targets - we file directly with IDO
-(setq org-refile-use-outline-path t)
+;(setq org-refile-use-outline-path t)
 
 ; Targets complete directly with IDO
-(setq org-outline-path-complete-in-steps nil)
+;(setq org-outline-path-complete-in-steps nil)
 
 ; Allow refile to create parent tasks with confirmation
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
 
 ; Use IDO for both buffer and file completion and ido-everywhere to t
-(setq org-completion-use-ido t)
-(setq ido-everywhere t)
-(setq ido-max-directory-size 100000)
-(ido-mode (quote both))
+;(setq org-completion-use-ido t)
+;(setq ido-everywhere t)
+;(setq ido-max-directory-size 100000)
+;(ido-mode (quote both))
 ; Use the current window when visiting files and buffers with ido
-(setq ido-default-file-method 'selected-window)
-(setq ido-default-buffer-method 'selected-window)
+;(setq ido-default-file-method 'selected-window)
+;(setq ido-default-buffer-method 'selected-window)
 ; Use the current window for indirect buffer display
-(setq org-indirect-buffer-display 'current-window)
+;(setq org-indirect-buffer-display 'current-window)
 
 ;;;; Refile settings
 ; Exclude DONE state tasks from refile targets
@@ -1651,19 +1668,11 @@ Late deadlines first, then scheduled, then non-late deadlines"
 (setq org-modules (quote (org-bbdb
                           org-bibtex
                           org-crypt
-                          org-gnus
                           org-id
                           org-info
                           org-jsinfo
                           org-habit
                           org-inlinetask
-                          org-irc
-                          org-mew
-                          org-mhe
-                          org-protocol
-                          org-rmail
-                          org-vm
-                          org-wl
                           org-w3m)))
 
 ; position the habit graph on the agenda to the right of the default
@@ -1773,12 +1782,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (setq org-return-follows-link t)
 
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))) t))
+
 
 (defun bh/prepare-meeting-notes ()
   "Prepare meeting notes for email
@@ -1818,7 +1822,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (setq org-link-mailto-program (quote (compose-mail "%a" "%s")))
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
 ;(require 'smex)
 ;(smex-initialize)
@@ -1955,3 +1959,40 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (run-at-time "00:59" 3600 'org-save-all-org-buffers)
 
+; Enable habit tracking (and a bunch of other modules)
+(setq org-modules (quote (org-bbdb
+                          org-bibtex
+                          org-crypt
+                          org-id
+                          org-info
+                          org-jsinfo
+                          org-habit
+                          org-inlinetask
+                          org-mew
+                          org-protocol
+                          org-wl
+                          org-w3m)))
+(put 'dired-find-alternate-file 'disabled nil)
+
+;;https://github.com/jhelwig/ack-and-a-half
+;;http://beyondgrep.com/
+;;curl http://beyondgrep.com/ack-2.10-single-file > ~/bin/ack && chmod 0755 !#:3
+;;(add-to-list 'load-path "/path/to/ack-and-a-half")
+(require 'ack-and-a-half)
+;; Create shorter aliases
+(defalias 'ack 'ack-and-a-half)
+(defalias 'ack-same 'ack-and-a-half-same)
+(defalias 'ack-find-file 'ack-and-a-half-find-file)
+(defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
+(setq ack-and-a-half-executable "/Users/phil/bin/ack")
+
+(defvar server-buffer-clients)
+(when (and (fboundp 'server-start) (string-equal (getenv "TERM") 'xterm))
+  (server-start)
+  (defun fp-kill-server-with-buffer-routine ()
+    (and server-buffer-clients (server-done)))
+  (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
+
+(server-start)
+
+(setq-default ispell-program-name "/usr/local/bin/ispell")

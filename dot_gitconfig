@@ -6,7 +6,7 @@
         pager =
         excludesfile = /Users/phil/.gitignore
 [man]
-                viewer = emacsclient
+                viewer = man
 [alias]
         ci = commit -a
         cm = commit

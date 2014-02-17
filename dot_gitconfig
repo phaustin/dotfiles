@@ -4,7 +4,7 @@
         signingkey = 7F2FB776
 [core]
         pager =
-        excludesfile = /Users/phil/.gitignore
+        excludesfile = ~/.gitignore
 [man]
                 viewer = man
 [alias]

@@ -21,6 +21,7 @@
         changes=diff --name-status -r
         grcol = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
         gr = log --graph --full-history --all  --pretty=tformat:"%h%x09%d%x20%s%x20(%an)"
+	info = for-each-ref --format='%(refname:short)' refs/heads/* | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo "$b -> $r/${m##*/}"; fi; done
 [merge]
         summary = true
         tool = kdiff3

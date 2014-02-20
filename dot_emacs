@@ -157,7 +157,13 @@ Everything past that can be tailored to your liking.
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
+
+(setq TeX-view-program-selection
+      '((output-pdf "PDF Viewer")))
+(setq TeX-view-program-list
+      '(("PDF Viewer" "xpdf %o")))
 (setq TeX-PDF-mode t)
+
 ;(setq TeX-view-program-list
 ;  '(("preview" "open -a/Applications/Preview.app/Contents/MacOS/Preview %.pdf")))
 
@@ -416,7 +422,7 @@ Everything past that can be tailored to your liking.
 
 
 ;;;
-;;; Org Mode
+;;; Org Mode  http://doc.norang.ca/org-mode.html
 ;;;
 ;(add-to-list 'load-path (expand-file-name "~/repos/org-mode/lisp"))
 ;(load-library "org-compat")

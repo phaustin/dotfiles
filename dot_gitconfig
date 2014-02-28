@@ -37,3 +37,12 @@
   default=tracking
 [instaweb]
         httpd=webrick
+
+[filter "nbstrip"]        
+      clean = /Users/phil/bin/nbstripout
+      smudge =cat
+      required
+
+[core]
+     attributesfile= ~/.gitattributes
+     

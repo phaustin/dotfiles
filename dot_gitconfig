@@ -43,6 +43,8 @@
       smudge =cat
       required
 
-[core]
-     attributesfile= ~/.gitattributes
-     
+#[core]
+#     attributesfile= ~/.gitattributes
+
+[receive]
+     denyDeleteCurrent= ignore

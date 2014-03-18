@@ -288,39 +288,39 @@ Everything past that can be tailored to your liking.
 
 (defun gtd ()
    (interactive)
-   (find-file "~/Dropbox/org/gtd.org")
+   (find-file "~/repos/org/gtd.org")
 )
 
 
 (defun research ()
    (interactive)
-   (find-file "~/Dropbox/org/research.org")
+   (find-file "~/repos/org/research.org")
 )
 
 (defun teaching ()
    (interactive)
-   (find-file "~/Dropbox/org/teaching.org")
+   (find-file "~/repos/org/teaching.org")
 )
 
 (defun admin ()
    (interactive)
-   (find-file "~/Dropbox/org/admin.org")
+   (find-file "~/repos/org/admin.org")
 )
 
 
 (defun personal ()
    (interactive)
-   (find-file "~/Dropbox/org/personal.org")
+   (find-file "~/repos/org/personal.org")
 )
 
 (defun tasks ()
    (interactive)
-   (find-file "~/Dropbox/org/tasks.org")
+   (find-file "~/repos/org/tasks.org")
 )
 
 (defun journal ()
    (interactive)
-   (find-file "~/Dropbox/org/journal.org")
+   (find-file "~/repos/org/journal.org")
 )
 
 (setq org-return-follows-link t)
@@ -329,7 +329,7 @@ Everything past that can be tailored to your liking.
  
 
 (setq org-return-follows-link t)
-(setq org-agenda-files '("~/Dropbox/org"))
+(setq org-agenda-files '("~/repos/org"))
  
 
 (gtd)
@@ -391,7 +391,7 @@ Everything past that can be tailored to your liking.
 ;;         ((org-agenda-skip-function 'my-skip-unless-waiting)
 ;;          (org-agenda-overriding-header "Projects waiting for something: "))))
 
-;(setq org-default-notes-file "/Users/phil/Dropbox/org/tasks.org")
+;(setq org-default-notes-file "/Users/phil/repos/org/tasks.org")
 ;(define-key global-map "\C-cc" 'org-capture)
 
 
@@ -400,17 +400,17 @@ Everything past that can be tailored to your liking.
 ;          '(lambda ()
 ;             (define-key org-mode-map [(control l)] nil)))
 
-(setenv "rm" "/Users/phil/Dropbox/readmes")
+(setenv "rm" "/Users/phil/repos/readmes")
 (setenv "mac2" "/Volumes/mac2/phil")
 
 
 
 ;     (setq org-capture-templates
-;      '(("t" "Todo" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
+;      '(("t" "Todo" entry (file+headline "~/repos/org/tasks.org" "Tasks")
 ;             "* TODO %?\n  %i\n  %a")
-;      '(("f" "Filed" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
+;      '(("f" "Filed" entry (file+headline "~/repos/org/tasks.org" "Tasks")
 ;             "* FILED %?\n  %i\n  %a")
-;        ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+;        ("j" "Journal" entry (file+datetree "~/repos/org/journal.org")
 ;             "* %?"))))
 
 ;http://www.emacswiki.org/emacs/CuaMode
@@ -527,29 +527,29 @@ Everything past that can be tailored to your liking.
               ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
               ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
 
-(setq org-directory "~/Dropbox/org")
-(setq org-default-notes-file "~/Dropbox/org/refile.org")
+(setq org-directory "~/repos/org")
+(setq org-default-notes-file "~/repos/org/refile.org")
 
 ;; I use C-c c to start capture mode
 (global-set-key (kbd "C-c c") 'org-capture)
 
 ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
 (setq org-capture-templates
-      (quote (("t" "todo" entry (file "~/Dropbox/org/refile.org")
+      (quote (("t" "todo" entry (file "~/repos/org/refile.org")
                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("r" "respond" entry (file "~/Dropbox/org/refile.org")
+              ("r" "respond" entry (file "~/repos/org/refile.org")
                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
-              ("n" "note" entry (file "~/Dropbox/org/refile.org")
+              ("n" "note" entry (file "~/repos/org/refile.org")
                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("j" "Journal" entry (file+datetree "~/Dropbox/org/diary.org")
+              ("j" "Journal" entry (file+datetree "~/repos/org/diary.org")
                "* %?\n%U\n" :clock-in t :clock-resume t)
-              ("w" "org-protocol" entry (file "~/Dropbox/org/refile.org")
+              ("w" "org-protocol" entry (file "~/repos/org/refile.org")
                "* TODO Review %c\n%U\n" :immediate-finish t)
-              ("m" "Meeting" entry (file "~/Dropbox/org/refile.org")
+              ("m" "Meeting" entry (file "~/repos/org/refile.org")
                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-              ("p" "Phone call" entry (file "~/Dropbox/org/refile.org")
+              ("p" "Phone call" entry (file "~/repos/org/refile.org")
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-              ("h" "Habit" entry (file "~/Dropbox/org/refile.org")
+              ("h" "Habit" entry (file "~/repos/org/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 ;; Remove empty LOGBOOK drawers on clock out
@@ -1495,7 +1495,7 @@ so change the default 'F' binding in the agenda to allow both"
 (setq org-agenda-skip-timestamp-if-done t)
 
 (setq org-agenda-include-diary nil)
-(setq org-agenda-diary-file "~/Dropbox/org/diary.org")
+(setq org-agenda-diary-file "~/repos/org/diary.org")
 
 (setq org-agenda-insert-diary-extract-time t)
 

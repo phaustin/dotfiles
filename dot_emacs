@@ -332,7 +332,7 @@ Everything past that can be tailored to your liking.
  
 
 (setq org-return-follows-link t)
-(setq org-agenda-files '("~/repos/org" "~/repos/readmes"))
+(setq org-agenda-files '("~/repos/org"))
  
 
 (gtd)

@@ -412,17 +412,25 @@ Everything past that can be tailored to your liking.
 (setq-default ispell-program-name "/usr/local/bin/ispell")
 (setq auto-mode-alist (cons '("\\.txt\\'" . text-mode) auto-mode-alist))
 
+(setq org-agenda-start-day "-2d")
+(setq org-agenda-span 10)
 
 
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/repos/org/refile.org" "Tasks")
+             "* TODO %?    \n  %i\n  %a")
+       ("n" "Note" entry  (file+headline "~/repos/org/refile.org" "Notes")
+             "* %?   :NOTE: \n  %i\n  %a")))
 
 (setq org-agenda-custom-commands
       '(("p" "Project List"
           ( (tags "PROJECT")
           )
         )
-        ("w" todo "WAITING" nil) 
+        ("w" tags-todo "WAITING" nil) 
         ("f" todo "FILED" nil) 
         ("n" todo "NEXT" nil)
+        ("o" tags "NOTE" nil)
         ("d" "Agenda + Next Actions" ((agenda) (todo "NEXT")))
         ("O" "Office"
           ( (agenda)
@@ -435,7 +443,7 @@ Everything past that can be tailored to your liking.
             (tags "PROJECT")
           )
         )
-        ("H" "Home NA Lists"
+        ("H" "Home Lists"
           ( (agenda)
             (tags-todo "HOME")
             (tags-todo "COMPUTER")

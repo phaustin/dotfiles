@@ -1,25 +1,22 @@
-PATH=/usr/NX/bin:/home/MATLAB/R2010b/bin/:/home/phil/bin:$PATH
-OS=$(lsb_release -si)
-PATH=/home/texlive2011/bin/x86_64-linux:/home/phil/bin:/usr/local/bin:$PATH
-if [ "$OS" == "Ubuntu" ]; then
-   PATH=/home/phil/usr_owl/bin:$PATH:.
-   export PYTHONPATH=/home/phil/lib/python
-#   http://defindit.com/readme_files/bash_examples.html
-#   make sure you don't echo if not tty
-   if [ "$(echo $- | grep -c i)" == 1 ]
-   then
-     echo "setting PATH for ubuntu"
-   fi
-else
-   PATH=/home/phil/usr_centos/bin:/home/phil/usr64/bin:$PATH
-   if [ "$(echo $- | grep -c i)" == 1 ]
-   then
-     echo "setting PATH for centos"
-   fi
-fi                    
+#source /etc/profile
+#export TEXINPUTS=/Users/phil/texfiles/newaims
+export TEXINPUTS=/Users/phil/texmf//:/usr/texbin//:.
+PATH="/Applications/Emacs.app/Contents/MacOS/bin/:/Users/phil/bin:/usr/local/bin:.:/usr/texbin:${PATH}"
+export PATH
+export HFILE_PATH=/opt/local/share/xtide/harmonics
+export WVS_DIR=/opt/local/share/xtide/wvs
+export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
+alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs $@'
+alias gitx='open -a /Applications/GitX.app $@'
+alias gimp='open -a /Applications/Gimp.app $@'
+function acroread() { open -a /Applications/Adobe\ Acrobat\ X\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
+function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
+function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
+function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 
-#set up prompt for emacs dirtrack see
-#.emacs file
+export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+export VISUAL=emacsclient
+
 unset PS1
 PS1="\w \u@\h% "
 
@@ -34,29 +31,6 @@ function s() { command pushd +"$@"; }
 function dt() { command popd +"$@"; }
 alias d='dirs'
 
-# Export Xauthority for users not for root.
-
-if [ ! -z "$DISPLAY" ];then
-	if [ "`id -u`" -gt 14 ];then
-		if [ -z $XAUTHORITY ];then
-		    export XAUTHORITY=$HOME/.Xauthority
-		fi
-	fi
-fi
-
-export DOTBASH=~/.gitbash
-source $DOTBASH/main.sh
-
-function gitp()
-{
-    unset PS1
-    if [ $EMACS ]; then
-        PS1="\W $git_branch \u@\h% "
-    else
-        PS1="\W $git_branch \u@\h% "
-    fi
-}
-
 function smallp()
 {
     unset PS1
@@ -66,20 +40,6 @@ function smallp()
         PS1="\W \u@\h% "
     fi
 }
-
-
-function gitp()
-{
-    unset PS1
-    if [ $EMACS ]; then
-        PS1="|Pr0mPT|\W\$git_branch \u@\h% "
-    else
-        PS1="\W\$git_branch \u@\h% "
-    fi
-}
-
-
-
 
 
 function newp()
@@ -102,30 +62,23 @@ function oldp()
     fi
 }
 
-export rm='/home/phil/public_html/readmes'
-export BIBINPUTS=.:/home/phil/TeX/bibfiles//:/home/ccorbel/repos/bibliography_hg//:/home/phil/repos/ccorbel_thesis/PHIL_outline
-export ccbib=/home/ccorbel/repos/bibliography_hg/corbel_ref_cumul.bib
-export ccthesis=/home/phil/repos/ccorbel_thesis/PHIL_outline
+export e340=/Users/phil/Dropbox/teaching/e340_2012/
+export e340up=/Users/public_html/courses/eosc340
+export this_lec=/Users/phil/Dropbox/e340_thur_9_20
+export a301=/Users/phil/Dropbox/a301
+export git="ssh://jcole@roc.eos.ubc.ca/users/phil/repos/feedbacks"
+export rm=~/repos/readmes
+export or=~/repos/org
+export mac2=/Volumes/mac2/phil
+export CMAKE_PREFIX_PATH=/usr/local
+export CC=gcc
+export CXX=g++
+export CMAKE_COMPILER=gfortran
+export CMAKE_MACHINE=osx
 
-export outlines='/home/phil/public_html/outlines'
-umask 022
-export EDITOR="emacsclient"
-export VISUAL="emacsclient"
-export BSTINPUTS=.:/home/phil/TeX/bibfiles//:/home/phil/TeX/style/agu.dir//
-export proj=/home/phil/public_html/projects
-export projdir=/home/phil/public_html/projects
-export JAVA_HOME=/home/phil/Downloads/jdk1.6.0_30
+export RSTUDIO_WHICH_R=/usr/local/bin/R
 
-export a500=/home/phil/public_html/courses/atsc500
-export a405=/home/phil/public_html/courses/atsc405
-export numeric=/home/phil/public_html/numeric
-export thesis=/home/phil/public_html/thesis
-export papers=/home/phil/public_html/papers
-export git=ssh://phil@roc/tera/roc_space2
-export a405repo=/home/phil/public_html/courses/a405repos/a405
-export thermlib=/home/phil/public_html/courses/a405repos/a405/matlab/thermlib
-export a4052010=/home/phil/public_html/courses/atsc405_2010
-export current=/home/phil/public_html/papers/current
+export PATH="/Users/phil/anaconda/bin:$PATH"
 
-
-
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8

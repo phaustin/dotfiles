@@ -328,7 +328,7 @@ Everything past that can be tailored to your liking.
 
 (setq org-return-follows-link t)
 
-(setq org-tags-exclude-from-inheritance '("PROJECT" "WAITING"))
+(setq org-tags-exclude-from-inheritance '("PROJECT" "WAITING" "crypt"))
  
 
 (setq org-return-follows-link t)
@@ -455,7 +455,6 @@ Everything past that can be tailored to your liking.
 
 (require 'org-crypt)
 (org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance (quote ("crypt")))
 ;; GPG key to use for encryption
 ;; Either the Key ID or set to nil to use symmetric encryption.
 (setq org-crypt-key nil)

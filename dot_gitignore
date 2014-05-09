@@ -25,6 +25,7 @@
 *.snm
 *.vrb
 *.pdf
+*.png
 *.rel
 *.html
 *.inv
@@ -134,3 +135,7 @@ temp/
 #elisp
 
 *.elc
+
+
+*.db
+*.orig

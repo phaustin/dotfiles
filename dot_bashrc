@@ -1,21 +1,10 @@
-#source /etc/profile
-#export TEXINPUTS=/Users/phil/texfiles/newaims
-export TEXINPUTS=/Users/phil/texmf//:/usr/texbin//:.
-PATH="/Applications/Emacs.app/Contents/MacOS/bin/:/Users/phil/bin:/usr/local/bin:.:/usr/texbin:${PATH}"
-export PATH
-export HFILE_PATH=/opt/local/share/xtide/harmonics
-export WVS_DIR=/opt/local/share/xtide/wvs
-export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
-alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs $@'
-alias gitx='open -a /Applications/GitX.app $@'
-alias gimp='open -a /Applications/Gimp.app $@'
-function acroread() { open -a /Applications/Adobe\ Acrobat\ X\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
-function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
-function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
-function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
+export PATH="/Users/phil/miniconda/bin:/usr/local/bin:$PATH"
 
 export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 export VISUAL=emacsclient
+
+alias gitx='open -a /Applications/GitX.app $@'
+function acroread() { open -a /Applications/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
 
 unset PS1
 PS1="\w \u@\h% "
@@ -78,7 +67,6 @@ export CMAKE_MACHINE=osx
 
 export RSTUDIO_WHICH_R=/usr/local/bin/R
 
-export PATH="/Users/phil/anaconda/bin:$PATH"
 
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8

@@ -252,8 +252,8 @@ Everything past that can be tailored to your liking.
 (other-window 1)
 (make-shell "csh2")    ; Create another shell in the other window
 
-(setenv "PATH"
-(concat "/Users/phil/miniconda/bin" ":" "/usr/texbin" ":" "/Users/phil/bin" ":" (getenv "PATH")))
+;(setenv "PATH"
+;(concat "/Users/phil/miniconda/bin" ":" "/usr/texbin" ":" "/Users/phil/bin" ":" (getenv "PATH")))
 
 (autoload 'send-region-to-omnifocus-quickentry "omnifocus" "Send the selected region to OmniFocus's Quick Entry window" t)
 (global-set-key "\C-c\C-o" 'send-region-to-omnifocus-quickentry)

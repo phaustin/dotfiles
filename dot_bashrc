@@ -1,1 +1,88 @@
 export PATH="/Users/phil/miniconda/bin:/Users/phil/bin:/usr/local/bin:$PATH"
+
+alias gitx='open -a /Applications/GitX.app $@'
+alias gimp='open -a /Applications/Gimp.app $@'
+function acroread() { open -a /Applications/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
+function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
+function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
+function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
+
+unset PS1
+PS1="\w \u@\h% "
+
+if [ $EMACS ]; then
+    unset PS1
+    PS1='|Pr0mPT|\w|\w \u@\h% '
+fi
+
+function cd() { command cd "$@"; }
+function pd() { command pushd "$@"; }
+function s() { command pushd +"$@"; }
+function dt() { command popd +"$@"; }
+alias d='dirs'
+
+function smallp()
+{
+    unset PS1
+    if [ $EMACS ]; then
+        PS1='|Pr0mPT|\w|\W \u@\h% '
+    else
+        PS1="\W \u@\h% "
+    fi
+}
+
+function railp()
+{
+    unset PS1
+    if [ $EMACS ]; then
+        PS1='|Pr0mPT|\w|\W \u@\h% '
+    else
+        PS1="\W \u@rail "
+    fi
+}
+
+
+
+function newp()
+{
+    unset PS1
+    if [ $EMACS ]; then
+        PS1='|Pr0mPT|\w|$1 '
+    else
+        PS1=$1
+    fi
+}
+
+function oldp()
+{
+    unset PS1
+    if [ $EMACS ]; then
+        PS1='|Pr0mPT|\w|\w \u@\h% '
+    else
+        PS1="\w \u@\h% "
+    fi
+}
+
+export e340=/Users/phil/Dropbox/teaching/e340_2012/
+export e340up=/Users/public_html/courses/eosc340
+export this_lec=/Users/phil/Dropbox/e340_thur_9_20
+export a301=/Users/phil/Dropbox/a301
+export git="ssh://jcole@roc.eos.ubc.ca/users/phil/repos/feedbacks"
+export rm=~/repos/readmes
+export or=~/repos/org
+export mac2=/Volumes/mac2/phil
+export CMAKE_PREFIX_PATH=/usr/local
+export CC=gcc
+export CXX=g++
+export CMAKE_COMPILER=gfortran
+export CMAKE_MACHINE=osx
+export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
+export TEXINPUTS=/Users/phil/texmf//:/usr/texbin//:.
+export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+export VISUAL=emacsclient
+
+export RSTUDIO_WHICH_R=/usr/local/bin/R
+
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+

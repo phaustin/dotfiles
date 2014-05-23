@@ -1,4 +1,4 @@
-export PATH="/Users/phil/miniconda/bin:/Users/phil/bin:/usr/local/bin:$PATH"
+export PATH="/Users/phil/miniconda/bin:/Users/phil/bin:$PATH"
 
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'

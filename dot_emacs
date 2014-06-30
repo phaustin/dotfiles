@@ -70,10 +70,10 @@
 
 (put 'upcase-region 'disabled nil)
 
-(require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
+;(require 'package)
+;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;(package-initialize)
 ;(require 'yasnippet)
 ;(yas-global-mode 1)
 
@@ -103,8 +103,8 @@
 
 ;from: http://trey-jackson.blogspot.com/2008/08/emacs-tip-25-shell-dirtrack-by-prompt.html
 (add-hook 'shell-mode-hook
-        #'(lambda ()
-            (shell-dirtrack-mode nil)
+        '(lambda ()
+             (shell-dirtrack-mode nil)
             (add-hook 'comint-preoutput-filter-functions
                       'shell-sync-dir-with-prompt nil t)))
 
@@ -178,7 +178,7 @@ Everything past that can be tailored to your liking.
 (global-set-key [f6] 'auto-fill-mode) 
 (global-set-key [f5] 'overwrite-mode) 
 (global-set-key [f4] 'rst-mode) 
-(global-set-key [f3] 'choose-python) 
+(global-set-key [f3] 'choose-a-buffer) 
 (global-set-key [f2] 'choose-csh2) 
 (global-set-key [f1] 'choose-csh1) 
 
@@ -452,6 +452,9 @@ Everything past that can be tailored to your liking.
   )
 
 
+(setq org-agenda-include-diary nil)
+(setq org-agenda-diary-file "~/repos/org/diary.org")
+
 (require 'org-crypt)
 (org-crypt-use-before-save-magic)
 ;; GPG key to use for encryption
@@ -469,3 +472,21 @@ Everything past that can be tailored to your liking.
 
 (setq py-shell-name "/Users/phil/miniconda/bin/ipython")
 (require 'python-mode)
+
+(setenv "or" "/Users/phil/repos/org")
+(setenv "rm" "/Users/phil/repos/readmes")
+
+;;http://lists.gnu.org/archive/html/emacs-orgmode/2010-04/msg01057.html
+;; 1. window gets split horizontally (one on TOP of the other), AND
+;; 2. AFTER splitting, further "C-x 4 b" will NOT lead to any more splitting - reuse gets preferred
+(setq split-height-threshold 40) ; nil
+(setq split-width-threshold nil) ; 100
+
+;;some unrelated customizations I made at the time (since I want the agenda front and center when I'm looking at it):
+(setq org-agenda-window-setup 'reorganize-frame)
+(setq org-agenda-restore-windows-after-quit t)
+(setq org-agenda-window-frame-fractions '(1.0 . 1.0))
+
+;http://www.emacswiki.org/emacs/FrameSize
+(add-to-list 'default-frame-alist '(height . 55))
+(add-to-list 'default-frame-alist '(width . 180))

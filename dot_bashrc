@@ -2,6 +2,7 @@ export PATH="/Users/phil/miniconda/bin:/Users/phil/bin:$PATH"
 
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
+alias emacs='open -a /Applications/Emacs.app $@'
 function acroread() { open -a /Applications/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
 function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
 function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
@@ -80,6 +81,12 @@ export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
 export TEXINPUTS=/Users/phil/texmf//:/usr/texbin//:.
 export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 export VISUAL=emacsclient
+export stat=/Users/phil/repos/les_plots/stat_plot
+alias conda3=/Users/phil/miniconda3/bin/conda
+alias python3=/Users/phil/miniconda3/bin/python
+alias ipython3=/Users/phil/miniconda3/bin/ipython
+alias pip3=/Users/phil/miniconda3/bin/pip
+
 
 export RSTUDIO_WHICH_R=/usr/local/bin/R
 

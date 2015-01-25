@@ -70,10 +70,10 @@
 
 (put 'upcase-region 'disabled nil)
 
-;(require 'package)
-;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;(package-initialize)
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
 ;(require 'yasnippet)
 ;(yas-global-mode 1)
 
@@ -92,8 +92,11 @@
  '(browse-url-firefox-program "/Users/phil/bin/chromebash")
  '(exec-path
    (quote
-    ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin12.5.0" "/usr/local/bin")) nil nil "http://ergoemacs.org/emacs/emacs_env_var_paths.html")
+    ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")) nil nil "http://ergoemacs.org/emacs/emacs_env_var_paths.html")
  '(ispell-local-dictionary "english")
+ '(org-agenda-files
+   (quote
+    ("/Users/phil/repos/org/Readme_boulder.org" "/Users/phil/repos/org/Readme_cmake.org" "/Users/phil/repos/org/Readme_compcom.org" "/Users/phil/repos/org/Readme_database.org" "/Users/phil/repos/org/Readme_feedbacks.org" "/Users/phil/repos/org/Readme_install.org" "/Users/phil/repos/org/Readme_les.org" "/Users/phil/repos/org/Readme_notes-mode.org" "/Users/phil/repos/org/Readme_org.org" "/Users/phil/repos/org/Readme_pcmdi.org" "/Users/phil/repos/org/Readme_python.org" "/Users/phil/repos/org/Readme_scipy.org" "/Users/phil/repos/org/Readme_scm.org" "/Users/phil/repos/org/Readme_web.org" "/Users/phil/repos/org/Readme_xue.org" "/Users/phil/repos/org/admin.org" "/Users/phil/repos/org/chem_lecture.org" "/Users/phil/repos/org/daylog.org" "/Users/phil/repos/org/diary.org" "/Users/phil/repos/org/docs.org" "/Users/phil/repos/org/equation_of_state.org" "/Users/phil/repos/org/gtd.org" "/Users/phil/repos/org/journal.org" "/Users/phil/repos/org/notes.org" "/Users/phil/repos/org/personal.org" "/Users/phil/repos/org/refile.org" "/Users/phil/repos/org/research.org" "/Users/phil/repos/org/reviews.org" "/Users/phil/repos/org/teaching.org" "/Users/phil/repos/org/testit.org" "/Users/phil/repos/org/web.org" "/Users/phil/repos/org/work.org" "/Users/phil/repos/bibs/entrainment.org")))
  '(org-mobile-directory "~/orgtransfer")
  '(org-mobile-inbox-for-pull "~/repos/org/from-mobile.org")
  '(py-python-command-args (quote ("-i"))))
@@ -153,6 +156,7 @@ Everything past that can be tailored to your liking.
 ;(setq auto-mode-alist (cons '("\\.txt\\'" . notes-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tex\\'" . latex-mode) auto-mode-alist))
 
+(require 'tex)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
@@ -267,11 +271,6 @@ Everything past that can be tailored to your liking.
 
 (load "highlight-region") ; prepend text to a region
 
-(require 'package)
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
-
 ;(eval-after-load "geiser" '(require quack))
 
 ;(add-to-list 'load-path "~/emacs/org")
@@ -334,13 +333,13 @@ Everything past that can be tailored to your liking.
 (setq org-agenda-files '("~/repos/org" "~/repos/bibs"))
  
 
-(gtd)
-(research)
-(admin)
-(teaching)
-(personal)
-(tasks)
-(journal)
+;(gtd)
+;(research)
+;(admin)
+;(teaching)
+;(personal)
+;(tasks)
+;(journal)
 
 
 (global-set-key "\C-cp" 'choose-personal)
@@ -490,3 +489,59 @@ Everything past that can be tailored to your liking.
 ;http://www.emacswiki.org/emacs/FrameSize
 (add-to-list 'default-frame-alist '(height . 55))
 (add-to-list 'default-frame-alist '(width . 180))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(setq inhibit-startup-screen t)
+(setq initial-major-mode 'org-mode)
+;(require 'magit)
+(setq load-path (cons (expand-file-name "~phil/repos/emacs-ipython-notebook/lisp") load-path))
+(require 'ein)
+
+;http://tex.stackexchange.com/questions/24510/pdflatex-fails-within-emacs-app-but-works-in-terminal
+;http://ergoemacs.org/emacs/emacs_env_var_paths.html
+
+(setq exec-path
+'(
+"/usr/local/texlive/2013/bin/x86_64-darwin"
+"/Users/phil/bin"
+"/usr/local/bin"
+"/usr/bin"
+"/bin"
+"/usr/sbin"
+))
+
+(getenv "PATH")
+ (setenv "PATH"
+(concat
+ "/usr/local/texlive/2013/bin/x86_64-darwin" ":"
+ "/usr/local/bin" ":"
+(getenv "PATH")))
+
+(setq-default indent-tabs-mode nil)
+
+(setenv "e340"
+(concat
+   (getenv "HOME")
+   "/Dropbox/e340_2014_spring/"))
+
+(setenv "e340f"
+(concat
+   (getenv "HOME")
+   "/Dropbox/e340 FILES FOR CONNECT/"))
+
+
+(setenv "ecode"
+(concat
+   (getenv "HOME")
+   "/repos/e340_code/"))
+
+(setenv "eweb"
+(concat
+   (getenv "HOME")
+   "/repos/e340_web/"))
+

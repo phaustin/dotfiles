@@ -4,7 +4,7 @@
         signingkey = 7F2FB776
 [core]
         pager =
-        excludesfile = ~/.gitignore
+	excludesfile = /Users/phil/.gitignore
 [man]
                 viewer = man
 [alias]
@@ -39,7 +39,7 @@
         httpd=webrick
 
 [filter "nbstrip"]        
-      clean = /Users/phil/bin/nbstripout
+      clean = nbstripout.py
       smudge =cat
       required
 
@@ -48,3 +48,15 @@
 
 [receive]
      denyDeleteCurrent= ignore
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[pull]
+	rebase = true

@@ -1,5 +1,4 @@
-export PATH="/Users/phil/miniconda/bin:/Users/phil/bin:$PATH"
-
+export PATH=""${HOME}/miniconda/bin:"${HOME}/bin:/usr/local/bin:/usr/local/texlive/2013/bin/x86_64-darwin/:$PATH"
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
 alias emacs='open -a /Applications/Emacs.app $@'
@@ -64,10 +63,15 @@ function oldp()
     fi
 }
 
-export e340=/Users/phil/Dropbox/teaching/e340_2012/
-export e340up=/Users/public_html/courses/eosc340
-export this_lec=/Users/phil/Dropbox/e340_thur_9_20
-export a301=/Users/phil/Dropbox/a301
+#
+# need to mirror these in .emacs
+#
+export e340="${HOME}/Dropbox/e340_2014_spring/"
+export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT/"
+alias cf="cd \"$e340f\""
+export ecode="${HOME}/repos/e340_code/"
+export eweb="${HOME}/repos/e340_web/"
+export a301="${HOME}/Dropbox/a301"
 export git="ssh://jcole@roc.eos.ubc.ca/users/phil/repos/feedbacks"
 export rm=~/repos/readmes
 export or=~/repos/org
@@ -78,14 +82,14 @@ export CXX=g++
 export CMAKE_COMPILER=gfortran
 export CMAKE_MACHINE=osx
 export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
-export TEXINPUTS=/Users/phil/texmf//:/usr/texbin//:.
+export TEXINPUTS="${HOME}/texmf//:/usr/texbin//:/usr/local/texlive/2013//:."
 export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 export VISUAL=emacsclient
-export stat=/Users/phil/repos/les_plots/stat_plot
-alias conda3=/Users/phil/miniconda3/bin/conda
-alias python3=/Users/phil/miniconda3/bin/python
-alias ipython3=/Users/phil/miniconda3/bin/ipython
-alias pip3=/Users/phil/miniconda3/bin/pip
+export stat="${HOME}/repos/les_plots/stat_plot"
+alias conda3="${HOME}/miniconda3/bin/conda"
+alias python3="${HOME}/miniconda3/bin/python"
+alias ipython3="${HOME}/miniconda3/bin/ipython"
+alias pip3="${HOME}/miniconda3/bin/pip"
 
 
 export RSTUDIO_WHICH_R=/usr/local/bin/R
@@ -93,3 +97,8 @@ export RSTUDIO_WHICH_R=/usr/local/bin/R
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
 
+export e14=${HOME}/Dropbox/e340_2012/2014\ -\ Fall
+export e13="${HOME}/repos/e340_2013wT2"
+export econ="${HOME}/Dropbox/e340\ FILES\ FOR\ CONNECT"
+export aweb="${HOME}/repos/atsc301_web"
+export acode="${HOME}/repos/a301_2014"

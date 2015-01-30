@@ -69,8 +69,8 @@ function oldp()
 export e340="${HOME}/Dropbox/e340_2014_spring/"
 export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT/"
 alias cf="cd \"$e340f\""
-export ecode="${HOME}/repos/e340_code/"
-export eweb="${HOME}/repos/e340_web/"
+export ecode="${HOME}/repos/e582_code/"
+export eweb="${HOME}/repos/e582_web/"
 export a301="${HOME}/Dropbox/a301"
 export git="ssh://jcole@roc.eos.ubc.ca/users/phil/repos/feedbacks"
 export rm=~/repos/readmes

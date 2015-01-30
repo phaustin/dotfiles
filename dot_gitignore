@@ -139,3 +139,5 @@ temp/
 *.db
 *.orig
 
+*.npz
+*.h5

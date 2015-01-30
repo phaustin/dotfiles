@@ -538,10 +538,10 @@ Everything past that can be tailored to your liking.
 (setenv "ecode"
 (concat
    (getenv "HOME")
-   "/repos/e340_code/"))
+   "/repos/e582_code/"))
 
 (setenv "eweb"
 (concat
    (getenv "HOME")
-   "/repos/e340_web/"))
+   "/repos/e582_web/"))
 

@@ -1,4 +1,4 @@
-export PATH=""${HOME}/miniconda/bin:"${HOME}/bin:/usr/local/bin:/usr/local/texlive/2013/bin/x86_64-darwin/:$PATH"
+export PATH="${HOME}/bin:${HOME}/anaconda/envs/test/bin:/usr/local/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH"
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
 alias emacs='open -a /Applications/Emacs.app $@'
@@ -68,6 +68,8 @@ function oldp()
 #
 export e340="${HOME}/Dropbox/e340_2014_spring/"
 export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT/"
+export or="${HOME}/repos/org/"
+export rm="${HOME}/repos/readmes/"
 alias cf="cd \"$e340f\""
 export ecode="${HOME}/repos/e582_code/"
 export eweb="${HOME}/repos/e582_web/"
@@ -82,14 +84,15 @@ export CXX=g++
 export CMAKE_COMPILER=gfortran
 export CMAKE_MACHINE=osx
 export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
-export TEXINPUTS="${HOME}/texmf//:/usr/texbin//:/usr/local/texlive/2013//:."
+#export TEXINPUTS="${HOME}/texmf//:."
 export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 export VISUAL=emacsclient
+export PYTHONPATH='/Users/phil/repos'
 export stat="${HOME}/repos/les_plots/stat_plot"
-alias conda3="${HOME}/miniconda3/bin/conda"
-alias python3="${HOME}/miniconda3/bin/python"
-alias ipython3="${HOME}/miniconda3/bin/ipython"
-alias pip3="${HOME}/miniconda3/bin/pip"
+#alias conda3="${HOME}/miniconda3/bin/conda"
+#alias python3="${HOME}/miniconda3/bin/python"
+#alias ipython3="${HOME}/miniconda3/bin/ipython"
+#alias pip3="${HOME}/miniconda3/bin/pip"
 
 
 export RSTUDIO_WHICH_R=/usr/local/bin/R
@@ -102,3 +105,7 @@ export e13="${HOME}/repos/e340_2013wT2"
 export econ="${HOME}/Dropbox/e340\ FILES\ FOR\ CONNECT"
 export aweb="${HOME}/repos/atsc301_web"
 export acode="${HOME}/repos/a301_2014"
+
+#arg-complete for conda
+#eval $(register-python-argcomplete conda)
+export BITLY_ACCESS_TOKEN=c984e550ada5ef8846c5a9bf4bd602ca086154b3

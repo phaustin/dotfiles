@@ -9,9 +9,8 @@
 
 (setq default-directory "~/repos") 
 
-(setq load-path (cons (expand-file-name "~phil/elisp/notes-mode/lisp") load-path))
 
-(setq load-path (cons (expand-file-name "~phil/elisp/mailcrypt/share/emacs/site-lisp") load-path))
+;(setq load-path (cons (expand-file-name "~phil/elisp/mailcrypt/share/emacs/site-lisp") load-path))
 
 (setq load-path (cons (expand-file-name "~phil/elisp/misc") load-path))
 
@@ -21,52 +20,6 @@
 (require 'bash-completion)
 (bash-completion-setup)
 
-
-(load-library "mailcrypt")
-(mc-setversion "gpg") ;; Alternately, "2.6" or "gpg"
-
-(define-key global-map "\C-xx" 'abbrev-mode)
-(setq save-abbrevs t)
-;(quietly-read-abbrev-file) 
-(setq message-log-max 500)
-(setq log-message-max-size 500)
-(load-file "~/elisp/misc/my-text.el")
-(load-file "~/elisp/misc/my-latex.el")
-
-
-(add-hook 'LaTeX-mode-hook
-	  (lambda ()
-	    (quietly-read-abbrev-file "/Users/phil/.abbrev_defs")
-	    (setq local-abbrev-table LaTeX-mode-abbrev-table)
- 	    (abbrev-mode t)
- 	    ))
-
-(setq-default abbrev-mode t)                            ; enable abbreviations
-(setq save-abbrevs t)                                   ; save abbreviations upo
-
-; Tell XEmacs to load `my-latex.el' when opening LaTeX files
-(add-hook 'LaTeX-mode-hook
-  '(lambda()
-     (load-file "~/elisp/misc/my-latex.el")  ; load these LaTeX preferences
-     ))
-(setq-default abbrev-mode t)                            ; enable abbreviations
-(setq save-abbrevs t)                                   ; save abbreviations upon exiting xemacs
-;;(setq abbrev-file-name "~/.xemacs/my-abbreviations.el") ; the file storing the abbreviations
-(if (file-readable-p abbrev-file-name)                  ; read the abbreviations every
-  (read-abbrev-file abbrev-file-name)                   ; time xemacs is started
-  )
-
-(require 'notes-variables)
-(setq auto-mode-alist
-  	(cons (cons "/9[0-9][0-9][0-9][0-9][0-9].?$" 'notes-mode)
-  	      auto-mode-alist))
-(define-key global-map "\C-cn" 'notes-index-todays-link)
-(define-key global-map [(control c) (return)] 'notes-w3-follow-link)
-
-;(setq auto-mode-alist (cons '("\\.txt\\'" . notes-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.nm\\'" . notes-mode) auto-mode-alist))
-
-(load-library "mailcrypt")
 
 (put 'upcase-region 'disabled nil)
 
@@ -84,6 +37,8 @@
 ;(require 'yasnippet) (yas-global-mode 1)
 
 (require 'gist)
+(require 'magit)
+(load-theme 'adwaita t)
 
 ;; Bind this to control-X w (normally undefined):
 (setq browse-url-browser-function 'browse-url-firefox)
@@ -99,11 +54,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(browse-url-firefox-program "/Users/phil/bin/chromebash")
- '(elpy-rpc-python-command "/Users/phil/anaconda3/anaconda/bin/python")
- '(elpy-interactive-python-command "/Users/phil/anaconda3/anaconda/bin/ipython")
+ '(elpy-interactive-python-command "/Users/phil/anaconda/bin/ipython")
+ '(elpy-rpc-python-command "/Users/phil/anaconda/bin/python")
  '(exec-path
    (quote
-    ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")) nil nil "http://ergoemacs.org/emacs/emacs_env_var_paths.html")
+    ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/usr/local/texlive/2015/bin/x86_64-darwin")) nil nil "http://ergoemacs.org/emacs/emacs_env_var_paths.html")
  '(gist-list-format
    (quote
     ((id "Id" 10 nil identity)
@@ -118,13 +73,10 @@
  '(ispell-local-dictionary "english")
  '(org-agenda-files
    (quote
-    ("/Users/phil/repos/org/research.org" "/Users/phil/repos/org/teaching.org" "/Users/phil/repos/org/admin.org")))
+    ("/Users/phil/repos/org/journal/20150609" "/Users/phil/repos/org/journal/20150610" "/Users/phil/repos/org/journal/20150611" "/Users/phil/repos/org/journal/20150612" "/Users/phil/repos/org/journal/20150613" "/Users/phil/repos/org/journal/20150619" "/Users/phil/repos/org/journal/20150622" "/Users/phil/repos/org/journal/20150802" "/Users/phil/repos/org/diary.org" "/Users/phil/repos/org/research.org" "/Users/phil/repos/org/teaching.org" "/Users/phil/repos/org/admin.org")))
  '(org-mobile-directory "~/orgtransfer")
- '(org-mobile-inbox-for-pull "~/repos/org/from-mobile.org")
- '(py-python-command-args (quote ("-i")))
- '(python-shell-exec-path (quote ("/Users/phil/anaconda3/anaconda/bin")))
- '(python-shell-interpreter "/Users/phil/anaconda3/anaconda/bin/ipython")
- '(python-shell-interpreter-args "--matplotlib"))
+ '(org-mobile-inbox-for-pull "~/repos/org/from-mobile.org"))
+
 
 (global-set-key "\C-xw" browse-url-browser-function)
 
@@ -166,7 +118,7 @@ Everything past that can be tailored to your liking.
   string))
 
 (setq font-lock-maximum-decoration t)
-(add-hook 'python-mode-hook 'turn-on-font-lock)
+;(add-hook 'python-mode-hook 'turn-on-font-lock)
 
 (setq-default calendar-latitude +49.2333)
 (setq-default calendar-longitude -123.25)
@@ -176,12 +128,14 @@ Everything past that can be tailored to your liking.
 
 (setq auto-mode-alist (append '(("\\.ht$" . rst-mode)) auto-mode-alist))
 (setq auto-mode-alist (append '(("\\.rst$" . rst-mode)) auto-mode-alist))
-(setq auto-mode-alist (append '(("\\.pyx$" . python-mode)) auto-mode-alist))
+;(setq auto-mode-alist (append '(("\\.pyx$" . python-mode)) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.nm\\'" . notes-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.txt\\'" . notes-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.tex\\'" . latex-mode) auto-mode-alist))
+;(setq auto-mode-alist (cons '("\\.tex\\'" . latex-mode) auto-mode-alist))
 
-(require 'tex)
+(load "auctex.el" nil t t)
+
+;; AucTeX
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
@@ -190,19 +144,38 @@ Everything past that can be tailored to your liking.
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
-
-(setq TeX-view-program-selection
-      '((output-pdf "PDF Viewer")))
-(setq TeX-view-program-list
-      '(("PDF Viewer" "xpdf %o")))
 (setq TeX-PDF-mode t)
 
-;(setq TeX-view-program-list
-;  '(("preview" "open -a/Applications/Preview.app/Contents/MacOS/Preview %.pdf")))
+(setq reftex-insert-label-flags '("se" "sfte"))
+(setq reftex-enable-partial-scans t)
+(setq reftex-save-parse-info t)
+(setq reftex-use-multiple-selection-buffers t)
+(setq reftex-plug-into-AUCTeX t)
+(setq reftex-cite-format 'natbib)
+
+
+;;http://www.stefanom.org/setting-up-a-nice-auctex-environment-on-mac-os-x/
+;; Use Skim as viewer, enable source <-> PDF sync
+;; make latexmk available via C-c C-c
+;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
+(add-hook 'LaTeX-mode-hook (lambda ()
+  (push
+    '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
+      :help "Run latexmk on file")
+    TeX-command-list)))
+(add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+
+;; use Skim as default pdf viewer
+;; Skim's displayline is used for forward search (from .tex to .pdf)
+;; option -b highlights the current line; option -g opens Skim in the background  
+(setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+(setq TeX-view-program-list
+     '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
 
 (select-keys) ; choose-a-buffer for keys f3 and f9-f12
 
-(global-set-key [f8] 'compile)
+(global-set-key [f9] 'python-mode)
+(global-set-key [f8] 'org-mode)
 (global-set-key [f7] 'fill-paragraph)
 (global-set-key [f6] 'auto-fill-mode) 
 (global-set-key [f5] 'choose-a-buffer) 
@@ -211,13 +184,6 @@ Everything past that can be tailored to your liking.
 (global-set-key [f2] 'choose-csh2) 
 (global-set-key [f1] 'choose-csh1) 
 
-(setq reftex-insert-label-flags '("se" "sfte"))
-;(add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
-(setq reftex-enable-partial-scans t)
-(setq reftex-save-parse-info t)
-(setq reftex-use-multiple-selection-buffers t)
-(setq reftex-plug-into-AUCTeX t)
-(setq reftex-cite-format 'natbib)
 
 
 
@@ -270,11 +236,6 @@ Everything past that can be tailored to your liking.
   "Set a key to a buffer"
   (interactive "P")
   (switch-to-buffer "tasks.org"))
-
-(defun choose-journal (&optional re-assign)
-  "Set a key to a buffer"
-  (interactive "P")
-  (switch-to-buffer "journal.org"))
 
 
 (make-shell "csh1")    ; Create a shell called "csh1"
@@ -344,11 +305,6 @@ Everything past that can be tailored to your liking.
    (find-file "~/repos/org/tasks.org")
 )
 
-(defun journal ()
-   (interactive)
-   (find-file "~/repos/org/journal.org")
-)
-
 (setq org-return-follows-link t)
 
 (setq org-tags-exclude-from-inheritance '("PROJECT" "WAITING" "crypt"))
@@ -404,7 +360,7 @@ Everything past that can be tailored to your liking.
 ;(teaching)
 ;(personal)
 ;(tasks)
-;(journal)
+
 
 
 (global-set-key "\C-cp" 'choose-personal)
@@ -413,7 +369,7 @@ Everything past that can be tailored to your liking.
 (global-set-key "\C-cw" 'choose-admin)
 (global-set-key "\C-cg" 'choose-gtd)
 (global-set-key "\C-ct" 'choose-tasks)
-(global-set-key "\C-cj" 'choose-journal)
+
 
 
 (setq org-todo-keywords
@@ -516,7 +472,7 @@ Everything past that can be tailored to your liking.
   )
 
 
-(setq org-agenda-include-diary nil)
+(setq org-agenda-include-diary t)
 (setq org-agenda-diary-file "~/repos/org/diary.org")
 
 (require 'org-crypt)
@@ -529,13 +485,13 @@ Everything past that can be tailored to your liking.
 (global-set-key "\C-x\C-y" 'browse-yank)
 
 
-(add-to-list 'load-path "~phil/elisp/python-mode.el-6.1.3") 
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+;(add-to-list 'load-path "~phil/elisp/python-mode.el-6.1.3") 
+;(autoload 'python-mode "python-mode" "Python Mode." t)
+;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
-(setq py-shell-name "/Users/phil/miniconda/bin/ipython")
-(require 'python-mode)
+;(setq py-shell-name "/Users/phil/miniconda/bin/ipython")
+;(require 'python-mode)
 
 (setenv "or" "/Users/phil/repos/org")
 (setenv "rm" "/Users/phil/repos/readmes")
@@ -561,18 +517,21 @@ Everything past that can be tailored to your liking.
  ;; If there is more than one, they won't work right.
  )
 
-(setq inhibit-startup-screen t)
-(setq initial-major-mode 'org-mode)
+;(setq inhibit-startup-screen t)
+;(setq initial-major-mode 'org-mode)
 (require 'magit)
 (setq load-path (cons (expand-file-name "~phil/repos/emacs-ipython-notebook/lisp") load-path))
-(require 'ein)
+
+;; (require 'ein-loaddefs)
+;; (eval-when-compile (require 'ein-notebooklist))
+;; (require 'ein)
 
 ;http://tex.stackexchange.com/questions/24510/pdflatex-fails-within-emacs-app-but-works-in-terminal
 ;http://ergoemacs.org/emacs/emacs_env_var_paths.html
 
 (setq exec-path
 '(
-"/usr/local/texlive/2013/bin/x86_64-darwin"
+"/usr/local/texlive/2015/bin/x86_64-darwin"
 "/Users/phil/bin"
 "/usr/local/bin"
 "/usr/bin"
@@ -583,7 +542,7 @@ Everything past that can be tailored to your liking.
 (getenv "PATH")
  (setenv "PATH"
 (concat
- "/usr/local/texlive/2013/bin/x86_64-darwin" ":"
+ "/usr/local/texlive/2015/bin/x86_64-darwin" ":"
  "/usr/local/bin" ":"
 (getenv "PATH")))
 
@@ -614,5 +573,37 @@ Everything past that can be tailored to your liking.
 
 
 (elpy-enable)
-(setq python-shell-interpreter "~/anaconda3/anaconda/bin/ipython")
-(setq python-check-command (expand-file-name "~/anaconda3/anaconda/bin/pyflakes"))
+(setq python-shell-interpreter "~/anaconda/bin/ipython")
+(setq python-check-command (expand-file-name "~/anaconda/envs/test/bin/pyflakes"))
+(elpy-use-ipython "/Users/phil/anaconda/bin/ipython")
+(setq yas-triggers-in-field t)
+(setq yas-snippet-dirs
+      '("~/repos/snippets"
+        yas-installed-snippets-dir))
+(yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
+
+;order is important to set org-mode correctly
+(setq org-journal-dir "~/repos/org/journal/")
+(require 'org-journal)
+(add-to-list 'org-agenda-files (expand-file-name "~/repos/org/journal/"))
+(setq org-agenda-file-regexp "\\`[^.].*\\.org\\'\\|[0-9]+")
+(require 'eldoro)
+
+
+(setq org-use-property-inheritance '("PRIORITY"))
+
+
+(defun markdown-preview-file ()
+  "use Marked 2 to preview the current file"
+  (interactive)
+  (shell-command 
+   (format "open -a 'Marked 2.app' %s" 
+       (shell-quote-argument (buffer-file-name))))
+)
+(global-set-key "\C-cm" 'markdown-preview-file)
+
+(global-set-key (kbd "C-x g") 'magit-status)
+
+(dolist (hook '(rst-mode-hook))
+      (add-hook hook (lambda () (flyspell-mode 1))))
+      

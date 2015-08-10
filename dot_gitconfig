@@ -22,15 +22,16 @@
         grcol = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
         gr = log --graph --full-history --all  --pretty=tformat:"%h%x09%d%x20%s%x20(%an)"
 	info = for-each-ref --format='%(refname:short)' refs/heads/* | while read b; do if r=$(git config --get branch.$b.remote); then m=$(git config --get branch.$b.merge); echo "$b -> $r/${m##*/}"; fi; done
-[merge]
-        summary = true
-        tool = kdiff3
-[diff]
-    tool = default-difftool
-[difftool "default-difftool"]
-    cmd = diffuse $LOCAL $REMOTE
-[difftool]
-    prompt = false
+	latexdiff = difftool -t latexdiff
+
+
+[mergetool "sublimerge"]
+cmd = subl -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
+trustExitCode = false
+
+[difftool "sublimerge"]
+cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
+
 [branch]
         autosetupmerge = true
 [push]
@@ -60,3 +61,14 @@
 	trustExitCode = true
 [pull]
 	rebase = true
+[github]
+	user = phaustin
+	oauth-token = 1baf07cd0dc8b84b7954f49a001e203d58b688a5
+[difftool "latexdiff"]
+	cmd = git-latexdiff-helper \"$LOCAL\" \"$REMOTE\"
+
+[diff]
+tool = sublimerge
+
+[merge]
+tool = sublimerge

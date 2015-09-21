@@ -64,6 +64,7 @@ cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\
 [github]
 	user = phaustin
 	oauth-token = 1baf07cd0dc8b84b7954f49a001e203d58b688a5
+	token = bf2ed5cbae98ec12c0c81402f0cf3a5dc3144b74
 [difftool "latexdiff"]
 	cmd = git-latexdiff-helper \"$LOCAL\" \"$REMOTE\"
 

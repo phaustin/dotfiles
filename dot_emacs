@@ -54,8 +54,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(browse-url-firefox-program "/Users/phil/bin/chromebash")
- '(elpy-interactive-python-command "/Users/phil/anaconda/bin/ipython")
- '(elpy-rpc-python-command "/Users/phil/anaconda/bin/python")
+ '(elpy-interactive-python-command "/Users/phil/an2015/anaconda/bin/python")
+ '(elpy-rpc-python-command "/Users/phil/an2015/anaconda/bin/python")
  '(exec-path
    (quote
     ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/usr/local/texlive/2015/bin/x86_64-darwin")) nil nil "http://ergoemacs.org/emacs/emacs_env_var_paths.html")
@@ -573,9 +573,9 @@ Everything past that can be tailored to your liking.
 
 
 (elpy-enable)
-(setq python-shell-interpreter "~/anaconda/bin/ipython")
-(setq python-check-command (expand-file-name "~/anaconda/envs/test/bin/pyflakes"))
-(elpy-use-ipython "/Users/phil/anaconda/bin/ipython")
+(setq python-shell-interpreter "/Users/phil/an2015/anaconda/bin/ipython")
+(setq python-check-command (expand-file-name "/Users/phil/an2015/anaconda/bin/pyflakes"))
+(elpy-use-ipython "/Users/phil/an2015/anaconda/bin/ipython")
 (setq yas-triggers-in-field t)
 (setq yas-snippet-dirs
       '("~/repos/snippets"
@@ -607,3 +607,12 @@ Everything past that can be tailored to your liking.
 (dolist (hook '(rst-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))
       
+(autoload 'vkill "vkill" nil t)
+(autoload 'list-unix-processes "vkill" nil t)
+
+
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))

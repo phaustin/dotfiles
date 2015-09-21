@@ -1,4 +1,6 @@
-export PATH="${HOME}/bin:${HOME}/anaconda/envs/test/bin:/usr/local/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH"
+# added by Anaconda3 2.3.0 installer
+export PATH="/Users/phil/an2015/anaconda/bin:/usr/local/bin:$PATH"
+export PATH="${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH"
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
 alias emacs='open -a /Applications/Emacs.app $@'
@@ -89,10 +91,6 @@ export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 export VISUAL=emacsclient
 export PYTHONPATH='/Users/phil/repos'
 export stat="${HOME}/repos/les_plots/stat_plot"
-#alias conda3="${HOME}/miniconda3/bin/conda"
-#alias python3="${HOME}/miniconda3/bin/python"
-#alias ipython3="${HOME}/miniconda3/bin/ipython"
-#alias pip3="${HOME}/miniconda3/bin/pip"
 
 
 export RSTUDIO_WHICH_R=/usr/local/bin/R

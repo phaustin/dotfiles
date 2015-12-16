@@ -47,7 +47,7 @@ c.InteractiveShellApp.pylab = 'auto'
 # an ``import *`` is done from numpy and pylab, when using pylab mode.
 # 
 # When False, pylab mode should not import any names into the user namespace.
-# c.InteractiveShellApp.pylab_import_all = True
+c.InteractiveShellApp.pylab_import_all = False
 
 # Configure matplotlib for interactive use with the default matplotlib backend.
 # c.InteractiveShellApp.matplotlib = None

@@ -37,8 +37,10 @@
 ;(require 'yasnippet) (yas-global-mode 1)
 
 (require 'gist)
+(setq yagist-github-token "7c30faa7e2890b1a2ce878f43464c493ea74d683")
 (require 'magit)
 (load-theme 'adwaita t)
+
 
 ;; Bind this to control-X w (normally undefined):
 (setq browse-url-browser-function 'browse-url-firefox)
@@ -54,8 +56,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(browse-url-firefox-program "/Users/phil/bin/chromebash")
- '(elpy-interactive-python-command "/Users/phil/an2015/anaconda/bin/python")
- '(elpy-rpc-python-command "/Users/phil/an2015/anaconda/bin/python")
+ '(elpy-interactive-python-command "/Users/phil/miniconda3/bin/python3")
+ '(elpy-rpc-python-command "/Users/phil/miniconda3/bin/python3")
  '(exec-path
    (quote
     ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/usr/local/texlive/2015/bin/x86_64-darwin")) nil nil "http://ergoemacs.org/emacs/emacs_env_var_paths.html")
@@ -243,7 +245,7 @@ Everything past that can be tailored to your liking.
 (make-shell "csh2")    ; Create another shell in the other window
 
 ;(setenv "PATH"
-;(concat "/Users/phil/miniconda/bin" ":" "/usr/texbin" ":" "/Users/phil/bin" ":" (getenv "PATH")))
+;(concat "/Users/phil/miniconda3/bin" ":" "/usr/texbin" ":" "/Users/phil/bin" ":" (getenv "PATH")))
 
 (autoload 'send-region-to-omnifocus-quickentry "omnifocus" "Send the selected region to OmniFocus's Quick Entry window" t)
 (global-set-key "\C-c\C-o" 'send-region-to-omnifocus-quickentry)
@@ -490,7 +492,7 @@ Everything past that can be tailored to your liking.
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
-;(setq py-shell-name "/Users/phil/miniconda/bin/ipython")
+;(setq py-shell-name "/Users/phil/miniconda3/bin/ipython3")
 ;(require 'python-mode)
 
 (setenv "or" "/Users/phil/repos/org")
@@ -573,9 +575,9 @@ Everything past that can be tailored to your liking.
 
 
 (elpy-enable)
-(setq python-shell-interpreter "/Users/phil/an2015/anaconda/bin/ipython")
-(setq python-check-command (expand-file-name "/Users/phil/an2015/anaconda/bin/pyflakes"))
-(elpy-use-ipython "/Users/phil/an2015/anaconda/bin/ipython")
+(setq python-shell-interpreter "/Users/phil/miniconda3/bin/ipython")
+(setq python-check-command (expand-file-name "/Users/phil/miniconda3/bin/pyflakes"))
+(elpy-use-ipython "/Users/phil/miniconda3/bin/ipython")
 (setq yas-triggers-in-field t)
 (setq yas-snippet-dirs
       '("~/repos/snippets"
@@ -616,3 +618,21 @@ Everything past that can be tailored to your liking.
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(setq org-ellipsis "⤵")
+(show-paren-mode 1)
+
+
+;http://emacs.stackexchange.com/questions/10900/copy-text-from-emacs-to-os-x-clipboard
+(defun copy-from-osx ()
+  (shell-command-to-string "pbpaste"))
+
+(defun paste-to-osx (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)
+

@@ -40,7 +40,7 @@ cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\
         httpd=webrick
 
 [filter "nbstrip"]        
-      clean = nbstripout.py
+      clean = /Users/phil/bin/nbstripout.py
       smudge =cat
       required
 
@@ -61,10 +61,6 @@ cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\
 	trustExitCode = true
 [pull]
 	rebase = true
-[github]
-	user = phaustin
-	oauth-token = 1baf07cd0dc8b84b7954f49a001e203d58b688a5
-	token = bf2ed5cbae98ec12c0c81402f0cf3a5dc3144b74
 [difftool "latexdiff"]
 	cmd = git-latexdiff-helper \"$LOCAL\" \"$REMOTE\"
 
@@ -73,3 +69,9 @@ tool = sublimerge
 
 [merge]
 tool = sublimerge
+
+[github]
+	token = 87cb7f7ecf08af7c3f552f987b794c9680bf1bdf
+	user = phaustin
+	password = fdLfums!
+	oauth-token = e129c84b8fdeaf4fbf24bdc67c3a9806b932c037

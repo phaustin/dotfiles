@@ -1,5 +1,5 @@
 # added by Anaconda3 2.3.0 installer
-export PATH="/Users/phil/an2015/anaconda/bin:/usr/local/bin:$PATH"
+export PATH="/Users/phil/miniconda3/bin:/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH"
 export PATH="${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH"
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
@@ -89,7 +89,6 @@ export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
 #export TEXINPUTS="${HOME}/texmf//:."
 export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 export VISUAL=emacsclient
-export PYTHONPATH='/Users/phil/repos'
 export stat="${HOME}/repos/les_plots/stat_plot"
 
 

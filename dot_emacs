@@ -75,9 +75,10 @@
  '(ispell-local-dictionary "english")
  '(org-agenda-files
    (quote
-    ("/Users/phil/repos/org/journal/20150609" "/Users/phil/repos/org/journal/20150610" "/Users/phil/repos/org/journal/20150611" "/Users/phil/repos/org/journal/20150612" "/Users/phil/repos/org/journal/20150613" "/Users/phil/repos/org/journal/20150619" "/Users/phil/repos/org/journal/20150622" "/Users/phil/repos/org/journal/20150802" "/Users/phil/repos/org/diary.org" "/Users/phil/repos/org/research.org" "/Users/phil/repos/org/teaching.org" "/Users/phil/repos/org/admin.org")))
+    ("/Users/phil/repos/org/diary.org" "/Users/phil/repos/org/research.org" "/Users/phil/repos/org/personal.org" "/Users/phil/repos/org/teaching.org" "/Users/phil/repos/org/admin.org")))
  '(org-mobile-directory "~/orgtransfer")
- '(org-mobile-inbox-for-pull "~/repos/org/from-mobile.org"))
+ '(org-mobile-inbox-for-pull "~/repos/org/from-mobile.org")
+ '(tls-checktrust nil))
 
 
 (global-set-key "\C-xw" browse-url-browser-function)
@@ -439,9 +440,13 @@ Everything past that can be tailored to your liking.
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/repos/org/refile.org" "Tasks")
-             "* TODO %?    \n  %i\n  %a")
+             "* TODO [#A] %?    \n  %i\n  %a")
        ("n" "Note" entry  (file+headline "~/repos/org/refile.org" "Notes")
-             "* %?   :NOTE: \n  %i\n  %a")))
+        "* %?   :NOTE: \n  %i\n  %a")))
+
+;(setq org-capture-templates
+;      '(("t" "todo" entry (file+headline "/Users/bjm/todo.org" "Tasks")
+;         "* TODO [#A] %?")))
 
 (setq org-agenda-custom-commands
       '(("p" "Project List"
@@ -485,15 +490,6 @@ Everything past that can be tailored to your liking.
 
 (load-library "browse-yank")
 (global-set-key "\C-x\C-y" 'browse-yank)
-
-
-;(add-to-list 'load-path "~phil/elisp/python-mode.el-6.1.3") 
-;(autoload 'python-mode "python-mode" "Python Mode." t)
-;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-
-;(setq py-shell-name "/Users/phil/miniconda3/bin/ipython3")
-;(require 'python-mode)
 
 (setenv "or" "/Users/phil/repos/org")
 (setenv "rm" "/Users/phil/repos/readmes")
@@ -584,6 +580,13 @@ Everything past that can be tailored to your liking.
         yas-installed-snippets-dir))
 (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
 
+;http://orgmode.org/manual/Conflicts.html
+(add-hook 'org-mode-hook
+                    (lambda ()
+                      (org-set-local 'yas/trigger-key [tab])
+                      (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand)))
+
+
 ;order is important to set org-mode correctly
 (setq org-journal-dir "~/repos/org/journal/")
 (require 'org-journal)
@@ -593,6 +596,18 @@ Everything past that can be tailored to your liking.
 
 
 (setq org-use-property-inheritance '("PRIORITY"))
+
+;;set priority range from A to C with default A
+(setq org-highest-priority ?A)
+(setq org-lowest-priority ?C)
+(setq org-default-priority ?A)
+
+;;set colours for priorities
+(setq org-priority-faces '((?A . (:foreground "Red" :weight bold))
+                           (?B . (:foreground "LightSteelBlue"))
+                           (?C . (:foreground "OliveDrab"))))
+
+
 
 
 (defun markdown-preview-file ()
@@ -635,4 +650,105 @@ Everything past that can be tailored to your liking.
 
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
+
+
+;https://github.com/rranelli/auto-package-update.el
+(require 'auto-package-update)
+;(auto-package-update-maybe)
+;(auto-package-update-now)
+
+
+(add-to-list 'load-path "/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+(setq mu4e-mu-binary "/usr/local/bin/mu")
+(require 'org-mu4e)
+
+;https://gist.github.com/chlalanne/7397629
+(require 'offlineimap)
+(require 'mu4e)
+(require 'mu4e-maildirs-extension)
+(mu4e-maildirs-extension)
+(setq mu4e-maildir (expand-file-name "~/maildir"))
+
+
+(setq mu4e-drafts-folder "/eos/Drafts"
+      mu4e-sent-folder   "/sent"
+      mu4e-trash-folder  "/trash")
+(setq mu4e-maildir-shortcuts
+      '(("/eos/INBOX"          . ?i)
+        ("/sent"               . ?s)
+        ("/trash"              . ?t)
+        ("/eos/Drafts"         . ?d)
+        ("/eos/Y2016-01"       . ?r)
+        ("/eos/B2016-01"       . ?b)))
+        
+(add-to-list 'mu4e-bookmarks '("flag:attach"    "Messages with attachment"   ?a) t)
+(add-to-list 'mu4e-bookmarks '("size:5M..500M"  "Big messages"               ?b) t)
+(add-to-list 'mu4e-bookmarks '("flag:flagged"   "Flagged messages"           ?f) t)
+
+(setq mu4e-headers-date-format "%Y-%m-%d %H:%M:%S"
+      mu4e-headers-fields '((:date . 20)
+                            (:flags . 5)
+                            (:mailing-list . 10)
+                            (:from-or-to . 25)
+                            (:subject . nil))) 
+
+(setq mu4e-reply-to-address "paustin@eos.ubc.ca"
+      user-mail-address "paustin@eos.ubc.ca"
+      user-full-name "Phil Austin"
+      message-signature "best, Phil"
+      message-citation-line-format "On %Y-%m-%d %H:%M:%S, %f wrote:"
+      message-citation-line-function 'message-insert-formatted-citation-line
+      mu4e-headers-results-limit 250)
+
+(require 'smtpmail)
+
+(setq message-send-mail-function 'smtpmail-send-it
+      tls-checktrust nil
+      starttls-use-gnutls t
+      smtpmail-stream-type 'starttls
+      starttls-gnutls-program "gnutls-cli"
+      starttls-extra-arguments '("--insecure")
+      smtpmail-auth-credentials
+      (expand-file-name "~/.authinfo.gpg")
+      smtpmail-default-smtp-server "ssmtp.eos.ubc.ca"
+      smtpmail-smtp-server "ssmtp.eos.ubc.ca"
+      smtpmail-smtp-service 587
+      smtpmail-debug-info
+      smtpmail-debug-verb)
+
+(setq message-kill-buffer-on-exit t
+      mu4e-sent-messages-behavior 'delete
+      mu4e-headers-skip-duplicates t
+      mu4e-headers-include-related t
+      mail-user-agent 'mu4e-user-agent
+      mu4e-get-mail-command "offlineimap"
+      mu4e-attachment-dir  "~/Downloads"
+      smtpmail-queue-mail  nil
+      smtpmail-queue-dir   "~/maildir/queue/cur")
+      
+
+(defvar my-mu4e-account-alist
+  '(("eos"
+     (user-mail-address  "paustin@eos`.ubc.ca")
+     (user-full-name     "Phil Austin")
+     (mu4e-sent-folder   "/eos/Sent Items")
+     (mu4e-drafts-folder "/eos/Drafts")
+     (mu4e-trash-folder  "/eos/Deleted Items")
+     (mu4e-refile-folder "/eos/Archive"))
+    ("ubc"
+     (user-mail-address  "austin@mail.ubc.ca")
+     (mu4e-sent-folder   "/ubc/Sent Items")
+     (mu4e-drafts-folder "/ubc/Drafts")
+     (mu4e-trash-folder  "/ubc/Deleted Items")
+     (mu4e-refile-folder "/ubc/Archives"))))
+
+(setq mu4e-user-mail-address-list
+      (mapcar (lambda (account) (cadr (assq 'user-mail-address account)))
+              my-mu4e-account-alist))
+
+;http://pragmaticemacs.com/emacs/master-your-inbox-with-mu4e-and-org-mode/
+;;store link to message if in header view, not to header query
+(setq org-mu4e-link-query-in-headers-mode nil)
+
 

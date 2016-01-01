@@ -53,25 +53,19 @@ cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\
 	required = true
 	clean = git media clean %f
 	smudge = git media smudge %f
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [pull]
 	rebase = true
 [difftool "latexdiff"]
 	cmd = git-latexdiff-helper \"$LOCAL\" \"$REMOTE\"
 
-[diff]
-tool = sublimerge
 
 [merge]
-tool = sublimerge
+	tool = kdiff3
 
 [github]
 	token = 87cb7f7ecf08af7c3f552f987b794c9680bf1bdf
 	user = phaustin
 	password = fdLfums!
 	oauth-token = e129c84b8fdeaf4fbf24bdc67c3a9806b932c037
+[diff]
+	tool = kdiff3

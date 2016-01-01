@@ -704,6 +704,9 @@ Everything past that can be tailored to your liking.
 (require 'smtpmail)
 
 (setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-default-smtp-server "ssmtp.eos.ubc.ca"
+      smtpmail-smtp-server "ssmtp.eos.ubc.ca"
+      smtpmail-smtp-service 587
       tls-checktrust nil
       starttls-use-gnutls t
       smtpmail-stream-type 'starttls
@@ -711,9 +714,6 @@ Everything past that can be tailored to your liking.
       starttls-extra-arguments '("--insecure")
       smtpmail-auth-credentials
       (expand-file-name "~/.authinfo.gpg")
-      smtpmail-default-smtp-server "ssmtp.eos.ubc.ca"
-      smtpmail-smtp-server "ssmtp.eos.ubc.ca"
-      smtpmail-smtp-service 587
       smtpmail-debug-info
       smtpmail-debug-verb)
 
@@ -750,5 +750,4 @@ Everything past that can be tailored to your liking.
 ;http://pragmaticemacs.com/emacs/master-your-inbox-with-mu4e-and-org-mode/
 ;;store link to message if in header view, not to header query
 (setq org-mu4e-link-query-in-headers-mode nil)
-
 

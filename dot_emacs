@@ -75,7 +75,8 @@
  '(ispell-local-dictionary "english")
  '(org-agenda-files
    (quote
-    ("/Users/phil/repos/org/diary.org" "/Users/phil/repos/org/research.org" "/Users/phil/repos/org/personal.org" "/Users/phil/repos/org/teaching.org" "/Users/phil/repos/org/admin.org")))
+    ("/Users/phil/repos/org/diary.org" "/Users/phil/repos/org/research.org" "/Users/phil/repos/org/personal.org" "/Users/phil/repos/org/teaching.org"
+     "/Users/phil/repos/org/admin.org" "/Users/phil/repos/org/refile.org")))
  '(org-mobile-directory "~/orgtransfer")
  '(org-mobile-inbox-for-pull "~/repos/org/from-mobile.org")
  '(tls-checktrust nil))
@@ -235,10 +236,10 @@ Everything past that can be tailored to your liking.
   (interactive "P")
   (switch-to-buffer "gtd.org"))
 
-(defun choose-tasks (&optional re-assign)
+(defun choose-refile (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
-  (switch-to-buffer "tasks.org"))
+  (switch-to-buffer "refile.org"))
 
 
 (make-shell "csh1")    ; Create a shell called "csh1"
@@ -286,6 +287,12 @@ Everything past that can be tailored to your liking.
    (interactive)
    (find-file "~/repos/org/research.org")
 )
+
+(defun refile ()
+   (interactive)
+   (find-file "~/repos/org/refile.org")
+)
+
 
 (defun teaching ()
    (interactive)
@@ -358,10 +365,11 @@ Everything past that can be tailored to your liking.
 (setq org-refile-target-verify-function 'bh/verify-refile-target)
 
 ;(gtd)
-;(research)
-;(admin)
-;(teaching)
-;(personal)
+(research)
+(admin)
+(teaching)
+(personal)
+(refile)
 ;(tasks)
 
 
@@ -371,7 +379,7 @@ Everything past that can be tailored to your liking.
 (global-set-key "\C-ci" 'choose-teaching)
 (global-set-key "\C-cw" 'choose-admin)
 (global-set-key "\C-cg" 'choose-gtd)
-(global-set-key "\C-ct" 'choose-tasks)
+(global-set-key "\C-ct" 'choose-refile)
 
 
 
@@ -440,13 +448,15 @@ Everything past that can be tailored to your liking.
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/repos/org/refile.org" "Tasks")
-             "* TODO [#A] %?    \n  %i\n  %a")
+             "* TODO [#C] %?    \n  %i\n  %a")
        ("n" "Note" entry  (file+headline "~/repos/org/refile.org" "Notes")
         "* %?   :NOTE: \n  %i\n  %a")))
 
 ;(setq org-capture-templates
 ;      '(("t" "todo" entry (file+headline "/Users/bjm/todo.org" "Tasks")
 ;         "* TODO [#A] %?")))
+
+;http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
 
 (setq org-agenda-custom-commands
       '(("p" "Project List"
@@ -457,7 +467,9 @@ Everything past that can be tailored to your liking.
         ("f" todo "FILED" nil) 
         ("n" todo "NEXT" nil)
         ("o" tags "NOTE" nil)
-        ("d" "Agenda + Next Actions" ((agenda) (todo "NEXT")))
+        ("r" tags-todo "+PRIORITY=\"C\"")
+        ("2" tags-todo "+PRIORITY=\"B\"")
+        ("1" tags-todo "+PRIORITY=\"A\"")
         ("O" "Office"
           ( (agenda)
             (tags-todo "OFFICE")
@@ -475,8 +487,9 @@ Everything past that can be tailored to your liking.
             (tags-todo "COMPUTER")
           )
         )
-       )
-  )
+       ))
+       
+ 
 
 
 (setq org-agenda-include-diary t)
@@ -590,17 +603,17 @@ Everything past that can be tailored to your liking.
 ;order is important to set org-mode correctly
 (setq org-journal-dir "~/repos/org/journal/")
 (require 'org-journal)
-(add-to-list 'org-agenda-files (expand-file-name "~/repos/org/journal/"))
+;(add-to-list 'org-agenda-files (expand-file-name "~/repos/org/journal/"))
 (setq org-agenda-file-regexp "\\`[^.].*\\.org\\'\\|[0-9]+")
 (require 'eldoro)
 
 
 (setq org-use-property-inheritance '("PRIORITY"))
 
-;;set priority range from A to C with default A
+;;set priority range from A to D with default D
 (setq org-highest-priority ?A)
-(setq org-lowest-priority ?C)
-(setq org-default-priority ?A)
+(setq org-lowest-priority ?D)
+(setq org-default-priority ?D)
 
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "Red" :weight bold))
@@ -679,8 +692,8 @@ Everything past that can be tailored to your liking.
         ("/eos/Sent"           . ?s)
         ("/eos/Trash"          . ?t)
         ("/eos/Drafts"         . ?d)
-        ("/eos/Y2016-01"       . ?r)
-        ("/eos/B2016-01"       . ?b)
+        ("/eos/A2016-01"       . ?r)
+        ("/eos/A2015-12"       . ?b)
         ("/ubc/INBOX"          . ?u)))
         
 (add-to-list 'mu4e-bookmarks '("flag:attach"    "Messages with attachment"   ?a) t)
@@ -690,7 +703,7 @@ Everything past that can be tailored to your liking.
 (setq mu4e-headers-date-format "%Y-%m-%d %H:%M:%S"
       mu4e-headers-fields '((:date . 20)
                             (:flags . 5)
-                            (:mailing-list . 10)
+                            (:maildir . 20)
                             (:from-or-to . 25)
                             (:subject . nil))) 
 ;-----------------------
@@ -702,7 +715,6 @@ Everything past that can be tailored to your liking.
 
 (setq message-kill-buffer-on-exit t
       mu4e-sent-messages-behavior 'sent
-      mu4e-headers-skip-duplicates t
       mu4e-headers-include-related t
       mail-user-agent 'mu4e-user-agent
       mu4e-get-mail-command "offlineimap"
@@ -717,23 +729,25 @@ Everything past that can be tailored to your liking.
 (setq mu4e-sent-folder "/eos/INBOX"
       mu4e-drafts-folder "/eos/Drafts"
       mu4e-trash-folder "/eos/Trash"
-      mu4e-refile-folder "/eos/Y2016-01"
+      mu4e-refile-folder "/eos/A2016-01"
       mu4e-reply-to-address "paustin@eos.ubc.ca"
       user-mail-address "paustin@eos.ubc.ca"
       message-send-mail-function 'smtpmail-send-it
       smtpmail-auth-credentials
       (expand-file-name "~/.authinfo.gpg")
-      smtpmail-default-smtp-server "smtp.googlemail.com"
-      smtpmail-smtp-server "smtp.googlemail.com"
+      smtpmail-default-smtp-server "ssmtp.eos.ubc.ca"
+      smtpmail-smtp-server "ssmtp.eos.ubc.ca"
       user-full-name "Phil Austin"
       message-signature "best, Phil"
       message-citation-line-format "On %Y-%m-%d %H:%M:%S, %f wrote:"
       message-citation-line-function 'message-insert-formatted-citation-line
       mu4e-headers-results-limit 250
-      smtpmail-smtp-service 465
+      smtpmail-smtp-service 587
       starttls-use-gnutls t
       smtpmail-stream-type 'tls
-      starttls-gnutls-program "gnutls-cli"
+      ;starttls-gnutls-program "gnutls-cli"
+      tls-program '("openssl s_client -ssl2 -connect %h:%p")
+      ;starttls-extra-arguments '("--tofu")
       smtpmail-debug-info
       smtpmail-debug-verb)
 
@@ -745,11 +759,11 @@ Everything past that can be tailored to your liking.
      (mu4e-sent-folder   "/eos/INBOX")
      (mu4e-drafts-folder "/eos/Drafts")
      (mu4e-trash-folder  "/eos/Trash")
-     (mu4e-refile-folder "/eos/Y2016-01"))
+     (mu4e-refile-folder "/eos/A2016-01"))
     ("ubc"
      (user-mail-address  "austin@mail.ubc.ca")
      (mu4e-sent-folder   "/ubc/INBOX")
-     (mu4e-refile-folder "/eos/Y2016-01")
+     (mu4e-refile-folder "/eos/A2016-01")
      (mu4e-drafts-folder "/ubc/Drafts")
      (mu4e-trash-folder  "/ubc/Trash")
      (smtpmail-default-smtp-server "smtp.mail.ubc.ca")
@@ -758,8 +772,6 @@ Everything past that can be tailored to your liking.
 (setq mu4e-user-mail-address-list
       (mapcar (lambda (account) (cadr (assq 'user-mail-address account)))
               my-mu4e-account-alist))
-             
-
 
 (defun my-mu4e-set-account ()
   "Set the account for composing a message."
@@ -794,9 +806,19 @@ Everything past that can be tailored to your liking.
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 (setq mu4e-action-tags-header "X-Keywords")
 (key-chord-define-global "nm" 'mu4e)
+(key-chord-define-global "qw" 'eldoro)
 (mu4e)
 
 ;http://hack.org/mc/blog/mu4e.html
+(setq mu4e-headers-skip-duplicates t)
 (add-to-list 'mu4e-bookmarks
              '("maildir:/eos/INBOX flag:flagged OR maildir:/eos/INBOX flag:unread" "Unread or flagged in eos INBOX" ?h))
+(add-to-list 'mu4e-bookmarks
+             '("maildir:/eos/Trash" "Trash" ?t))
 (setq mu4e-view-show-addresses t)
+
+;http://www.emacswiki.org/emacs/BetterRegisters
+;(require 'better-registers)
+
+(add-to-list 'mu4e-view-actions
+  '("ViewInBrowser" . mu4e-action-view-in-browser) t)

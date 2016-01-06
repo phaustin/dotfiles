@@ -735,19 +735,20 @@ Everything past that can be tailored to your liking.
       message-send-mail-function 'smtpmail-send-it
       smtpmail-auth-credentials
       (expand-file-name "~/.authinfo.gpg")
-      smtpmail-default-smtp-server "ssmtp.eos.ubc.ca"
-      smtpmail-smtp-server "ssmtp.eos.ubc.ca"
+      smtpmail-default-smtp-server "smtp.googlemail.com"
+      smtpmail-smtp-server "smtp.googlemail.com"
       user-full-name "Phil Austin"
       message-signature "best, Phil"
       message-citation-line-format "On %Y-%m-%d %H:%M:%S, %f wrote:"
       message-citation-line-function 'message-insert-formatted-citation-line
       mu4e-headers-results-limit 250
-      smtpmail-smtp-service 587
+      smtpmail-smtp-service 465
       starttls-use-gnutls t
       smtpmail-stream-type 'tls
       ;starttls-gnutls-program "gnutls-cli"
-      tls-program '("openssl s_client -ssl2 -connect %h:%p")
+      ;tls-program '("openssl s_client -ssl2 -connect %h:%p")
       ;starttls-extra-arguments '("--tofu")
+      ;tls-program '("gnutls-cli --tofu --insecure -p %p %h")
       smtpmail-debug-info
       smtpmail-debug-verb)
 

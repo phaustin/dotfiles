@@ -57,7 +57,7 @@
  ;; If there is more than one, they won't work right.
  '(browse-url-firefox-program "/Users/phil/bin/chromebash")
  '(elpy-interactive-python-command "/Users/phil/miniconda3/bin/python3")
- '(elpy-rpc-python-command "/Users/phil/miniconda3/bin/python3")
+ '(elpy-rpc-python-command "/Users/phil/mini35/bin/python3")
  '(exec-path
    (quote
     ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/usr/local/texlive/2015/bin/x86_64-darwin")) nil nil "http://ergoemacs.org/emacs/emacs_env_var_paths.html")
@@ -75,8 +75,8 @@
  '(ispell-local-dictionary "english")
  '(org-agenda-files
    (quote
-    ("/Users/phil/repos/org/diary.org" "/Users/phil/repos/org/research.org" "/Users/phil/repos/org/personal.org" "/Users/phil/repos/org/teaching.org"
-     "/Users/phil/repos/org/admin.org" "/Users/phil/repos/org/refile.org")))
+    ("/Users/phil/repos/org/diary.org" "/Users/phil/repos/org/research.org" "/Users/phil/repos/org/personal.org" "/Users/phil/repos/org/teaching.org" "/Users/phil/repos/org/admin.org" "/Users/phil/repos/org/refile.org")))
+ '(org-export-backends (quote (ascii beamer html icalendar latex md odt)))
  '(org-mobile-directory "~/orgtransfer")
  '(org-mobile-inbox-for-pull "~/repos/org/from-mobile.org")
  '(tls-checktrust nil))
@@ -253,8 +253,8 @@ Everything past that can be tailored to your liking.
 (global-set-key "\C-c\C-o" 'send-region-to-omnifocus-quickentry)
 (put 'downcase-region 'disabled nil)
 
-(require 'filladapt)
-(setq-default filladapt-mode t)
+; (require 'filladapt)
+; (setq-default filladapt-mode t)
 
 (require 'show-wspace);
 (add-hook 'font-lock-mode-hook 'highlight-tabs)
@@ -264,7 +264,15 @@ Everything past that can be tailored to your liking.
 ;(eval-after-load "geiser" '(require quack))
 
 ;(add-to-list 'load-path "~/emacs/org")
-;(require 'org)
+
+;######################
+; org-mode
+;######################
+
+(require 'org)
+
+(require 'org-contacts)
+(setq org-contacts-files '("~/repos/org/contacts.org"))
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 '(define-key global-map "\C-cl" 'org-store-link)
@@ -437,10 +445,6 @@ Everything past that can be tailored to your liking.
     (and server-buffer-clients (server-done)))
   (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
 
-(server-start)
-
-(setq-default ispell-program-name "/usr/local/bin/ispell")
-(setq auto-mode-alist (cons '("\\.txt\\'" . text-mode) auto-mode-alist))
 
 (setq org-agenda-start-day "-2d")
 (setq org-agenda-span 10)
@@ -451,6 +455,14 @@ Everything past that can be tailored to your liking.
              "* TODO [#C] %?    \n  %i\n  %a")
        ("n" "Note" entry  (file+headline "~/repos/org/refile.org" "Notes")
         "* %?   :NOTE: \n  %i\n  %a")))
+        
+(add-to-list 'org-capture-templates
+             '("c" "Contacts" entry (file "~/repos/org/contacts.org")
+               "* %(org-contacts-template-name)
+:PROPERTIES:
+:EMAIL: %(org-contacts-template-email)
+:END:"))
+
 
 ;(setq org-capture-templates
 ;      '(("t" "todo" entry (file+headline "/Users/bjm/todo.org" "Tasks")
@@ -584,9 +596,9 @@ Everything past that can be tailored to your liking.
 
 
 (elpy-enable)
-(setq python-shell-interpreter "/Users/phil/miniconda3/bin/ipython")
-(setq python-check-command (expand-file-name "/Users/phil/miniconda3/bin/pyflakes"))
-(elpy-use-ipython "/Users/phil/miniconda3/bin/ipython")
+(setq python-shell-interpreter "/Users/phil/mini35/bin/ipython")
+(setq python-check-command (expand-file-name "/Users/phil/mini35/bin/pyflakes"))
+(elpy-use-ipython "/Users/phil/mini35/bin/ipython")
 (setq yas-triggers-in-field t)
 (setq yas-snippet-dirs
       '("~/repos/snippets"
@@ -605,6 +617,10 @@ Everything past that can be tailored to your liking.
 (require 'org-journal)
 ;(add-to-list 'org-agenda-files (expand-file-name "~/repos/org/journal/"))
 (setq org-agenda-file-regexp "\\`[^.].*\\.org\\'\\|[0-9]+")
+(global-set-key (kbd "C-c j") 'org-journal-new-entry)
+(global-set-key (kbd "C-c b") 'org-journal-open-previous-entry)
+(global-set-key (kbd "C-c f") 'org-journal-open-next-entry)
+
 (require 'eldoro)
 
 
@@ -651,18 +667,18 @@ Everything past that can be tailored to your liking.
 (show-paren-mode 1)
 
 
-;http://emacs.stackexchange.com/questions/10900/copy-text-from-emacs-to-os-x-clipboard
-(defun copy-from-osx ()
-  (shell-command-to-string "pbpaste"))
+; ;http://emacs.stackexchange.com/questions/10900/copy-text-from-emacs-to-os-x-clipboard
+; (defun copy-from-osx ()
+;   (shell-command-to-string "/usr/bin/pbpaste"))
 
-(defun paste-to-osx (text &optional push)
-  (let ((process-connection-type nil))
-    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-      (process-send-string proc text)
-      (process-send-eof proc))))
+; (defun paste-to-osx (text &optional push)
+;   (let ((process-connection-type nil))
+;     (let ((proc (start-process "/usr/bin/pbcopy" "*Messages*" "pbcopy")))
+;       (process-send-string proc text)
+;       (process-send-eof proc))))
 
-(setq interprogram-cut-function 'paste-to-osx)
-(setq interprogram-paste-function 'copy-from-osx)
+; (setq interprogram-cut-function 'paste-to-osx)
+; (setq interprogram-paste-function 'copy-from-osx)
 
 
 ;https://github.com/rranelli/auto-package-update.el
@@ -692,6 +708,7 @@ Everything past that can be tailored to your liking.
         ("/eos/Sent"           . ?s)
         ("/eos/Trash"          . ?t)
         ("/eos/Drafts"         . ?d)
+        ("/eos/A405"           . ?4)
         ("/eos/A2016-01"       . ?r)
         ("/eos/A2015-12"       . ?b)
         ("/ubc/INBOX"          . ?u)))
@@ -823,3 +840,30 @@ Everything past that can be tailored to your liking.
 
 (add-to-list 'mu4e-view-actions
   '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+
+
+(setq mu4e-org-contacts-file  "/Users/phil/repos/org/contacts.org")
+(add-to-list 'mu4e-headers-actions
+  '("org-contact-add" . mu4e-action-add-org-contact) t)
+
+
+(server-start)
+
+(setq-default ispell-program-name "/usr/local/bin/ispell")
+(setq auto-mode-alist (cons '("\\.txt\\'" . text-mode) auto-mode-alist))
+(require 'org-toodledo)
+(setq org-toodledo-file "/Users/phil/test.org")
+(setq org-toodledo-userid "td5693fec5543b6 ")
+(setq org-toodledo-password "fdLfums!")
+
+;;http://emacsredux.com/blog/2016/02/07/auto-indent-your-code-with-aggressive-indent-mode/
+
+(global-aggressive-indent-mode 1)
+;;(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+
+;;narrow dired to match filter
+(use-package dired-narrow
+  :ensure t
+  :bind (:map dired-mode-map
+              ("/" . dired-narrow)))
+              

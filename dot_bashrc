@@ -1,5 +1,5 @@
 # added by Anaconda3 2.3.0 installer
-export PATH="/Users/phil/miniconda3/bin:/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH"
+export PATH="/Users/phil/mini35/bin:/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH"
 export PATH="${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH"
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
@@ -10,11 +10,11 @@ function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
 function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 
 unset PS1
-PS1="\w \u@\h% "
+PS1="\w \u@raild% "
 
 if [ $EMACS ]; then
     unset PS1
-    PS1='|Pr0mPT|\w|\w \u@\h% '
+    PS1='|Pr0mPT|\w|\w \u@raild% '
 fi
 
 function cd() { command cd "$@"; }
@@ -106,3 +106,8 @@ export acode="${HOME}/repos/a301_2014"
 #arg-complete for conda
 #eval $(register-python-argcomplete conda)
 export BITLY_ACCESS_TOKEN=c984e550ada5ef8846c5a9bf4bd602ca086154b3
+export MATLAB_EXECUTABLE=/Applications/MATLAB_R2015b.app/bin/matlab
+
+#only read for interactive python
+export PYTHONPATH='/Users/phil/repos/A212:/Users/phil/repos/A405:/Users/phil/repos/pythonlibs:/Users/phil/repos/ent_analysis_loh'
+

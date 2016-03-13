@@ -1,6 +1,6 @@
 [user]
-        name = Phil Austin
-        email = paustin@eos.ubc.ca
+	name = Phil Austin
+	email = paustin@eos.ubc.ca
         signingkey = 7F2FB776
 [core]
         pager =
@@ -69,3 +69,13 @@ cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\
 	oauth-token = e129c84b8fdeaf4fbf24bdc67c3a9806b932c037
 [diff]
 	tool = kdiff3
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

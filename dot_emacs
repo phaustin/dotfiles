@@ -100,11 +100,11 @@
           elpy-rpc-project-specific 't)
     (when (fboundp 'flycheck-mode)
       (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
-   (setq elpy-interactive-python-command "/home/phil/mini35/bin/ipython")
-   (setq elpy-rpc-python-command "/home/phil/mini35/bin/python")
-   (setq python-shell-interpreter "/home/phil/mini35/bin/ipython")
-   (setq python-check-command (expand-file-name "~/mini35/bin/pyflakes"))
-   (elpy-use-ipython "/home/phil/mini35/bin/ipython"))
+   (setq elpy-interactive-python-command "~phil/mini35/bin/ipython")
+   (setq elpy-rpc-python-command "~phil/mini35/bin/python")
+   (setq python-shell-interpreter "~phil/mini35/bin/ipython")
+   (setq python-check-command (expand-file-name "~phil/mini35/bin/pyflakes"))
+   (elpy-use-ipython "~phil/mini35/bin/ipython"))
 
 
 (use-package org
@@ -216,12 +216,30 @@
   (setq org-agenda-window-setup 'reorganize-frame)
   (setq org-agenda-restore-windows-after-quit t)
   (setq org-agenda-window-frame-fractions '(1.0 . 1.0))
+  (setq org-use-property-inheritance '("PRIORITY"))
+  ;;set priority range from A to D with default D
+  (setq org-highest-priority ?A)
+  (setq org-lowest-priority ?D)
+  (setq org-default-priority ?D)
+  ;;set colours for priorities
+  (setq org-priority-faces '((?A . (:foreground "Red" :weight bold))
+                           (?B . (:foreground "LightSteelBlue"))
+                           (?C . (:foreground "OliveDrab"))))
 )
 
 (use-package org-contacts
-   :ensure t
+   :load-path "~/repos/org-mode/contrib/lisp/"
    :config
    (setq org-contacts-files '("~/repos/org/contacts.org")))
+
+(use-package org-journal
+  :ensure t        
+  :config
+  ;order is important to set org-mode correctly
+  (setq org-journal-dir "~/repos/org/journal/")
+  (global-set-key (kbd "C-c j") 'org-journal-new-entry)
+  (global-set-key (kbd "C-c b") 'org-journal-open-previous-entry)
+  (global-set-key (kbd "C-c f") 'org-journal-open-next-entry))
 
 (use-package org-journal
   :ensure t
@@ -251,8 +269,10 @@
    ;; Either the Key ID or set to nil to use symmetric encryption.
    (setq org-crypt-key nil))
    
+(use-package eldoro
+  :ensure t)
 
-;end mondernize
+;end modernize
 
 (select-keys) ; choose-a-buffer for keys f3 and f9-f12
 
@@ -384,8 +404,6 @@
 (global-set-key "\C-ct" 'choose-refile)
 
 
-
-
 (put 'dired-find-alternate-file 'disabled nil)
 
 ;;https://github.com/jhelwig/ack-and-a-half
@@ -484,30 +502,6 @@
 
 
 
-
-;order is important to set org-mode correctly
-(setq org-journal-dir "~/repos/org/journal/")
-(require 'org-journal)
-;(add-to-list 'org-agenda-files (expand-file-name "~/repos/org/journal/"))
-(setq org-agenda-file-regexp "\\`[^.].*\\.org\\'\\|[0-9]+")
-(global-set-key (kbd "C-c j") 'org-journal-new-entry)
-(global-set-key (kbd "C-c b") 'org-journal-open-previous-entry)
-(global-set-key (kbd "C-c f") 'org-journal-open-next-entry)
-
-(require 'eldoro)
-
-
-(setq org-use-property-inheritance '("PRIORITY"))
-
-;;set priority range from A to D with default D
-(setq org-highest-priority ?A)
-(setq org-lowest-priority ?D)
-(setq org-default-priority ?D)
-
-;;set colours for priorities
-(setq org-priority-faces '((?A . (:foreground "Red" :weight bold))
-                           (?B . (:foreground "LightSteelBlue"))
-                           (?C . (:foreground "OliveDrab"))))
 
 
 
@@ -714,11 +708,9 @@
 (add-to-list 'mu4e-view-actions
   '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
-
 (setq mu4e-org-contacts-file  "/Users/phil/repos/org/contacts.org")
 (add-to-list 'mu4e-headers-actions
   '("org-contact-add" . mu4e-action-add-org-contact) t)
-
 
 (server-start)
 

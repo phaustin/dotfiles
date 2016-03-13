@@ -1,180 +1,258 @@
-
-(setq load-path (cons (expand-file-name "~phil/elisp") load-path))
-
-
-(when (locate-library "edit-server")
-  (require 'edit-server)
-  (setq edit-server-new-frame 1)
-  (edit-server-start))
-
-(setq default-directory "~/repos") 
-
-
-;(setq load-path (cons (expand-file-name "~phil/elisp/mailcrypt/share/emacs/site-lisp") load-path))
-
-(setq load-path (cons (expand-file-name "~phil/elisp/misc") load-path))
-
-(require 'shell-command)
-(shell-command-completion-mode)
-
-(require 'bash-completion)
-(bash-completion-setup)
-
-
-(put 'upcase-region 'disabled nil)
-
-;M-x list packages
 (require 'package)
+(setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-
 (package-initialize)
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
 
-;(require 'yasnippet) (yas-global-mode 1)
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(require 'gist)
-(setq yagist-github-token "7c30faa7e2890b1a2ce878f43464c493ea74d683")
-(require 'magit)
-(load-theme 'adwaita t)
+(use-package filladapt
+  :load-path "~/repos/dotfiles/elisp"
+  :config (setq-default filladapt-mode t))
 
+(use-package highlight-region
+  :load-path "~/repos/dotfiles/elisp")
 
-;; Bind this to control-X w (normally undefined):
-(setq browse-url-browser-function 'browse-url-firefox)
+(use-package plocal
+  :load-path "~/repos/dotfiles/elisp")
 
+(use-package browse-kill-ring
+  :ensure t
+  :config (global-set-key (kbd "C-x C-y") `browse-kill-ring))
 
-(setenv "or" "/Users/phil/repos/org")
-(setenv "bibs" "/Users/phil/repos/bibs")
-;http://ergoemacs.org/emacs/emacs_env_var_paths.html
+(use-package highlight-chars
+  :ensure t
+  :config
+  (add-hook 'font-lock-mode-hook 'hc-highlight-tabs))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(browse-url-firefox-program "/Users/phil/bin/chromebash")
- '(elpy-interactive-python-command "/Users/phil/miniconda3/bin/python3")
- '(elpy-rpc-python-command "/Users/phil/mini35/bin/python3")
- '(exec-path
-   (quote
-    ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/usr/local/texlive/2015/bin/x86_64-darwin")) nil nil "http://ergoemacs.org/emacs/emacs_env_var_paths.html")
- '(gist-list-format
-   (quote
-    ((id "Id" 10 nil identity)
-     (created "Created" 20 nil "%D %R")
-     (visibility "Visibility" 10 nil
-                 (lambda
-                   (public)
-                   (or
-                    (and public "public")
-                    "private")))
-     (description "Description" 0 t identity))))
- '(ispell-local-dictionary "english")
- '(org-agenda-files
-   (quote
-    ("/Users/phil/repos/org/diary.org" "/Users/phil/repos/org/research.org" "/Users/phil/repos/org/personal.org" "/Users/phil/repos/org/teaching.org" "/Users/phil/repos/org/admin.org" "/Users/phil/repos/org/refile.org")))
- '(org-export-backends (quote (ascii beamer html icalendar latex md odt)))
- '(org-mobile-directory "~/orgtransfer")
- '(org-mobile-inbox-for-pull "~/repos/org/from-mobile.org")
- '(tls-checktrust nil))
+(use-package browse-url
+  :config
+  (setq browse-url-browser-function 'browse-url-firefox)
+  (global-set-key "\C-xw" browse-url-browser-function))
 
+(use-package gist
+   :ensure t)
 
-(global-set-key "\C-xw" browse-url-browser-function)
+(use-package magit
+    :ensure t
+    :config
+    (global-set-key (kbd "C-x g") 'magit-status))
 
+;;http://cachestocaches.com/2015/8/getting-started-use-package/
+(use-package tex
+  :ensure auctex
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil)
+  (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (setq reftex-plug-into-AUCTeX t)
+  (setq TeX-view-program-selection
+      '((output-pdf "PDF Viewer")))
+  (setq TeX-view-program-list
+      '(("PDF Viewer" "xpdf %o")))
+  (setq TeX-PDF-mode t)
+  (setq auto-mode-alist (cons '("\\.tex\\'" . latex-mode) auto-mode-alist))
+  (setq reftex-insert-label-flags '("se" "sfte"))
+  ;(add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
+  (setq reftex-enable-partial-scans t)
+  (setq reftex-save-parse-info t)
+  (setq reftex-use-multiple-selection-buffers t)
+  (setq reftex-plug-into-AUCTeX t)
+  (setq reftex-cite-format 'natbib)
 
-;from: http://trey-jackson.blogspot.com/2008/08/emacs-tip-25-shell-dirtrack-by-prompt.html
-(add-hook 'shell-mode-hook
-        '(lambda ()
-             (shell-dirtrack-mode nil)
-            (add-hook 'comint-preoutput-filter-functions
-                      'shell-sync-dir-with-prompt nil t)))
-
-(defun shell-sync-dir-with-prompt (string)
-"A preoutput filter function (see `comint-preoutput-filter-functions')
-which sets the shell buffer's path to the path embedded in a prompt string.
-This is a more reliable way of keeping the shell buffer's path in sync
-with the shell, without trying to pattern match against all
-potential directory-changing commands, ala `shell-dirtrack-mode'.
-
-In order to work, your shell must be configured to embed its current
-working directory into the prompt.  Here is an example .zshrc and .bashrc
-snippet which turns this behavior on when running as an inferior Emacs shell:
-
-zsh
-
-  if [ $EMACS ]; then
-     prompt='|Pr0mPT|%~|[%n@%m]%~%# '
-  fi
-
-The part that Emacs cares about is the '|Pr0mPT|%~|'
-Everything past that can be tailored to your liking.
-"
-(if (string-match "|Pr0mPT|\\([^|]*\\)|" string)
-    (let ((cwd (match-string 1 string)))
-      (setq default-directory
-            (if (string-equal "/" (substring cwd -1))
-                cwd
-              (setq cwd (concat cwd "/"))))
-      (replace-match "" t t string 0))
-  string))
-
-(setq font-lock-maximum-decoration t)
-;(add-hook 'python-mode-hook 'turn-on-font-lock)
-
-(setq-default calendar-latitude +49.2333)
-(setq-default calendar-longitude -123.25)
-
-(setq load-path (cons (expand-file-name "~phil/elisp/misc") load-path))
-(load "plocal")        ; local functions for geography
-
-(setq auto-mode-alist (append '(("\\.ht$" . rst-mode)) auto-mode-alist))
-(setq auto-mode-alist (append '(("\\.rst$" . rst-mode)) auto-mode-alist))
-;(setq auto-mode-alist (append '(("\\.pyx$" . python-mode)) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.nm\\'" . notes-mode) auto-mode-alist))
-;(setq auto-mode-alist (cons '("\\.txt\\'" . notes-mode) auto-mode-alist))
-;(setq auto-mode-alist (cons '("\\.tex\\'" . latex-mode) auto-mode-alist))
-
-(load "auctex.el" nil t t)
-
-;; AucTeX
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq-default TeX-master nil)
-(add-hook 'LaTeX-mode-hook 'visual-line-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t)
-(setq TeX-PDF-mode t)
-
-(setq reftex-insert-label-flags '("se" "sfte"))
-(setq reftex-enable-partial-scans t)
-(setq reftex-save-parse-info t)
-(setq reftex-use-multiple-selection-buffers t)
-(setq reftex-plug-into-AUCTeX t)
-(setq reftex-cite-format 'natbib)
-
-
-;;http://www.stefanom.org/setting-up-a-nice-auctex-environment-on-mac-os-x/
-;; Use Skim as viewer, enable source <-> PDF sync
-;; make latexmk available via C-c C-c
-;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
-(add-hook 'LaTeX-mode-hook (lambda ()
-  (push
+  (add-hook 'LaTeX-mode-hook (lambda ()
+    (push
     '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
       :help "Run latexmk on file")
-    TeX-command-list)))
-(add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+        TeX-command-list)))
+   (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
 
-;; use Skim as default pdf viewer
-;; Skim's displayline is used for forward search (from .tex to .pdf)
-;; option -b highlights the current line; option -g opens Skim in the background  
-(setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
-(setq TeX-view-program-list
+   ;; use Skim as default pdf viewer
+   ;; Skim's displayline is used for forward search (from .tex to .pdf)
+   ;; option -b highlights the current line; option -g opens Skim in the background  
+   (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+   (setq TeX-view-program-list
      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+)
+
+(use-package auctex-latexmk
+    :ensure t)
+
+;http://emacs.stackexchange.com/questions/10065/how-can-i-defer-loading-elpy-using-use-package
+
+(use-package elpy
+  :ensure t
+  :commands elpy-enable
+  :init (with-eval-after-load 'python (elpy-enable))      
+  :config
+  (progn
+    (setq elpy-rpc-backend "jedi"
+          elpy-rpc-project-specific 't)
+    (when (fboundp 'flycheck-mode)
+      (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
+   (setq elpy-interactive-python-command "/home/phil/mini35/bin/ipython")
+   (setq elpy-rpc-python-command "/home/phil/mini35/bin/python")
+   (setq python-shell-interpreter "/home/phil/mini35/bin/ipython")
+   (setq python-check-command (expand-file-name "~/mini35/bin/pyflakes"))
+   (elpy-use-ipython "/home/phil/mini35/bin/ipython"))
+
+
+(use-package org
+    :ensure t
+    :config
+    (setq org-agenada-start-day "-2d")
+    (setq org-agenda-span 10)
+    (setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/repos/org/refile.org" "Tasks")
+             "* TODO %?    \n  %i\n  %a")
+       ("n" "Note" entry  (file+headline "~/repos/org/refile.org" "Notes")
+             "* %?   :NOTE: \n  %i\n  %a")))
+    (setq org-agenda-custom-commands
+      '(("p" "Project List"
+          ( (tags "PROJECT")
+          )
+        )
+        ("w" tags-todo "WAITING" nil) 
+        ("f" todo "FILED" nil) 
+        ("n" todo "NEXT" nil)
+        ("o" tags "NOTE" nil)
+        ("d" "Agenda + Next Actions" ((agenda) (todo "NEXT")))
+        ("O" "Office"
+          ( (agenda)
+            (tags-todo "OFFICE")
+          )
+        )
+        ("W" "Weekly Plan"
+          ( (agenda)
+            (todo "TODO")
+            (tags "PROJECT")
+          )
+        )
+        ("H" "Home Lists"
+          ( (agenda)
+            (tags-todo "HOME")
+            (tags-todo "COMPUTER")))))
+     (setq org-mobile-directory "~/orgtransfer")
+     (setq org-mobile-inbox-for-pull "~/repos/org/from-mobile.org")
+     (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+     (define-key global-map "\C-cl" 'org-store-link)
+     (define-key global-map "\C-ca" 'org-agenda)
+     (setq org-log-done t)
+     (global-set-key "\C-cl" 'org-store-link)
+     (global-set-key "\C-ca" 'org-agenda)
+     (setq org-return-follows-link t)
+     (setq org-tags-exclude-from-inheritance '("PROJECT" "WAITING" "crypt"))
+     (setq org-return-follows-link t)
+     (setq org-agenda-files '("~/repos/org" "~/repos/bibs"))
+     (setq org-todo-keywords
+           (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
+     (setq org-todo-keyword-faces
+      (quote (("TODO" :foreground "red" :weight bold)
+              ("NEXT" :foreground "blue" :weight bold)
+              ("DONE" :foreground "forest green" :weight bold)
+              ("WAITING" :foreground "orange" :weight bold)
+              ("HOLD" :foreground "magenta" :weight bold)
+              ("CANCELLED" :foreground "forest green" :weight bold)
+              ("MEETING" :foreground "forest green" :weight bold)
+              ("PHONE" :foreground "forest green" :weight bold))))
+     (setq org-use-fast-todo-selection t)
+     (setq org-treat-S-cursor-todo-selection-as-state-change nil)
+     (setq org-todo-state-tags-triggers
+           (quote (("CANCELLED" ("CANCELLED" . t))
+              ("WAITING" ("WAITING" . t))
+              ("HOLD" ("WAITING" . t) ("HOLD" . t))
+              (done ("WAITING") ("HOLD"))
+              ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+              ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+              ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+     (setq org-directory "~/repos/org")
+     (setq org-default-notes-file "~/repos/org/refile.org")
+     (global-set-key (kbd "C-c c") 'org-capture)
+     (setq org-use-property-inheritance '("PRIORITY"))
+      ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
+     (setq org-refile-targets (quote ((nil :maxlevel . 1)
+                  (org-agenda-files :maxlevel . 1))))
+     ; Allow refile to create parent tasks with confirmation
+     (setq org-refile-allow-creating-parent-nodes (quote confirm))
+
+     (setq org-indirect-buffer-display 'current-window)
+
+     ;;;; Refile settings
+     ; Exclude DONE state tasks from refile targets
+     (defun bh/verify-refile-target ()
+       "Exclude todo keywords with a done state from refile targets"
+         (not (member (nth 2 (org-heading-components)) org-done-keywords)))
+         (setq org-refile-target-verify-function 'bh/verify-refile-target)
+    (setq org-agenda-start-day "-2d")
+    (setq org-agenda-span 10)
+
+    (setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/repos/org/refile.org" "Tasks")
+             "* TODO [#C] %?    \n  %i\n  %a")
+       ("n" "Note" entry  (file+headline "~/repos/org/refile.org" "Notes")
+        "* %?   :NOTE: \n  %i\n  %a")))
+        
+   (add-to-list 'org-capture-templates
+             '("c" "Contacts" entry (file "~/repos/org/contacts.org")
+               "* %(org-contacts-template-name)
+  :PROPERTIES:
+  :EMAIL: %(org-contacts-template-email)
+  :END:"))
+
+  (setq org-agenda-include-diary t)
+  (setq org-agenda-diary-file "~/repos/org/diary.org")
+  ;;some unrelated customizations I made at the time (since I want the agenda front and center when I'm looking at it):
+  (setq org-agenda-window-setup 'reorganize-frame)
+  (setq org-agenda-restore-windows-after-quit t)
+  (setq org-agenda-window-frame-fractions '(1.0 . 1.0))
+)
+
+(use-package org-contacts
+   :ensure t
+   :config
+   (setq org-contacts-files '("~/repos/org/contacts.org")))
+
+(use-package org-journal
+  :ensure t
+  :config
+  (setq org-journal-dir "~/repos/org/journal/")
+  (add-to-list 'org-agenda-files (expand-file-name "~/repos/org/journal/"))
+  (setq org-agenda-file-regexp "\\`[^.].*\\.org\\'\\|[0-9]+"))
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas-triggers-in-field t)
+  (setq yas-snippet-dirs
+      '("~/repos/snippets"
+        yas-installed-snippets-dir))
+  (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
+     ;http://orgmode.org/manual/Conflicts.html
+  (add-hook 'org-mode-hook
+           (lambda ()
+           (org-set-local 'yas/trigger-key [tab])
+           (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand))))
+
+(use-package org-crypt
+   :config
+   (org-crypt-use-before-save-magic)
+   ;; GPG key to use for encryption
+   ;; Either the Key ID or set to nil to use symmetric encryption.
+   (setq org-crypt-key nil))
+   
+
+;end mondernize
 
 (select-keys) ; choose-a-buffer for keys f3 and f9-f12
 
@@ -187,8 +265,6 @@ Everything past that can be tailored to your liking.
 (global-set-key [f3] 'choose-a-buffer) 
 (global-set-key [f2] 'choose-csh2) 
 (global-set-key [f1] 'choose-csh1) 
-
-
 
 
 (setq grep-command "grep -n -H -i ")
@@ -246,44 +322,10 @@ Everything past that can be tailored to your liking.
 (other-window 1)
 (make-shell "csh2")    ; Create another shell in the other window
 
-;(setenv "PATH"
-;(concat "/Users/phil/miniconda3/bin" ":" "/usr/texbin" ":" "/Users/phil/bin" ":" (getenv "PATH")))
-
-(autoload 'send-region-to-omnifocus-quickentry "omnifocus" "Send the selected region to OmniFocus's Quick Entry window" t)
-(global-set-key "\C-c\C-o" 'send-region-to-omnifocus-quickentry)
 (put 'downcase-region 'disabled nil)
 
-; (require 'filladapt)
-; (setq-default filladapt-mode t)
-
-(require 'show-wspace);
-(add-hook 'font-lock-mode-hook 'highlight-tabs)
-
-(load "highlight-region") ; prepend text to a region
-
-;(eval-after-load "geiser" '(require quack))
-
-;(add-to-list 'load-path "~/emacs/org")
-
-;######################
-; org-mode
 ;######################
 
-(require 'org)
-
-(require 'org-contacts)
-(setq org-contacts-files '("~/repos/org/contacts.org"))
-
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-'(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-
-
-; I prefer return to activate a link
- 
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
 
 (defun gtd ()
    (interactive)
@@ -323,54 +365,6 @@ Everything past that can be tailored to your liking.
    (find-file "~/repos/org/tasks.org")
 )
 
-(setq org-return-follows-link t)
-
-(setq org-tags-exclude-from-inheritance '("PROJECT" "WAITING" "crypt"))
- 
-
-(setq org-return-follows-link t)
-;(setq org-agenda-files '("~/repos/org" "~/repos/bibs"))
- ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
-
-(setq org-refile-targets (quote ((nil :maxlevel . 1)
-                                 (org-agenda-files :maxlevel . 1))))
-
-;; make ido display choices vertically
-;(setq ido-separator "\n")
-
-;; display any item that contains the chars you typed
-;(setq ido-enable-flex-matching t)
-
-;(setq ido-file-extensions-order '(".org"  ".py" ".txt" ".pyx"))
-;(setq ido-ignore-extensions t)
-
-; Use full outline paths for refile targets - we file directly with IDO
-;(setq org-refile-use-outline-path t)
-
-; Targets complete directly with IDO
-;(setq org-outline-path-complete-in-steps nil)
-
-; Allow refile to create parent tasks with confirmation
-(setq org-refile-allow-creating-parent-nodes (quote confirm))
-
-; Use IDO for both buffer and file completion and ido-everywhere to t
-;(setq org-completion-use-ido t)
-;(setq ido-everywhere t)
-;(setq ido-max-directory-size 100000)
-;(ido-mode (quote both))
-; Use the current window when visiting files and buffers with ido
-;(setq ido-default-file-method 'selected-window)
-;(setq ido-default-buffer-method 'selected-window)
-; Use the current window for indirect buffer display
-(setq org-indirect-buffer-display 'current-window)
-
-;;;; Refile settings
-; Exclude DONE state tasks from refile targets
-(defun bh/verify-refile-target ()
-  "Exclude todo keywords with a done state from refile targets"
-  (not (member (nth 2 (org-heading-components)) org-done-keywords)))
-
-(setq org-refile-target-verify-function 'bh/verify-refile-target)
 
 ;(gtd)
 (research)
@@ -391,38 +385,6 @@ Everything past that can be tailored to your liking.
 
 
 
-(setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
-
-(setq org-todo-keyword-faces
-      (quote (("TODO" :foreground "red" :weight bold)
-              ("NEXT" :foreground "blue" :weight bold)
-              ("DONE" :foreground "forest green" :weight bold)
-              ("WAITING" :foreground "orange" :weight bold)
-              ("HOLD" :foreground "magenta" :weight bold)
-              ("CANCELLED" :foreground "forest green" :weight bold)
-              ("MEETING" :foreground "forest green" :weight bold)
-              ("PHONE" :foreground "forest green" :weight bold))))
-
-(setq org-use-fast-todo-selection t)
-
-(setq org-treat-S-cursor-todo-selection-as-state-change nil)
-
-(setq org-todo-state-tags-triggers
-      (quote (("CANCELLED" ("CANCELLED" . t))
-              ("WAITING" ("WAITING" . t))
-              ("HOLD" ("WAITING" . t) ("HOLD" . t))
-              (done ("WAITING") ("HOLD"))
-              ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-              ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
-              ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
-
-(setq org-directory "~/repos/org")
-(setq org-default-notes-file "~/repos/org/refile.org")
-
-;; I use C-c c to start capture mode
-(global-set-key (kbd "C-c c") 'org-capture)
 
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -446,76 +408,6 @@ Everything past that can be tailored to your liking.
   (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
 
 
-(setq org-agenda-start-day "-2d")
-(setq org-agenda-span 10)
-
-
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/repos/org/refile.org" "Tasks")
-             "* TODO [#C] %?    \n  %i\n  %a")
-       ("n" "Note" entry  (file+headline "~/repos/org/refile.org" "Notes")
-        "* %?   :NOTE: \n  %i\n  %a")))
-        
-(add-to-list 'org-capture-templates
-             '("c" "Contacts" entry (file "~/repos/org/contacts.org")
-               "* %(org-contacts-template-name)
-:PROPERTIES:
-:EMAIL: %(org-contacts-template-email)
-:END:"))
-
-
-;(setq org-capture-templates
-;      '(("t" "todo" entry (file+headline "/Users/bjm/todo.org" "Tasks")
-;         "* TODO [#A] %?")))
-
-;http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
-
-(setq org-agenda-custom-commands
-      '(("p" "Project List"
-          ( (tags "PROJECT")
-          )
-        )
-        ("w" tags-todo "WAITING" nil) 
-        ("f" todo "FILED" nil) 
-        ("n" todo "NEXT" nil)
-        ("o" tags "NOTE" nil)
-        ("r" tags-todo "+PRIORITY=\"C\"")
-        ("2" tags-todo "+PRIORITY=\"B\"")
-        ("1" tags-todo "+PRIORITY=\"A\"")
-        ("O" "Office"
-          ( (agenda)
-            (tags-todo "OFFICE")
-          )
-        )
-        ("W" "Weekly Plan"
-          ( (agenda)
-            (todo "TODO")
-            (tags "PROJECT")
-          )
-        )
-        ("H" "Home Lists"
-          ( (agenda)
-            (tags-todo "HOME")
-            (tags-todo "COMPUTER")
-          )
-        )
-       ))
-       
- 
-
-
-(setq org-agenda-include-diary t)
-(setq org-agenda-diary-file "~/repos/org/diary.org")
-
-(require 'org-crypt)
-(org-crypt-use-before-save-magic)
-;; GPG key to use for encryption
-;; Either the Key ID or set to nil to use symmetric encryption.
-(setq org-crypt-key nil)
-
-(load-library "browse-yank")
-(global-set-key "\C-x\C-y" 'browse-yank)
-
 (setenv "or" "/Users/phil/repos/org")
 (setenv "rm" "/Users/phil/repos/readmes")
 
@@ -525,10 +417,6 @@ Everything past that can be tailored to your liking.
 (setq split-height-threshold 40) ; nil
 (setq split-width-threshold nil) ; 100
 
-;;some unrelated customizations I made at the time (since I want the agenda front and center when I'm looking at it):
-(setq org-agenda-window-setup 'reorganize-frame)
-(setq org-agenda-restore-windows-after-quit t)
-(setq org-agenda-window-frame-fractions '(1.0 . 1.0))
 
 ;http://www.emacswiki.org/emacs/FrameSize
 (add-to-list 'default-frame-alist '(height . 55))
@@ -595,21 +483,6 @@ Everything past that can be tailored to your liking.
 (load-theme 'adwaita t)
 
 
-(elpy-enable)
-(setq python-shell-interpreter "/Users/phil/mini35/bin/ipython")
-(setq python-check-command (expand-file-name "/Users/phil/mini35/bin/pyflakes"))
-(elpy-use-ipython "/Users/phil/mini35/bin/ipython")
-(setq yas-triggers-in-field t)
-(setq yas-snippet-dirs
-      '("~/repos/snippets"
-        yas-installed-snippets-dir))
-(yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
-
-;http://orgmode.org/manual/Conflicts.html
-(add-hook 'org-mode-hook
-                    (lambda ()
-                      (org-set-local 'yas/trigger-key [tab])
-                      (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand)))
 
 
 ;order is important to set org-mode correctly

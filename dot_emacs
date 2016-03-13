@@ -12,57 +12,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(use-package filladapt
-  :load-path "~/repos/dotfiles/elisp"
-  :config (setq-default filladapt-mode t))
-
-(use-package highlight-region
-  :load-path "~/repos/dotfiles/elisp")
-
-(use-package plocal
-  :load-path "~/repos/dotfiles/elisp")
-
-(use-package browse-kill-ring
-  :ensure t
-  :config (global-set-key (kbd "C-x C-y") `browse-kill-ring))
-
-(use-package highlight-chars
-  :ensure t
-  :config
-  (add-hook 'font-lock-mode-hook 'hc-highlight-tabs))
-
-(use-package browse-url
-  :config
-  (setq browse-url-browser-function 'browse-url-firefox)
-  (global-set-key "\C-xw" browse-url-browser-function))
-
-(use-package gist
-   :ensure t)
-
-(use-package magit
-    :ensure t
-    :config
-    (global-set-key (kbd "C-x g") 'magit-status))
-
-
-;http://emacs.stackexchange.com/questions/10065/how-can-i-defer-loading-elpy-using-use-package
-
-(use-package elpy
-  :ensure t
-  :commands elpy-enable
-  :init (with-eval-after-load 'python (elpy-enable))      
-  :config
-  (progn
-    (setq elpy-rpc-backend "jedi"
-          elpy-rpc-project-specific 't)
-    (when (fboundp 'flycheck-mode)
-      (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
-   (setq elpy-interactive-python-command "~phil/mini35/bin/ipython")
-   (setq elpy-rpc-python-command "~phil/mini35/bin/python")
-   (setq python-shell-interpreter "~phil/mini35/bin/ipython")
-   (setq python-check-command (expand-file-name "~phil/mini35/bin/pyflakes"))
-   (elpy-use-ipython "~phil/mini35/bin/ipython"))
-
 ;
 ; loop over config files and load
 ;
@@ -74,23 +23,25 @@
            (list "setup-org.el"         ;org-mode
                  "setup-mu4e.el"        ;mu4e
                  "setup-auctex.el"
+                 ;;filladapt, highlight-region, plocal, browse-kiil-ring, highlight-chars
+                 ;;browse-url, gist, magit, elpy
+                 "setup-small.el"
                  )))
 (dolist (file dot-files) (load-file file))
-
 
 (use-package yasnippet
   :ensure t
   :config
   (setq yas-triggers-in-field t)
   (setq yas-snippet-dirs
-      '("~/repos/snippets"
-        yas-installed-snippets-dir))
+        '("~/repos/snippets"
+          yas-installed-snippets-dir))
   (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
-     ;http://orgmode.org/manual/Conflicts.html
+                                        ;http://orgmode.org/manual/Conflicts.html
   (add-hook 'org-mode-hook
-           (lambda ()
-           (org-set-local 'yas/trigger-key [tab])
-           (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand))))
+            (lambda ()
+              (org-set-local 'yas/trigger-key [tab])
+              (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand))))
 
 (use-package org-crypt
    :config
@@ -211,12 +162,12 @@
 )
 
 (defun tasks ()
-   (interactive)
-   (find-file "~/repos/org/tasks.org")
-)
+  (interactive)
+  (find-file "~/repos/org/tasks.org")
+  )
 
 
-;(gtd)
+                                        ;(gtd)
 (research)
 (admin)
 (teaching)
@@ -331,18 +282,15 @@
 (load-theme 'adwaita t)
 
 
-
-
 (defun markdown-preview-file ()
   "use Marked 2 to preview the current file"
   (interactive)
   (shell-command 
    (format "open -a 'Marked 2.app' %s" 
-       (shell-quote-argument (buffer-file-name))))
-)
+           (shell-quote-argument (buffer-file-name))))
+  )
 (global-set-key "\C-cm" 'markdown-preview-file)
 
-(global-set-key (kbd "C-x g") 'magit-status)
 
 (dolist (hook '(rst-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))

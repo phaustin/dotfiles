@@ -93,7 +93,7 @@
 ;;curl http://beyondgrep.com/ack-2.10-single-file > ~/bin/ack && chmod 0755 !#:3
 ;;(add-to-list 'load-path "/path/to/ack-and-a-half")
 
-(use-package 'ack-and-a-half
+(use-package ack-and-a-half
   :ensure t
   :config
   ;; Create shorter aliases
@@ -102,3 +102,4 @@
   (defalias 'ack-find-file 'ack-and-a-half-find-file)
   (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
   (setq ack-and-a-half-executable "~/bin/ack"))
+

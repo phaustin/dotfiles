@@ -9,6 +9,12 @@
 (use-package plocal
   :load-path "~/repos/dotfiles/elisp")
 
+(use-package visual-fill-column
+  :ensure
+  :config
+  (setq visual-fill-column 120)
+  (setq fill-column 120))
+
 (use-package browse-kill-ring
   :ensure t
   :config (global-set-key (kbd "C-x C-y") `browse-kill-ring))
@@ -49,3 +55,50 @@
   (setq python-shell-interpreter "~phil/mini35/bin/ipython")
   (setq python-check-command (expand-file-name "~phil/mini35/bin/pyflakes"))
   (elpy-use-ipython "~phil/mini35/bin/ipython"))
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas-triggers-in-field t)
+  (setq yas-snippet-dirs
+        '("~/repos/snippets"
+          yas-installed-snippets-dir))
+  (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
+                                        ;http://orgmode.org/manual/Conflicts.html
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-set-local 'yas/trigger-key [tab])
+              (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand))))
+
+(use-package org-crypt
+  :config
+  (org-crypt-use-before-save-magic)
+  ;; GPG key to use for encryption
+  ;; Either the Key ID or set to nil to use symmetric encryption.
+  (setq org-crypt-key nil))
+
+(use-package eldoro
+  :ensure t)
+
+(use-package auto-package-update
+  :ensure t)
+
+;; https://github.com/rranelli/auto-package-update.el
+;; (auto-package-update-maybe)
+;; (auto-package-update-now)
+
+
+;;https://github.com/jhelwig/ack-and-a-half
+;;http://beyondgrep.com/
+;;curl http://beyondgrep.com/ack-2.10-single-file > ~/bin/ack && chmod 0755 !#:3
+;;(add-to-list 'load-path "/path/to/ack-and-a-half")
+
+(use-package 'ack-and-a-half
+  :ensure t
+  :config
+  ;; Create shorter aliases
+  (defalias 'ack 'ack-and-a-half)
+  (defalias 'ack-same 'ack-and-a-half-same)
+  (defalias 'ack-find-file 'ack-and-a-half-find-file)
+  (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
+  (setq ack-and-a-half-executable "~/bin/ack"))

@@ -26,32 +26,10 @@
                  ;;filladapt, highlight-region, plocal, browse-kiil-ring, highlight-chars
                  ;;browse-url, gist, magit, elpy
                  "setup-small.el"
+                 ;; os specific 
+                 "setup-os.el"
                  )))
 (dolist (file dot-files) (load-file file))
-
-(use-package yasnippet
-  :ensure t
-  :config
-  (setq yas-triggers-in-field t)
-  (setq yas-snippet-dirs
-        '("~/repos/snippets"
-          yas-installed-snippets-dir))
-  (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
-                                        ;http://orgmode.org/manual/Conflicts.html
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (org-set-local 'yas/trigger-key [tab])
-              (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand))))
-
-(use-package org-crypt
-   :config
-   (org-crypt-use-before-save-magic)
-   ;; GPG key to use for encryption
-   ;; Either the Key ID or set to nil to use symmetric encryption.
-   (setq org-crypt-key nil))
-   
-(use-package eldoro
-  :ensure t)
 
 ;end modernize
 
@@ -167,15 +145,13 @@
   )
 
 
-                                        ;(gtd)
+;;(gtd)
 (research)
 (admin)
 (teaching)
 (personal)
 (refile)
 ;(tasks)
-
-
 
 (global-set-key "\C-cp" 'choose-personal)
 (global-set-key "\C-cr" 'choose-research)
@@ -187,17 +163,6 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 
-;;https://github.com/jhelwig/ack-and-a-half
-;;http://beyondgrep.com/
-;;curl http://beyondgrep.com/ack-2.10-single-file > ~/bin/ack && chmod 0755 !#:3
-;;(add-to-list 'load-path "/path/to/ack-and-a-half")
-(require 'ack-and-a-half)
-;; Create shorter aliases
-(defalias 'ack 'ack-and-a-half)
-(defalias 'ack-same 'ack-and-a-half-same)
-(defalias 'ack-find-file 'ack-and-a-half-find-file)
-(defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
-(setq ack-and-a-half-executable "/Users/phil/bin/ack")
 
 (defvar server-buffer-clients)
 (when (and (fboundp 'server-start) (string-equal (getenv "TERM") 'xterm))
@@ -207,8 +172,8 @@
   (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
 
 
-(setenv "or" "/Users/phil/repos/org")
-(setenv "rm" "/Users/phil/repos/readmes")
+(setenv "or" "~/repos/org")
+(setenv "rm" "~/repos/readmes")
 
 ;;http://lists.gnu.org/archive/html/emacs-orgmode/2010-04/msg01057.html
 ;; 1. window gets split horizontally (one on TOP of the other), AND
@@ -239,22 +204,6 @@
 ;http://tex.stackexchange.com/questions/24510/pdflatex-fails-within-emacs-app-but-works-in-terminal
 ;http://ergoemacs.org/emacs/emacs_env_var_paths.html
 
-(setq exec-path
-'(
-"/usr/local/texlive/2015/bin/x86_64-darwin"
-"/Users/phil/bin"
-"/usr/local/bin"
-"/usr/bin"
-"/bin"
-"/usr/sbin"
-))
-
-(getenv "PATH")
- (setenv "PATH"
-(concat
- "/usr/local/texlive/2015/bin/x86_64-darwin" ":"
- "/usr/local/bin" ":"
-(getenv "PATH")))
 
 (setq-default indent-tabs-mode nil)
 
@@ -309,29 +258,9 @@
 (show-paren-mode 1)
 
 
-; ;http://emacs.stackexchange.com/questions/10900/copy-text-from-emacs-to-os-x-clipboard
-; (defun copy-from-osx ()
-;   (shell-command-to-string "/usr/bin/pbpaste"))
-
-; (defun paste-to-osx (text &optional push)
-;   (let ((process-connection-type nil))
-;     (let ((proc (start-process "/usr/bin/pbcopy" "*Messages*" "pbcopy")))
-;       (process-send-string proc text)
-;       (process-send-eof proc))))
-
-; (setq interprogram-cut-function 'paste-to-osx)
-; (setq interprogram-paste-function 'copy-from-osx)
-
-
-;https://github.com/rranelli/auto-package-update.el
-(require 'auto-package-update)
-;(auto-package-update-maybe)
-;(auto-package-update-now)
-
 
 (server-start)
 
-(setq-default ispell-program-name "/usr/local/bin/ispell")
 (setq auto-mode-alist (cons '("\\.txt\\'" . text-mode) auto-mode-alist))
 
 ;;http://emacsredux.com/blog/2016/02/07/auto-indent-your-code-with-aggressive-indent-mode/
@@ -345,3 +274,8 @@
   :bind (:map dired-mode-map
               ("/" . dired-narrow)))
               
+(add-hook 'minibuffer-setup-hook (lambda () (visual-line-mode -1)))
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+(add-hook 'text-mode-hook 'visual-fill-column-mode)
+
+

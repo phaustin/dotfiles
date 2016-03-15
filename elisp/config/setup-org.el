@@ -1,6 +1,7 @@
 (use-package org
   :ensure t
   :config
+  (setq-default org-return-follows-link t)
   (setq org-agenada-start-day "-2d")
   (setq org-agenda-span 10)
   (setq org-capture-templates
@@ -44,7 +45,8 @@
   (setq org-return-follows-link t)
   (setq org-tags-exclude-from-inheritance '("PROJECT" "WAITING" "crypt"))
   (setq org-return-follows-link t)
-  (setq org-agenda-files '("~/repos/org" "~/repos/bibs"))
+  (setq org-agenda-files '("~/repos/org/refile.org" "~/repos/org/personal.org"
+                           "~/repos/org/teaching.org" "~/repos/org/admin.org" "~/repos/org/research.org"))
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                 (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))

@@ -268,14 +268,7 @@
 (global-aggressive-indent-mode 1)
 ;;(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
-;;narrow dired to match filter
-(use-package dired-narrow
-  :ensure t
-  :bind (:map dired-mode-map
-              ("/" . dired-narrow)))
-              
-(add-hook 'minibuffer-setup-hook (lambda () (visual-line-mode -1)))
-(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
-(add-hook 'text-mode-hook 'visual-fill-column-mode)
+
+(setq fill-column 120)
 
 

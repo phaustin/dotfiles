@@ -9,11 +9,19 @@
 (use-package plocal
   :load-path "~/repos/dotfiles/elisp")
 
+(use-package dired-narrow
+  :ensure t
+  :bind (:map dired-mode-map
+              ("/" . dired-narrow)))
+
 (use-package visual-fill-column
-  :ensure
+  :ensure t
   :config
-  (setq visual-fill-column 120)
-  (setq fill-column 120))
+  (setq-default fill-column 100)
+  (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)) 
+  (add-hook 'minibuffer-setup-hook (lambda () (visual-line-mode -1)))
+  (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+  (add-hook 'text-mode-hook 'visual-fill-column-mode)) 
 
 (use-package browse-kill-ring
   :ensure t

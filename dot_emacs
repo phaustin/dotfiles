@@ -39,7 +39,7 @@
 (global-set-key [f8] 'org-mode)
 (global-set-key [f7] 'fill-paragraph)
 (global-set-key [f6] 'auto-fill-mode) 
-(global-set-key [f5] 'choose-a-buffer) 
+(global-set-key [f5] 'visual-fill-column-mode) 
 (global-set-key [f4] 'choose-a-buffer) 
 (global-set-key [f3] 'choose-a-buffer) 
 (global-set-key [f2] 'choose-csh2) 

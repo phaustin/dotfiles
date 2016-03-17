@@ -1,0 +1,8 @@
+{
+  "load_extensions": {
+    "IPython-notebook-extensions-3.x/usability/navigation-hotkeys/main": true,
+    "usability/navigation-hotkeys/main": true,
+    "hide-code": true,
+    "usability/edit-emacs/main": true
+  }
+}

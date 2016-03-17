@@ -1,0 +1,15 @@
+{
+  "Exporter": {
+    "preprocessors": [
+      "pre_codefolding.CodeFoldingPreprocessor",
+      "pre_pymarkdown.PyMarkdownPreprocessor"
+    ],
+    "template_path": [
+      "/Users/phil/Library/Jupyter/templates"
+    ]
+  },
+  "NbConvertApp": {
+    "postprocessor_class": "post_embedhtml.EmbedPostProcessor"
+  },
+  "version": 1
+}

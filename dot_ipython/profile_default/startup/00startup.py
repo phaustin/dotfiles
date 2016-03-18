@@ -1,3 +1,8 @@
+import os, site
+from pathlib import Path
+home=os.environ['HOME']
+pythonlibs = Path(home).joinpath('./repos/pythonlibs')
+site.addsitedir(str(pythonlibs))
 from pyutils.show_figure import show_plot as s
 from IPython.core.display import display
 from IPython.display import Image

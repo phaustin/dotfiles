@@ -115,6 +115,7 @@
 (use-package visual-fill-column
   :ensure t
   :config
+  ;;https://www.emacswiki.org/emacs/VisualLineMode
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
   (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
 

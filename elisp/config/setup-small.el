@@ -111,3 +111,6 @@
   (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
   (setq ack-and-a-half-executable "~/bin/ack"))
 
+
+(use-package visual-fill-column
+  :ensure t)

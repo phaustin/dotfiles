@@ -17,6 +17,7 @@
 (use-package visual-fill-column
   :ensure t
   :config
+  ;;https://www.emacswiki.org/emacs/VisualLineMode
   (setq-default fill-column 100)
   (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)) 
   (add-hook 'minibuffer-setup-hook (lambda () (visual-line-mode -1)))
@@ -110,12 +111,4 @@
   (defalias 'ack-find-file 'ack-and-a-half-find-file)
   (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
   (setq ack-and-a-half-executable "~/bin/ack"))
-
-
-(use-package visual-fill-column
-  :ensure t
-  :config
-  ;;https://www.emacswiki.org/emacs/VisualLineMode
-  (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
-  (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
 

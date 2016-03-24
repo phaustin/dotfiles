@@ -207,27 +207,6 @@
 
 (setq-default indent-tabs-mode nil)
 
-(setenv "e340"
-(concat
-   (getenv "HOME")
-   "/Dropbox/e340_2014_spring/"))
-
-(setenv "e340f"
-(concat
-   (getenv "HOME")
-   "/Dropbox/e340 FILES FOR CONNECT/"))
-
-
-(setenv "ecode"
-(concat
-   (getenv "HOME")
-   "/repos/e582_code/"))
-
-(setenv "eweb"
-(concat
-   (getenv "HOME")
-   "/repos/e582_web/"))
-
 (load-theme 'adwaita t)
 
 

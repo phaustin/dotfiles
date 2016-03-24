@@ -112,3 +112,16 @@
   (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
   (setq ack-and-a-half-executable "~/bin/ack"))
 
+;;https://github.com/purcell/exec-path-from-shell
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize)
+    (exec-path-from-shell-copy-env "PYTHONPATH")
+    (exec-path-from-shell-copy-env "e340")
+    (exec-path-from-shell-copy-env "e340f")
+    (exec-path-from-shell-copy-env "or")
+    (exec-path-from-shell-copy-env "rm")
+    ))
+

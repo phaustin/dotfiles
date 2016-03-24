@@ -68,7 +68,7 @@ function oldp()
 #
 # need to mirror these in .emacs
 #
-export e340="${HOME}/Dropbox/e340_2014_spring/"
+export e340="${HOME}/Dropbox/e340_2016_spring/"
 export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT/"
 export or="${HOME}/repos/org/"
 export rm="${HOME}/repos/readmes/"

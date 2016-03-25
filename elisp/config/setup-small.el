@@ -123,5 +123,9 @@
     (exec-path-from-shell-copy-env "e340f")
     (exec-path-from-shell-copy-env "or")
     (exec-path-from-shell-copy-env "rm")
+    (exec-path-from-shell-copy-env "a405")
+    (exec-path-from-shell-copy-env "a212")
+    (exec-path-from-shell-copy-env "a405_docs")
+    (exec-path-from-shell-copy-env "a212_docs")
     ))
 

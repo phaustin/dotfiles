@@ -102,6 +102,10 @@ export e13="${HOME}/repos/e340_2013wT2"
 export econ="${HOME}/Dropbox/e340\ FILES\ FOR\ CONNECT"
 export aweb="${HOME}/repos/atsc301_web"
 export acode="${HOME}/repos/a301_2014"
+export a405="${HOME}/repos/A405"
+export a405d="${HOME}/repos/atsc405_docs"
+export a212="${HOME}/repos/A212"
+export a212d="${HOME}/repos/atsc212_docs"
 
 #arg-complete for conda
 #eval $(register-python-argcomplete conda)

@@ -251,3 +251,11 @@
 (setq fill-column 120)
 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (yaml-mode websocket visual-fill-column use-package tide stan-mode spotlight sphinx-frontend sphinx-doc smartrep rtags quelpa python-info py-yapf ox-rst osx-browse org-toodledo org-journal org-gcal offlineimap nose multi-eshell mu4e-maildirs-extension mic-paren markdown-mode+ magit key-chord julia-shell jedi-direx idomenu highlight-parentheses highlight-chars gist flymake exec-path-from-shell ess elpy eldoro dired-narrow cython-mode cmake-ide browse-kill-ring better-registers auto-package-update auto-complete-rst auctex-latexmk aggressive-indent ack-and-a-half ace-jump-mode 4clojure))))

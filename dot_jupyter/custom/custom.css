@@ -1,0 +1,16 @@
+hr {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #003;
+    text-align: center;
+}
+hr:after {
+    content: "done";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.em;
+    padding: 0 0.25em;
+    background: #FFF
+}

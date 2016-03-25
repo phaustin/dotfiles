@@ -8,6 +8,7 @@ from IPython.core.display import display
 from IPython.display import Image
 import matplotlib
 from matplotlib import pyplot as plt
+from importlib import reload
 import numpy as np
 import scipy as sp
 plt.style.use('ggplot')

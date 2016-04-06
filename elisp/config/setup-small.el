@@ -59,11 +59,11 @@
   ;;         elpy-rpc-project-specific 't)
   ;;   (when (fboundp 'flycheck-mode)
   ;;     (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
-  (setq elpy-interactive-python-command "~phil/mini35/bin/ipython")
-  (setq elpy-rpc-python-command "~phil/mini35/bin/python")
-  (setq python-shell-interpreter "~phil/mini35/bin/ipython")
-  (setq python-check-command (expand-file-name "~phil/mini35/bin/pyflakes"))
-  (elpy-use-ipython "~phil/mini35/bin/ipython"))
+  (setq elpy-interactive-python-command "/Users/phil/mini35/bin/ipython")
+  (setq elpy-rpc-python-command "/Users/phil/mini35/bin/python")
+  (setq python-shell-interpreter "/Users/phil/mini35/bin/ipython")
+  (setq python-check-command (expand-file-name "/Users/phil/mini35/bin/pyflakes"))
+  (elpy-use-ipython "/Users/phil/mini35/bin/ipython"))
 
 (use-package yasnippet
   :ensure t

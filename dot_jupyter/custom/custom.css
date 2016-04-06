@@ -6,7 +6,7 @@ hr {
     text-align: center;
 }
 hr:after {
-    content: "done";
+    content: " ";
     display: inline-block;
     position: relative;
     top: -0.7em;

@@ -3,16 +3,22 @@
                                         ;#################
 
 
-(add-to-list 'load-path "/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
-(setq mu4e-mu-binary "/usr/local/bin/mu")
-(require 'org-mu4e)
+(use-package mu4e
+  :load-path "/usr/local/Cellar/mu/HEAD/share/emacs/site-lisp/mu4e")
 
-                                        ;https://gist.github.com/chlalanne/7397629
-(require 'offlineimap)
-(require 'mu4e)
-(require 'mu4e-maildirs-extension)
-(mu4e-maildirs-extension)
+(setq mu4e-mu-binary "/usr/local/bin/mu")
+
+(require `org-mu4e)
+
+;;https://gist.github.com/chlalanne/7397629
+(use-package offlineimap
+  :ensure t)
+
+(use-package mu4e-maildirs-extension
+  :ensure t
+  :config
+  (mu4e-maildirs-extension))
+
 (setq mu4e-maildir (expand-file-name "~/maildir"))
 
 (setq mu4e-maildir-shortcuts
@@ -38,8 +44,8 @@
                                         ;-----------------------
                                         ; set up default account
                                         ;-----------------------
-
-(require 'smtpmail)
+(use-package smtpmail
+  :ensure t)
 
 
 (setq message-kill-buffer-on-exit t
@@ -122,8 +128,11 @@
               account-vars)
       (error "No email account found"))))
 
-                                        ;https://postmomentum.ch/steckemacs.html
-(require 'quelpa)
+
+;;https://postmomentum.ch/steckemacs.html
+
+(use-package quelpa
+  :ensure t)
 
 (if (require 'quelpa nil t)
     (quelpa '(quelpa :repo "quelpa/quelpa" :fetcher github) :upgrade t)
@@ -136,7 +145,6 @@
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 (setq mu4e-action-tags-header "X-Keywords")
 (key-chord-define-global "nm" 'mu4e)
-(key-chord-define-global "qw" 'eldoro)
 (mu4e)
 
                                         ;http://hack.org/mc/blog/mu4e.html

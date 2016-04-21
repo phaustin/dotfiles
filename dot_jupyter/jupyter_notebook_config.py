@@ -181,6 +181,7 @@ print('read jupyter config {}'.format(__file__))
 
 # The url for MathJax.js.
 # c.NotebookApp.mathjax_url = ''
+c.NotebookApp.mathjax_url = "https://cdn.mathjax.org/mathjax/latest/MathJax.js"
 
 # The session manager class to use.
 # c.NotebookApp.session_manager_class = <class 'notebook.services.sessions.sessionmanager.SessionManager'>

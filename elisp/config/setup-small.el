@@ -24,6 +24,11 @@
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
   (add-hook 'text-mode-hook 'visual-fill-column-mode)) 
 
+(use-package mic-paren
+  :ensure t)
+
+
+
 (use-package browse-kill-ring
   :ensure t
   :config (global-set-key (kbd "C-x C-y") `browse-kill-ring))
@@ -38,8 +43,12 @@
   (setq browse-url-browser-function 'browse-url-firefox)
   (global-set-key "\C-xw" browse-url-browser-function))
 
-(use-package gist
-  :ensure t)
+;; (use-package gist
+;;   :ensure t)
+
+(use-package yagist
+     :ensure t)
+
 
 (use-package magit
   :ensure t

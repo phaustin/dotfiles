@@ -5,7 +5,13 @@
 ;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+;;http://pragmaticemacs.com/emacs/double-dired-with-sunrise-commander/
+(add-to-list 'package-archives
+             '("SC" . "http://joseito.republika.pl/sunrise-commander/") t)
 (package-initialize)
+
+
+
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)

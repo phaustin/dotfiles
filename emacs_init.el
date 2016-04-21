@@ -1,7 +1,9 @@
 (require 'package)
 (setq package-enable-at-startup nil)
-;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; marmalade needed for eldoro
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;;melpa needed for use-package
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
@@ -31,6 +33,7 @@
                  "setup-auctex.el"
                  ;;filladapt, highlight-region, plocal, browse-kiil-ring, highlight-chars
                  ;;browse-url, gist, magit, elpy
+                 "setup-sr.el"
                  "setup-small.el"
                  ;; os specific 
                  "setup-os.el"
@@ -257,7 +260,7 @@
 
 ;;http://emacsredux.com/blog/2016/02/07/auto-indent-your-code-with-aggressive-indent-mode/
 
-(global-aggressive-indent-mode 1)
+;;(global-aggressive-indent-mode 1)
 ;;(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
 

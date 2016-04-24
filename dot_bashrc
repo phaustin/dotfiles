@@ -8,6 +8,8 @@ function acroread() { open -a /Applications/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrob
 function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
 function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
 function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
+function google-chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
+function chromium() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 
 unset PS1
 PS1="\w \u@raild% "

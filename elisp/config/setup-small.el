@@ -38,11 +38,6 @@
   :config
   (add-hook 'font-lock-mode-hook 'hc-highlight-tabs))
 
-(use-package browse-url
-  :config
-  (setq browse-url-browser-function 'browse-url-firefox)
-  (global-set-key "\C-xw" browse-url-browser-function))
-
 ;; (use-package gist
 ;;   :ensure t)
 

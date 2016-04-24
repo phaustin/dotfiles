@@ -2,8 +2,7 @@
   :ensure t
   :config
   (osx-browse-mode 1)
-  (setq browse-url-browser-function 'osx-browse-url-firefox)
-  (global-set-key "\C-xw" 'osx-browse-url-firefox))
+  (global-set-key "\C-xw" 'browse))
 
 (setq-default ispell-program-name "/usr/local/bin/ispell")
 

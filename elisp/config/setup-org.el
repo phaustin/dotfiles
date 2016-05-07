@@ -45,7 +45,7 @@
   (setq org-return-follows-link t)
   (setq org-tags-exclude-from-inheritance '("PROJECT" "WAITING" "crypt"))
   (setq org-return-follows-link t)
-  (setq org-agenda-files '("~/repos/org/refile.org" "~/repos/org/personal.org"
+  (setq org-agenda-files '("~/repos/org/refile.org" "~/repos/org/personal.org" "~/repos/org/tasks.org"
                            "~/repos/org/teaching.org" "~/repos/org/admin.org" "~/repos/org/research.org"))
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")

@@ -7,6 +7,7 @@
 #
 c = get_config()
 c.InlineBackend.close_figures=False
+c.InteractiveShellApp.matplotlib = "qt5"
 print('read ipython config: {}'.format(__file__))
 # Configuration file for ipython.
 

@@ -69,6 +69,10 @@
   (setq python-check-command (expand-file-name "/Users/phil/mini35/bin/pyflakes"))
   (elpy-use-ipython "/Users/phil/mini35/bin/ipython"))
 
+(key-chord-define-global "el" 'elpy-shell-switch-to-shell)
+(elpy-enable)
+
+
 (use-package yasnippet
   :ensure t
   :config

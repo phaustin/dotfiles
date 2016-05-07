@@ -170,11 +170,11 @@
 (global-set-key "\C-ct" 'choose-refile)
 
 (key-chord-define-global "qw" 'eldoro)
-(key-chord-define-global "--"
-                         (lambda ()
-                           "Insert an underscore"
-                           (interactive)
-                           (insert "_")))
+;; (key-chord-define-global "--"
+;;                          (lambda ()
+;;                            "Insert an underscore"
+;;                            (interactive)
+;;                            (insert "_")))
 
 
 (put 'dired-find-alternate-file 'disabled nil)
@@ -211,7 +211,6 @@
 ;(setq inhibit-startup-screen t)
 ;(setq initial-major-mode 'org-mode)
 (require 'magit)
-(setq load-path (cons (expand-file-name "~phil/repos/emacs-ipython-notebook/lisp") load-path))
 
 ;; (require 'ein-loaddefs)
 ;; (eval-when-compile (require 'ein-notebooklist))
@@ -225,6 +224,16 @@
 
 (load-theme 'adwaita t)
 
+;; (use-package zenburn-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'zenburn t))
+
+;; (use-package anti-zenburn-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'anti-zenburn t))
+
 
 (defun markdown-preview-file ()
   "use Marked 2 to preview the current file"
@@ -235,7 +244,7 @@
   )
 (global-set-key "\C-cm" 'markdown-preview-file)
 
-
+;;https://www.emacswiki.org/emacs/FlySpell
 (dolist (hook '(rst-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))
       
@@ -251,7 +260,6 @@
 
 (setq org-ellipsis "⤵")
 (show-paren-mode 1)
-
 
 
 (server-start)
@@ -274,5 +282,6 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yaml-mode websocket visual-fill-column use-package tide stan-mode spotlight sphinx-frontend sphinx-doc smartrep rtags quelpa python-info py-yapf ox-rst osx-browse org-toodledo org-journal org-gcal offlineimap nose multi-eshell mu4e-maildirs-extension mic-paren markdown-mode+ magit key-chord julia-shell jedi-direx idomenu highlight-parentheses highlight-chars flymake exec-path-from-shell ess elpy eldoro dired-narrow cython-mode cmake-ide browse-kill-ring better-registers auto-package-update auto-complete-rst auctex-latexmk aggressive-indent ack-and-a-half ace-jump-mode 4clojure))))
+    (anti-zenburn-theme zenburn-theme yaml-mode websocket visual-fill-column use-package tide stan-mode spotlight sphinx-frontend sphinx-doc smartrep rtags quelpa python-info py-yapf ox-rst osx-browse org-toodledo org-journal org-gcal offlineimap nose multi-eshell mu4e-maildirs-extension mic-paren markdown-mode+ magit key-chord julia-shell jedi-direx idomenu highlight-parentheses highlight-chars flymake exec-path-from-shell ess elpy eldoro dired-narrow cython-mode cmake-ide browse-kill-ring better-registers auto-package-update auto-complete-rst auctex-latexmk aggressive-indent ack-and-a-half ace-jump-mode 4clojure))))
 (put 'upcase-region 'disabled nil)
+

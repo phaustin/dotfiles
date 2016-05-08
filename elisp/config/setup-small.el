@@ -27,7 +27,11 @@
 (use-package mic-paren
   :ensure t)
 
+(use-package yaml-mode
+  :ensure t)
 
+(use-package toml-mode
+  :ensure t)
 
 (use-package browse-kill-ring
   :ensure t
@@ -37,6 +41,12 @@
   :ensure t
   :config
   (add-hook 'font-lock-mode-hook 'hc-highlight-tabs))
+
+
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
 
 ;; (use-package gist
 ;;   :ensure t)
@@ -67,7 +77,8 @@
   (setq elpy-rpc-python-command "/Users/phil/mini35/bin/python")
   (setq python-shell-interpreter "/Users/phil/mini35/bin/ipython")
   (setq python-check-command (expand-file-name "/Users/phil/mini35/bin/pyflakes"))
-  (elpy-use-ipython "/Users/phil/mini35/bin/ipython"))
+  (elpy-use-ipython "/Users/phil/mini35/bin/ipython")
+  (setq elpy-modules (delq 'elpy-module-company elpy-modules)))
 
 (key-chord-define-global "el" 'elpy-shell-switch-to-shell)
 (elpy-enable)
@@ -80,8 +91,10 @@
   (setq yas-snippet-dirs
         '("~/repos/snippets"
           yas-installed-snippets-dir))
-  (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
+  ;;(yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
                                         ;http://orgmode.org/manual/Conflicts.html
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook #'yas-minor-mode)
   (add-hook 'org-mode-hook
             (lambda ()
               (org-set-local 'yas/trigger-key [tab])

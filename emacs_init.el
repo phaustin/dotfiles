@@ -49,8 +49,8 @@
 (global-set-key [f7] 'fill-paragraph)
 (global-set-key [f6] 'auto-fill-mode) 
 (global-set-key [f5] 'visual-fill-column-mode) 
-(global-set-key [f4] 'choose-a-buffer) 
-(global-set-key [f3] 'choose-a-buffer) 
+(global-set-key [f4] 'elpy-shell-switch-to-buffer) 
+(global-set-key [f3] 'elpy-shell-switch-to-shell) 
 (global-set-key [f2] 'choose-csh2) 
 (global-set-key [f1] 'choose-csh1) 
 
@@ -274,6 +274,8 @@
 
 (setq fill-column 120)
 
+;(setq split-width-threshold nil)
+(setq split-width-threshold 1 )
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -282,6 +284,6 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (anti-zenburn-theme zenburn-theme yaml-mode websocket visual-fill-column use-package tide stan-mode spotlight sphinx-frontend sphinx-doc smartrep rtags quelpa python-info py-yapf ox-rst osx-browse org-toodledo org-journal org-gcal offlineimap nose multi-eshell mu4e-maildirs-extension mic-paren markdown-mode+ magit key-chord julia-shell jedi-direx idomenu highlight-parentheses highlight-chars flymake exec-path-from-shell ess elpy eldoro dired-narrow cython-mode cmake-ide browse-kill-ring better-registers auto-package-update auto-complete-rst auctex-latexmk aggressive-indent ack-and-a-half ace-jump-mode 4clojure))))
+    (company toml-mode anti-zenburn-theme zenburn-theme yaml-mode websocket visual-fill-column use-package tide stan-mode spotlight sphinx-frontend sphinx-doc smartrep rtags quelpa python-info py-yapf ox-rst osx-browse org-toodledo org-journal org-gcal offlineimap nose multi-eshell mu4e-maildirs-extension mic-paren markdown-mode+ magit key-chord julia-shell jedi-direx idomenu highlight-parentheses highlight-chars flymake exec-path-from-shell ess elpy eldoro dired-narrow cython-mode cmake-ide browse-kill-ring better-registers auto-package-update auto-complete-rst auctex-latexmk aggressive-indent ack-and-a-half ace-jump-mode 4clojure))))
 (put 'upcase-region 'disabled nil)
 

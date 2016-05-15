@@ -12,7 +12,10 @@
              '("SC" . "http://joseito.republika.pl/sunrise-commander/") t)
 (package-initialize)
 
-
+;;
+;; needed for dirtrack prompt in .bashrc
+;;
+(setenv "EMACS" "TRUE")
 
 
 ;; Bootstrap `use-package'

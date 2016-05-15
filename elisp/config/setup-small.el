@@ -102,7 +102,7 @@
   (setq yas-snippet-dirs
         '("~/repos/snippets"
           yas-installed-snippets-dir))
-  ;;(yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
+  (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
                                         ;http://orgmode.org/manual/Conflicts.html
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode)

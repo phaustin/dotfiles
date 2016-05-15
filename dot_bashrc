@@ -11,11 +11,13 @@ function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 function google-chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 function chromium() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 
+#set up prompt for emacs dirtrack see
+#.emacs file
 unset PS1
 PS1="\w \u@raild% "
 
-echo "here is emacs var $EMACS"
-if [ $EMACS == "TRUE" ]; then
+#echo "here is emacs var $EMACS"
+if [ -n "$EMACS" ]; then
     unset PS1
     PS1='|Pr0mPT|\w|\w \u@raild% '
 fi
@@ -29,7 +31,7 @@ alias d='dirs'
 function smallp()
 {
     unset PS1
-    if [ $EMACS == "TRUE" ]; then
+    if [ -n "$EMACS" ]; then
         PS1='|Pr0mPT|\w|\W \u@\h% '
     else
         PS1="\W \u@\h% "
@@ -39,7 +41,7 @@ function smallp()
 function railp()
 {
     unset PS1
-    if [ $EMACS == "TRUE" ]; then
+    if [ -n "$EMACS" ]; then
         PS1='|Pr0mPT|\w|\W \u@\h% '
     else
         PS1="\W \u@rail "
@@ -51,7 +53,7 @@ function railp()
 function newp()
 {
     unset PS1
-    if [ $EMACS == "TRUE" ]; then
+    if [ -n "$EMACS" ]; then
         PS1='|Pr0mPT|\w|$1 '
     else
         PS1=$1
@@ -61,7 +63,7 @@ function newp()
 function oldp()
 {
     unset PS1
-    if [ $EMACS == "TRUE" ]; then
+    if [ -n "$EMACS" ]; then
         PS1='|Pr0mPT|\w|\w \u@\h% '
     else
         PS1="\w \u@\h% "

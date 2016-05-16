@@ -131,17 +131,6 @@
 
 ;;https://postmomentum.ch/steckemacs.html
 
-(use-package quelpa
-  :ensure t)
-
-(if (require 'quelpa nil t)
-    (quelpa '(quelpa :repo "quelpa/quelpa" :fetcher github) :upgrade t)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
-(quelpa '(key-chord :fetcher wiki))
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.03)
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 (setq mu4e-action-tags-header "X-Keywords")
 (key-chord-define-global "nm" 'mu4e)

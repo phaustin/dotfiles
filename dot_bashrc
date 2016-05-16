@@ -16,7 +16,6 @@ function chromium() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 unset PS1
 PS1="\w \u@raild% "
 
-#echo "here is emacs var $EMACS"
 if [ -n "$EMACS" ]; then
     unset PS1
     PS1='|Pr0mPT|\w|\w \u@raild% '
@@ -54,9 +53,9 @@ function newp()
 {
     unset PS1
     if [ -n "$EMACS" ]; then
-        PS1='|Pr0mPT|\w|$1 '
+        PS1="|Pr0mPT|\w|$1 "
     else
-        PS1=$1
+        PS1="$1 "
     fi
 }
 

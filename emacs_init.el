@@ -27,7 +27,7 @@
 ; loop over config files and load
 ;
 ;https://github.com/krgn/mu4e-setup/blob/master/init.el
-(setq relative-config-dir "~/repos/dotfiles/elisp/")
+(setq relative-config-dir "~phil/repos/dotfiles/elisp/")
 (setq setup-files-dir "config/")
 (setq dot-files 
       (mapcar (lambda (item) (concat relative-config-dir setup-files-dir item))
@@ -36,7 +36,7 @@
                  "setup-auctex.el"
                  ;;filladapt, highlight-region, plocal, browse-kiil-ring, highlight-chars
                  ;;browse-url, gist, magit, elpy
-                 "setup-sr.el"
+                 ;;"setup-sr.el"
                  "setup-small.el"
                  ;; os specific 
                  "setup-os.el"
@@ -172,7 +172,6 @@
 (global-set-key "\C-cg" 'choose-gtd)
 (global-set-key "\C-ct" 'choose-refile)
 
-(key-chord-define-global "qw" 'eldoro)
 ;; (key-chord-define-global "--"
 ;;                          (lambda ()
 ;;                            "Insert an underscore"
@@ -274,7 +273,7 @@
 ;;(global-aggressive-indent-mode 1)
 ;;(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
-
+(key-chord-define-global "qw" 'eldoro)
 (setq fill-column 120)
 
 ;(setq split-width-threshold nil)
@@ -285,8 +284,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (company toml-mode anti-zenburn-theme zenburn-theme yaml-mode websocket visual-fill-column use-package tide stan-mode spotlight sphinx-frontend sphinx-doc smartrep rtags quelpa python-info py-yapf ox-rst osx-browse org-toodledo org-journal org-gcal offlineimap nose multi-eshell mu4e-maildirs-extension mic-paren markdown-mode+ magit key-chord julia-shell jedi-direx idomenu highlight-parentheses highlight-chars flymake exec-path-from-shell ess elpy eldoro dired-narrow cython-mode cmake-ide browse-kill-ring better-registers auto-package-update auto-complete-rst auctex-latexmk aggressive-indent ack-and-a-half ace-jump-mode 4clojure))))
+ )
+
+;(require 'material-theme)
 (put 'upcase-region 'disabled nil)
+;(require 'frame-cmds nil t)
+;(require 'better-defaults)
+;(load-theme 'material-light t)
 

@@ -117,7 +117,7 @@ export BITLY_ACCESS_TOKEN=c984e550ada5ef8846c5a9bf4bd602ca086154b3
 export MATLAB_EXECUTABLE=/Applications/MATLAB_R2015b.app/bin/matlab
 
 #only read for interactive python
-export PYTHONPATH='/Users/phil/repos/A212:/Users/phil/repos/A405:/Users/phil/repos/pythonlibs:/Users/phil/repos/ent_analysis_loh'
+export PYTHONPATH='/Users/phil/repos/atsc500/a500_code/:/Users/phil/repos/A212:/Users/phil/repos/A405:/Users/phil/repos/pythonlibs:/Users/phil/repos/ent_analysis_loh'
 export GISTY_ACCESS_TOKEN=4de9fac7f7c980509bc97264766ee31c6d66a85c
 export GISTY_DIR="$HOME/repos/gists"
 

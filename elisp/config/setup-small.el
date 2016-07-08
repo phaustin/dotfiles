@@ -1,14 +1,14 @@
-(use-package quelpa
-  :ensure t)
+;; (use-package quelpa
+;;   :ensure t)
 
-(if (require 'quelpa nil t)
-    (quelpa '(quelpa :repo "quelpa/quelpa" :fetcher github) :upgrade t)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
-(quelpa '(key-chord :fetcher wiki))
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.03)
+;; (if (require 'quelpa nil t)
+;;     (quelpa '(quelpa :repo "quelpa/quelpa" :fetcher github) :upgrade t)
+;;   (with-temp-buffer
+;;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+;;     (eval-buffer)))
+;; (quelpa '(key-chord :fetcher wiki))
+;; (key-chord-mode 1)
+;; (setq key-chord-two-keys-delay 0.03)
 
 (use-package filladapt
   :load-path "~/repos/dotfiles/elisp"
@@ -62,8 +62,8 @@
 ;; (use-package gist
 ;;   :ensure t)
 
-(use-package yagist
-     :ensure t)
+;; (use-package yagist
+;;      :ensure t)
 
 
 (use-package magit

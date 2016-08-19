@@ -4,7 +4,8 @@ export PATH="${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/M
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
 alias emacs='open -a /Applications/Emacs.app $@'
-function acroread() { open -a /Applications/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
+alias ipyelpy='ipython --simple-prompt'
+function acroread() { open -a /Applica~tions/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
 function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
 function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
 function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
@@ -117,7 +118,7 @@ export BITLY_ACCESS_TOKEN=c984e550ada5ef8846c5a9bf4bd602ca086154b3
 export MATLAB_EXECUTABLE=/Applications/MATLAB_R2015b.app/bin/matlab
 
 #only read for interactive python
-export PYTHONPATH='/Users/phil/repos/atsc500/a500_code/:/Users/phil/repos/A212:/Users/phil/repos/A405:/Users/phil/repos/pythonlibs:/Users/phil/repos/ent_analysis_loh'
+export PYTHONPATH="${HOME}/repos:${HOME}/repos/atsc500/a500_code/:${HOME}/repos/A212:${HOME}/repos/A405:${HOME}/repos/pythonlibs:${HOME}/repos/ent_analysis_loh"
 export GISTY_ACCESS_TOKEN=4de9fac7f7c980509bc97264766ee31c6d66a85c
 export GISTY_DIR="$HOME/repos/gists"
 

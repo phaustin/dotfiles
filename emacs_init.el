@@ -192,6 +192,8 @@
 
 (setenv "or" "~/repos/org")
 (setenv "rm" "~/repos/readmes")
+(setq dired-use-ls-dired nil)
+
 
 ;;http://lists.gnu.org/archive/html/emacs-orgmode/2010-04/msg01057.html
 ;; 1. window gets split horizontally (one on TOP of the other), AND
@@ -284,11 +286,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(dired-listing-switches "-alh")
+ '(package-selected-packages
+   (quote
+    (bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander quelpa pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme magit key-chord highlight-chars frame-cmds exec-path-from-shell elpy eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half))))
 
 ;(require 'material-theme)
 (put 'upcase-region 'disabled nil)
-;(require 'frame-cmds nil t)
 ;(require 'better-defaults)
-;(load-theme 'material-light t)
+;(load-theme 'material t)
 
+;;http://pragmaticemacs.com/emacs/use-visible-bookmarks-to-quickly-jump-around-a-file/
+(use-package bm
+  :bind (("<C-f10>" . bm-toggle)
+         ("<f10>" . bm-next)
+         ("<S-f10>" . bm-previous)))

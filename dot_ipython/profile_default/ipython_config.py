@@ -7,7 +7,7 @@
 #
 c = get_config()
 c.InlineBackend.close_figures=False
-c.InteractiveShellApp.matplotlib = "qt"
+c.InteractiveShellApp.matplotlib = "qt4"
 print('read ipython config: {}'.format(__file__))
 # Configuration file for ipython.
 
@@ -343,10 +343,10 @@ print('read ipython config: {}'.format(__file__))
 # c.PromptManager.color_scheme = 'Linux'
 
 # Output prompt. '\#' will be transformed to the prompt number
-c.PromptManager.out_template = 'O[\\#]: '
+#c.PromptManager.out_template = 'O[\\#]: '
 
 # Input prompt.  '\#' will be transformed to the prompt number
-c.PromptManager.in_template = 'I[\\#]: '
+#c.PromptManager.in_template = 'I[\\#]: '
 
 # If True (default), each prompt will be right-aligned with the preceding one.
 # c.PromptManager.justify = True

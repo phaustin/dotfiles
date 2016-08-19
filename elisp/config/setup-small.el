@@ -1,14 +1,15 @@
-;; (use-package quelpa
-;;   :ensure t)
+(use-package quelpa
+  :ensure t)
 
 ;; (if (require 'quelpa nil t)
 ;;     (quelpa '(quelpa :repo "quelpa/quelpa" :fetcher github) :upgrade t)
 ;;   (with-temp-buffer
 ;;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
 ;;     (eval-buffer)))
-;; (quelpa '(key-chord :fetcher wiki))
-;; (key-chord-mode 1)
-;; (setq key-chord-two-keys-delay 0.03)
+
+(quelpa '(key-chord :fetcher wiki))
+(key-chord-mode 1)
+(setq key-chord-two-keys-delay 0.03)
 
 (use-package filladapt
   :load-path "~/repos/dotfiles/elisp"
@@ -54,10 +55,10 @@
   (add-hook 'font-lock-mode-hook 'hc-highlight-tabs))
 
 
-(use-package company
-  :ensure t
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
+;; (use-package company
+;;   :ensure t
+;;   :config
+;;   (add-hook 'after-init-hook 'global-company-mode))
 
 ;; (use-package gist
 ;;   :ensure t)
@@ -84,14 +85,15 @@
   ;;         elpy-rpc-project-specific 't)
   ;;   (when (fboundp 'flycheck-mode)
   ;;     (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
-  (setq elpy-interactive-python-command "/Users/phil/mini35/bin/ipython")
+  (setq elpy-interactive-python-command (expand-file-name "~/bin/ipyelpy.sh"))
   (setq elpy-rpc-python-command "/Users/phil/mini35/bin/python")
-  (setq python-shell-interpreter "/Users/phil/mini35/bin/ipython")
-  (setq python-check-command (expand-file-name "/Users/phil/mini35/bin/pyflakes"))
-  (elpy-use-ipython "/Users/phil/mini35/bin/ipython")
+  (setq python-shell-interpreter (expand-file-name "~/bin/ipyelpy.sh"))
+  (setq python-check-command (expand-file-name "~/mini35/bin/pyflakes"))
+  (elpy-use-ipython (expand-file-name "~/bin/ipyelpy.sh"))
   (setq elpy-modules (delq 'elpy-module-company elpy-modules)))
 
 (key-chord-define-global "el" 'elpy-shell-switch-to-shell)
+(key-chord-define-global "eb" 'elpy-shell-switch-to-buffer)
 (elpy-enable)
 
 

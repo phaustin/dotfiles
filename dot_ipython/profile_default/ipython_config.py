@@ -6,8 +6,8 @@
 # /Users/phil/.ipython/profile_default/ipython_config.py
 #
 c = get_config()
-c.InlineBackend.close_figures=False
-c.InteractiveShellApp.matplotlib = "qt4"
+c.InlineBackend.close_figures=True
+c.InteractiveShellApp.matplotlib = "qt"
 print('read ipython config: {}'.format(__file__))
 # Configuration file for ipython.
 

@@ -6,9 +6,3 @@ export LANG=en_US.UTF-8
 
 
 
-
-# added by Miniconda3 3.19.0 installer
-export PATH="/Users/phil/mini35/bin:$PATH"
-
-# added by Miniconda3 3.19.0 installer
-export PATH="/Users/phil/mini35/bin:$PATH"

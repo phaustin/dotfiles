@@ -1,10 +1,12 @@
 # added by Anaconda3 2.3.0 installer
 export PATH="/Users/phil/mini35/bin:/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH"
-export PATH="${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH"
+export PATH="${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH:${HOME}/.local/bin"
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
 alias emacs='open -a /Applications/Emacs.app $@'
+alias par='open -a /Applications/Parallels\ Desktop.app'
 alias ipyelpy='ipython --simple-prompt'
+alias skim='/Applications/Skim.app/Contents/MacOS/Skim $@'
 function acroread() { open -a /Applica~tions/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
 function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
 function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
@@ -49,7 +51,6 @@ function railp()
 }
 
 
-
 function newp()
 {
     unset PS1
@@ -59,6 +60,7 @@ function newp()
         PS1="$1 "
     fi
 }
+
 
 function oldp()
 {
@@ -111,6 +113,8 @@ export a405="${HOME}/repos/A405"
 export a405d="${HOME}/repos/atsc405_docs"
 export a212="${HOME}/repos/A212"
 export a212d="${HOME}/repos/atsc212_docs"
+export a301="${HOME}/repos/a301_2016"
+export a301w="${HOME}/repos/a301_web"
 
 #arg-complete for conda
 #eval $(register-python-argcomplete conda)
@@ -118,7 +122,32 @@ export BITLY_ACCESS_TOKEN=c984e550ada5ef8846c5a9bf4bd602ca086154b3
 export MATLAB_EXECUTABLE=/Applications/MATLAB_R2015b.app/bin/matlab
 
 #only read for interactive python
-export PYTHONPATH="${HOME}/repos:${HOME}/repos/atsc500/a500_code/:${HOME}/repos/A212:${HOME}/repos/A405:${HOME}/repos/pythonlibs:${HOME}/repos/ent_analysis_loh"
+export PYTHONPATH="${HOME}/repos/a301_2016:${HOME}/repos:${HOME}/repos/atsc500/a500_code/:${HOME}/repos/A212:${HOME}/repos/A405:${HOME}/repos/pythonlibs:${HOME}/repos/ent_analysis_loh"
 export GISTY_ACCESS_TOKEN=4de9fac7f7c980509bc97264766ee31c6d66a85c
 export GISTY_DIR="$HOME/repos/gists"
+
+#https://coderwall.com/p/fasnya/add-git-branch-name-to-bash-prompt
+#http://stackoverflow.com/questions/17811327/git-branch-name-in-prompt
+
+parse_git_branch () {
+
+    while read -r branch; do
+        [[ $branch = \** ]] && current_branch=${branch#* }
+    done < <(git branch 2>/dev/null)
+
+    [[ $current_branch ]] && printf '[%s]' "$current_branch"
+
+}
+
+function gitp()
+{
+    unset PS1
+    if [ -n "$EMACS" ]; then
+        PS1="|Pr0mPT|\w|\w\$(parse_git_branch)\u@\h%\n$ "
+    else
+        PS1="\w \u@\h% "
+    fi
+}
+
+gitp
 

@@ -14,6 +14,7 @@
         "/usr/bin"
         "/bin"
         "/usr/sbin"
+        "/Users/phil/.local/bin"
         ))
 
 (getenv "PATH")

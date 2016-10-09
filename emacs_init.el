@@ -192,6 +192,8 @@
 
 (setenv "or" "~/repos/org")
 (setenv "rm" "~/repos/readmes")
+(setenv "a301" "~/repos/a301_2016")
+(setenv "a301w" "~/repos/a301_web")
 (setq dired-use-ls-dired nil)
 
 

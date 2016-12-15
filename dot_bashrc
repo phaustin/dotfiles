@@ -1,6 +1,7 @@
 # added by Anaconda3 2.3.0 installer
 export PATH="/Users/phil/mini35/bin:/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH"
 export PATH="${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH:${HOME}/.local/bin"
+alias dockerkill='docker rm -f $(docker ps -a -q)'
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
 alias emacs='open -a /Applications/Emacs.app $@'
@@ -143,11 +144,16 @@ function gitp()
 {
     unset PS1
     if [ -n "$EMACS" ]; then
-        PS1="|Pr0mPT|\w|\w\$(parse_git_branch)\u@\h%\n$ "
+        PS1="|Pr0mPT|\w|\w $(parse_git_branch) \u@\h%\n$ "
     else
-        PS1="\w \u@\h% "
+        PS1="\w $(parse_git_branch) \u@\h%\n% "
     fi
 }
 
+
 gitp
 
+MRTSWATH_HOME=/Users/phil/bin/mrtswath
+PATH=$PATH:/Users/phil/bin/mrtswath/bin
+MRTSWATH_DATA_DIR=/Users/phil/bin/mrtswath/data
+export MRTSWATH_HOME PATH MRTSWATH_DATA_DIR

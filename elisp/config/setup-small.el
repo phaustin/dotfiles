@@ -1,5 +1,5 @@
-(use-package quelpa
-  :ensure t)
+;; (use-package quelpa
+;;   :ensure t)
 
 ;; (if (require 'quelpa nil t)
 ;;     (quelpa '(quelpa :repo "quelpa/quelpa" :fetcher github) :upgrade t)
@@ -7,9 +7,9 @@
 ;;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
 ;;     (eval-buffer)))
 
-(quelpa '(key-chord :fetcher wiki))
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.03)
+;(quelpa '(key-chord :fetcher wiki))
+;(key-chord-mode 1)
+;(setq key-chord-two-keys-delay 0.03)
 
 (use-package filladapt
   :load-path "~/repos/dotfiles/elisp"
@@ -86,14 +86,14 @@
   ;;   (when (fboundp 'flycheck-mode)
   ;;     (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
   (setq elpy-interactive-python-command (expand-file-name "~/bin/ipyelpy.sh"))
-  (setq elpy-rpc-python-command "/Users/phil/mini35/bin/python")
+  (setq elpy-rpc-python-command "/Users/phil/mini36/bin/python")
   (setq python-shell-interpreter (expand-file-name "~/bin/ipyelpy.sh"))
-  (setq python-check-command (expand-file-name "~/mini35/bin/pyflakes"))
+  (setq python-check-command (expand-file-name "~/mini36/bin/pyflakes"))
   (elpy-use-ipython (expand-file-name "~/bin/ipyelpy.sh"))
   (setq elpy-modules (delq 'elpy-module-company elpy-modules)))
 
-(key-chord-define-global "el" 'elpy-shell-switch-to-shell)
-(key-chord-define-global "eb" 'elpy-shell-switch-to-buffer)
+;(key-chord-define-global "el" 'elpy-shell-switch-to-shell)
+;(key-chord-define-global "eb" 'elpy-shell-switch-to-buffer)
 (elpy-enable)
 
 
@@ -146,20 +146,36 @@
   (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
   (setq ack-and-a-half-executable "~/bin/ack"))
 
+(use-package ripgrep
+  :ensure t
+  :config
+  ;; Create shorter aliases
+  (defalias 'rip 'ripgrep-regexp))
+
+
+
 ;;https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
   :ensure t
   :config
   (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize)
     (exec-path-from-shell-copy-env "PYTHONPATH")
+    (exec-path-from-shell-copy-env "eweb")
+    (exec-path-from-shell-copy-env "ecode")
     (exec-path-from-shell-copy-env "e340")
+    (exec-path-from-shell-copy-env "eold")
     (exec-path-from-shell-copy-env "e340f")
+    (exec-path-from-shell-copy-env "itunes")
+    (exec-path-from-shell-copy-env "kindle")
     (exec-path-from-shell-copy-env "or")
+    (exec-path-from-shell-copy-env "e340code")
     (exec-path-from-shell-copy-env "rm")
     (exec-path-from-shell-copy-env "a405")
     (exec-path-from-shell-copy-env "a212")
     (exec-path-from-shell-copy-env "a405_docs")
     (exec-path-from-shell-copy-env "a212_docs")
+    (exec-path-from-shell-copy-env "e340g")
+    (exec-path-from-shell-initialize)
     ))
+
 

@@ -1,6 +1,5 @@
-# added by Anaconda3 2.3.0 installer
-export PATH="/Users/phil/mini35/bin:/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH"
-export PATH="${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH:${HOME}/.local/bin"
+export PATH="/Users/phil/mini36/bin:/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH"
+export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH:${HOME}/.local/bin"
 alias dockerkill='docker rm -f $(docker ps -a -q)'
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
@@ -76,14 +75,15 @@ function oldp()
 #
 # need to mirror these in .emacs
 #
-export e340="${HOME}/Dropbox/e340_2016_spring/"
-export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT/"
-export or="${HOME}/repos/org/"
-export rm="${HOME}/repos/readmes/"
-alias cf="cd \"$e340f\""
-export ecode="${HOME}/repos/e582_code/"
-export eweb="${HOME}/repos/e582_web/"
-export a301="${HOME}/Dropbox/a301"
+export e340="${HOME}/Dropbox/e340_coursework/e340_2017_spring"
+export eold="${HOME}/Dropbox/e340_coursework/e340_2016_fall"
+export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT"
+export itunes="${HOME}/Music/iTunes/iTunes Media/TV Shows"
+export kindle="${HOME}/Library/Containers/com.amazon.Kindle/Data/Library/Application Support/Kindle/My Kindle Content"
+export e340code="${HOME}/repos/e340repo"
+export or="${HOME}/repos/org"
+export rm="${HOME}/repos/readmes"
+alias cf='cd "$e340f"'
 export git="ssh://jcole@roc.eos.ubc.ca/users/phil/repos/feedbacks"
 export rm=~/repos/readmes
 export or=~/repos/org
@@ -116,14 +116,16 @@ export a212="${HOME}/repos/A212"
 export a212d="${HOME}/repos/atsc212_docs"
 export a301="${HOME}/repos/a301_2016"
 export a301w="${HOME}/repos/a301_web"
-
+export ecode="${HOME}/repos/e582_code"
+export eweb="${HOME}/repos/e582_web"
+export e340g="/Users/phil/airwatch/Personal Content/EOSC 340 Student Info Share (Harris, Sara)"
 #arg-complete for conda
 #eval $(register-python-argcomplete conda)
 export BITLY_ACCESS_TOKEN=c984e550ada5ef8846c5a9bf4bd602ca086154b3
 export MATLAB_EXECUTABLE=/Applications/MATLAB_R2015b.app/bin/matlab
 
 #only read for interactive python
-export PYTHONPATH="${HOME}/repos/a301_2016:${HOME}/repos:${HOME}/repos/atsc500/a500_code/:${HOME}/repos/A212:${HOME}/repos/A405:${HOME}/repos/pythonlibs:${HOME}/repos/ent_analysis_loh"
+export PYTHONPATH="${HOME}/repos/a301_2016:${HOME}/repos/e582_code:${HOME}/repos/pythonlibs"
 export GISTY_ACCESS_TOKEN=4de9fac7f7c980509bc97264766ee31c6d66a85c
 export GISTY_DIR="$HOME/repos/gists"
 
@@ -150,10 +152,5 @@ function gitp()
     fi
 }
 
-
 gitp
 
-MRTSWATH_HOME=/Users/phil/bin/mrtswath
-PATH=$PATH:/Users/phil/bin/mrtswath/bin
-MRTSWATH_DATA_DIR=/Users/phil/bin/mrtswath/data
-export MRTSWATH_HOME PATH MRTSWATH_DATA_DIR

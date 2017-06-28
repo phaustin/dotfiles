@@ -32,7 +32,7 @@
 (setq dot-files 
       (mapcar (lambda (item) (concat relative-config-dir setup-files-dir item))
            (list "setup-org.el"         ;org-mode
-                 "setup-mu4e.el"        ;mu4e
+                 ;;"setup-mu4e.el"        ;mu4e
                  "setup-auctex.el"
                  ;;filladapt, highlight-region, plocal, browse-kiil-ring, highlight-chars
                  ;;browse-url, gist, magit, elpy
@@ -277,7 +277,7 @@
 ;;(global-aggressive-indent-mode 1)
 ;;(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
-(key-chord-define-global "qw" 'eldoro)
+;(key-chord-define-global "qw" 'eldoro)
 (setq fill-column 120)
 
 ;(setq split-width-threshold nil)
@@ -291,7 +291,13 @@
  '(dired-listing-switches "-alh")
  '(package-selected-packages
    (quote
-    (cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander quelpa pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme magit key-chord highlight-chars frame-cmds exec-path-from-shell elpy eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half))))
+    (org fill-column-indicator elpy yasnippet auctex ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ highlight-chars frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half)))
+ '(safe-local-variable-values
+   (quote
+    ((flycheck-gcc-language-standard . "c++14")
+     (eval c-set-offset
+           (quote innamespace)
+           4)))))
 
 ;(require 'material-theme)
 (put 'upcase-region 'disabled nil)
@@ -303,3 +309,17 @@
   :bind (("<C-f10>" . bm-toggle)
          ("<f10>" . bm-next)
          ("<S-f10>" . bm-previous)))
+;(require `org-mu4e)
+(put 'set-goal-column 'disabled nil)
+
+;http://mbork.pl/2017-02-26_other-window-or-switch-buffer
+(defun other-window-or-switch-buffer ()
+  "Call `other-window' if more than one window is visible, switch
+to next buffer otherwise."
+  (interactive)
+  (if (one-window-p)
+	  (switch-to-buffer nil)
+	(other-window 1)))
+
+(global-set-key (kbd "<f6>") #'other-window-or-switch-buffer)
+(require 'fill-column-indicator)

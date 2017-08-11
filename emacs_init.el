@@ -291,7 +291,7 @@
  '(dired-listing-switches "-alh")
  '(package-selected-packages
    (quote
-    (org fill-column-indicator elpy yasnippet auctex ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ highlight-chars frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half)))
+    (rg json-mode org fill-column-indicator elpy yasnippet auctex ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ highlight-chars frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half)))
  '(safe-local-variable-values
    (quote
     ((flycheck-gcc-language-standard . "c++14")

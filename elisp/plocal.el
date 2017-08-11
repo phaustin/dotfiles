@@ -1,6 +1,15 @@
 ;; These are a bunch of emacs lisp routines used locally in the
 ;; geography department to set up keybindings and the like
 
+;;https://stackoverflow.com/questions/6997387/how-to-archive-all-the-done-tasks-using-a-single-command
+(defun pha/org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (outline-previous-heading)))
+   "/DONE" 'tree))
+
 ;; Functions to create shells
 
 ;; make-shell:
@@ -8,7 +17,6 @@
 ;; Creates a shell with the given name
 ;; starts the new directory tracking if available, and
 ;; makes it difficult to kill.
-
 
 (defun make-shell (name)
   "Start a new shell and rename the buffer NAME"
@@ -18,10 +26,10 @@
   (rename-buffer name)
   (make-local-variable 'kill-buffer-hook)
   (add-hook 'kill-buffer-hook 
-	    '(lambda ()
-	       (if (not (yes-or-no-p 
-			 "Last chance not to kill a SHELL buffer: Kill it? "))
-		   (keyboard-quit)))))
+            '(lambda ()
+               (if (not (yes-or-no-p 
+                         "Last chance not to kill a SHELL buffer: Kill it? "))
+                   (keyboard-quit)))))
 
 ;; ask-shell:
 ;;
@@ -111,22 +119,22 @@
   "Set a key to a buffer (Prefix re-assign)"
   (interactive "P")
   (let* ((key last-command-event)
-	 (buf-assoc (assoc key stored-key-info))
-	 (buffer (cdr buf-assoc)))
+         (buf-assoc (assoc key stored-key-info))
+         (buffer (cdr buf-assoc)))
     
     ;; if buffer is set to something but its deleted
     ;; or we want to reassign it...
     (if (and buffer 
-	     (or re-assign (not (buffer-name buffer))))
-	(progn
-	  (setq stored-key-info (delq buf-assoc stored-key-info))
-	  (setq buffer nil)))
+             (or re-assign (not (buffer-name buffer))))
+        (progn
+          (setq stored-key-info (delq buf-assoc stored-key-info))
+          (setq buffer nil)))
 
     ;; if buffer is not set then set it
     (if (not buffer)
-	(progn
-	  (setq buffer (get-buffer (read-buffer "Buffer for key? " (current-buffer) t)))
-	  (setq stored-key-info (cons (cons key buffer) stored-key-info))))
+        (progn
+          (setq buffer (get-buffer (read-buffer "Buffer for key? " (current-buffer) t)))
+          (setq stored-key-info (cons (cons key buffer) stored-key-info))))
     
     ;; switch to the new buffer
     ;(switch-to-buffer buffer)
@@ -136,20 +144,20 @@
   "Set a key to a string (Prefix re-assign)"
   (interactive "P")
   (let* ((key last-command-event)
-	 (string-assoc (assoc key stored-key-info))
-	 (string (cdr string-assoc)))
+         (string-assoc (assoc key stored-key-info))
+         (string (cdr string-assoc)))
     
     ;; if buffer is set to something and we want to reassign it
     (if (and string re-assign )
-	(progn
-	  (setq stored-key-info (delq string-assoc stored-key-info))
-	  (setq string nil)))
+        (progn
+          (setq stored-key-info (delq string-assoc stored-key-info))
+          (setq string nil)))
 
     ;; if string is not set then set it
     (if (not string)
-	(progn
-	  (setq string (read-from-minibuffer "String for key? "))
-	  (setq stored-key-info (cons (cons key string) stored-key-info))))
+        (progn
+          (setq string (read-from-minibuffer "String for key? "))
+          (setq stored-key-info (cons (cons key string) stored-key-info))))
     
     ;; insert the string into current buffer
     (insert string)))
@@ -158,20 +166,20 @@
   "Set a key to a macro (Prefix re-assign)"
   (interactive "P")
   (let* ((key last-command-event)
-	 (macro-assoc (assoc key stored-key-info))
-	 (macro (cdr macro-assoc)))
+         (macro-assoc (assoc key stored-key-info))
+         (macro (cdr macro-assoc)))
     
     ;; if buffer is set to something and we want to reassign it
     (if (and macro re-assign )
-	(progn
-	  (setq stored-key-info (delq macro-assoc stored-key-info))
-	  (setq macro nil)))
+        (progn
+          (setq stored-key-info (delq macro-assoc stored-key-info))
+          (setq macro nil)))
 
     ;; if string is not set then set it
     (if (not macro)
-	(progn
-	  (setq macro (read-command "Macro for key? "))
-	  (setq stored-key-info (cons (cons key macro) stored-key-info))))
+        (progn
+          (setq macro (read-command "Macro for key? "))
+          (setq stored-key-info (cons (cons key macro) stored-key-info))))
     
     ;; execute the macro
     (execute-kbd-macro macro)))
@@ -207,22 +215,22 @@
   "Set a key to a buffer (Prefix re-assign)"
   (interactive "P")
   (let* ((key last-command-event)
-	 (buf-assoc (assoc key stored-key-info))
-	 (buffer (cdr buf-assoc)))
+         (buf-assoc (assoc key stored-key-info))
+         (buffer (cdr buf-assoc)))
     
     ;; if buffer is set to something but its deleted
     ;; or we want to reassign it...
     (if (and buffer 
-	     (or re-assign (not (buffer-name buffer))))
-	(progn
-	  (setq stored-key-info (delq buf-assoc stored-key-info))
-	  (setq buffer nil)))
+             (or re-assign (not (buffer-name buffer))))
+        (progn
+          (setq stored-key-info (delq buf-assoc stored-key-info))
+          (setq buffer nil)))
 
     ;; if buffer is not set then set it
     (if (not buffer)
-	(progn
-	  (setq buffer (get-buffer (read-buffer "Buffer for key? " (current-buffer) t)))
-	  (setq stored-key-info (cons (cons key buffer) stored-key-info))))
+        (progn
+          (setq buffer (get-buffer (read-buffer "Buffer for key? " (current-buffer) t)))
+          (setq stored-key-info (cons (cons key buffer) stored-key-info))))
     
     ;; switch to the new buffer
     (switch-to-buffer buffer)))
@@ -231,20 +239,20 @@
   "Set a key to a string (Prefix re-assign)"
   (interactive "P")
   (let* ((key last-command-event)
-	 (string-assoc (assoc key stored-key-info))
-	 (string (cdr string-assoc)))
+         (string-assoc (assoc key stored-key-info))
+         (string (cdr string-assoc)))
     
     ;; if buffer is set to something and we want to reassign it
     (if (and string re-assign )
-	(progn
-	  (setq stored-key-info (delq string-assoc stored-key-info))
-	  (setq string nil)))
+        (progn
+          (setq stored-key-info (delq string-assoc stored-key-info))
+          (setq string nil)))
 
     ;; if string is not set then set it
     (if (not string)
-	(progn
-	  (setq string (read-from-minibuffer "String for key? "))
-	  (setq stored-key-info (cons (cons key string) stored-key-info))))
+        (progn
+          (setq string (read-from-minibuffer "String for key? "))
+          (setq stored-key-info (cons (cons key string) stored-key-info))))
     
     ;; insert the string into current buffer
     (insert string)))
@@ -253,20 +261,20 @@
   "Set a key to a macro (Prefix re-assign)"
   (interactive "P")
   (let* ((key last-command-event)
-	 (macro-assoc (assoc key stored-key-info))
-	 (macro (cdr macro-assoc)))
+         (macro-assoc (assoc key stored-key-info))
+         (macro (cdr macro-assoc)))
     
     ;; if buffer is set to something and we want to reassign it
     (if (and macro re-assign )
-	(progn
-	  (setq stored-key-info (delq macro-assoc stored-key-info))
-	  (setq macro nil)))
+        (progn
+          (setq stored-key-info (delq macro-assoc stored-key-info))
+          (setq macro nil)))
 
     ;; if string is not set then set it
     (if (not macro)
-	(progn
-	  (setq macro (read-command "Macro for key? "))
-	  (setq stored-key-info (cons (cons key macro) stored-key-info))))
+        (progn
+          (setq macro (read-command "Macro for key? "))
+          (setq stored-key-info (cons (cons key macro) stored-key-info))))
     
     ;; execute the macro
     (execute-kbd-macro macro)))

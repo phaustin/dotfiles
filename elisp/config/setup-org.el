@@ -32,6 +32,7 @@
           ("w" tags-todo "WAITING" nil) 
           ("f" todo "FILED" nil) 
           ("n" todo "NEXT" nil)
+          ("c" todo "DONE" nil)
           ("o" tags "NOTE" nil)
           ("d" "Agenda + Next Actions" ((agenda) (todo "NEXT")))
           ("O" "Office"
@@ -49,11 +50,14 @@
            ( (agenda)
              (tags-todo "HOME")
              (tags-todo "COMPUTER")))))
+
   (setq org-mobile-directory "~/orgtransfer")
   (setq org-mobile-inbox-for-pull "~/repos/org/from-mobile.org")
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
+  (define-key global-map "\C-cd" 'pha/org-archive-done-tasks)
+
   (setq org-log-done t)
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key "\C-ca" 'org-agenda)
@@ -62,12 +66,12 @@
 (setq org-return-follows-link t)
 
 (setq org-agenda-files '("~/repos/org/refile.org" "~/repos/org/personal.org" "~/repos/org/tasks.org"
-                         "~/repos/org/teaching.org" "~/repos/org/admin.org" "~/repos/org/research.org"))
+                         "~/repos/org/teaching.org" "~/repos/org/admin.org" "~/repos/org/research.org" "~/repos/org/someday.org"))
 
 (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-                (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PH
-ONE" "MEETING"))))
+                (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
+
 (setq org-todo-keyword-faces
         (quote (("TODO" :foreground "red" :weight bold)
                 ("NEXT" :foreground "blue" :weight bold)
@@ -77,6 +81,7 @@ ONE" "MEETING"))))
                 ("CANCELLED" :foreground "forest green" :weight bold)
                 ("MEETING" :foreground "forest green" :weight bold)
                 ("PHONE" :foreground "forest green" :weight bold))))
+
 (setq org-use-fast-todo-selection t)
 (setq org-treat-S-cursor-todo-selection-as-state-change nil)
 (setq org-todo-state-tags-triggers
@@ -155,10 +160,10 @@ ONE" "MEETING"))))
   (global-set-key (kbd "C-c b") 'org-journal-open-previous-entry)
   (global-set-key (kbd "C-c f") 'org-journal-open-next-entry))
 
-;; ;; (use-package org-toodledo
-;; ;;   :ensure t
-;; ;;   :config
-;; ;;   (setq org-toodledo-file "/Users/phil/test.org")
-;; ;;   (setq org-toodledo-userid "td5693fec5543b6 ")
-;; ;;   (setq org-toodledo-password "fdLfums!"))
+;; ;; ;; (use-package org-toodledo
+;; ;; ;;   :ensure t
+;; ;; ;;   :config
+;; ;; ;;   (setq org-toodledo-file "/Users/phil/test.org")
+;; ;; ;;   (setq org-toodledo-userid "td5693fec5543b6 ")
+;; ;; ;;   (setq org-toodledo-password "fdLfums!"))
 

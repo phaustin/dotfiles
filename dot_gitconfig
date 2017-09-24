@@ -96,3 +96,5 @@ cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\
 [gpg]
 	program = /usr/local/MacGPG2/bin/gpg2
         
+[credential]
+	helper = osxkeychain

@@ -64,6 +64,10 @@
   (setq org-return-follows-link t)
   (setq org-tags-exclude-from-inheritance '("PROJECT" "WAITING" "crypt"))
 (setq org-return-follows-link t)
+;
+;https://emacs.stackexchange.com/questions/10426/org-mode-link-to-open-directory-in-dired
+;
+(add-to-list 'org-file-apps '(directory . emacs))
 
 (setq org-agenda-files '("~/repos/org/refile.org" "~/repos/org/personal.org" "~/repos/org/tasks.org"
                          "~/repos/org/teaching.org" "~/repos/org/admin.org" "~/repos/org/research.org" "~/repos/org/someday.org"))
@@ -159,6 +163,12 @@
   (global-set-key (kbd "C-c j") 'org-journal-new-entry)
   (global-set-key (kbd "C-c b") 'org-journal-open-previous-entry)
   (global-set-key (kbd "C-c f") 'org-journal-open-next-entry))
+
+;; https://emacs.stackexchange.com/questions/4276/correct-markdown-format-tables-with-orgtbl-mode
+;; https://github.com/larstvei/ox-gfm
+(use-package ox-gfm
+  :ensure t        
+)
 
 ;; ;; ;; (use-package org-toodledo
 ;; ;; ;;   :ensure t

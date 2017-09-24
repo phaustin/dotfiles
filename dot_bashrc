@@ -75,8 +75,10 @@ function oldp()
 #
 # need to mirror these in .emacs
 #
-export e340="${HOME}/Dropbox/e340_coursework/e340_2017_spring"
-export eold="${HOME}/Dropbox/e340_coursework/e340_2016_fall"
+export numdocs=/Users/phil/repos/numeric_docs
+export numlabs=/Users/phil/repos/numeric
+export e340="${HOME}/Dropbox/e340_coursework/e340_2017_fall"
+export eold="${HOME}/Dropbox/e340_coursework/e340_2017_spring"
 export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT"
 export itunes="${HOME}/Music/iTunes/iTunes Media/TV Shows"
 export kindle="${HOME}/Library/Containers/com.amazon.Kindle/Data/Library/Application Support/Kindle/My Kindle Content"

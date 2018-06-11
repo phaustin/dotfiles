@@ -8,8 +8,6 @@
 (add-to-list 'package-archives
              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 ;;http://pragmaticemacs.com/emacs/double-dired-with-sunrise-commander/
-(add-to-list 'package-archives
-             '("SC" . "http://joseito.republika.pl/sunrise-commander/") t)
 (package-initialize)
 
 ;;
@@ -120,40 +118,40 @@
 
 (defun gtd ()
    (interactive)
-   (find-file "~/repos/org/gtd.org")
+   (find-file "~/ownCloud/org/gtd.org")
 )
 
 
 (defun research ()
    (interactive)
-   (find-file "~/repos/org/research.org")
+   (find-file "~/ownCloud/org/research.org")
 )
 
 (defun refile ()
    (interactive)
-   (find-file "~/repos/org/refile.org")
+   (find-file "~/ownCloud/org/refile.org")
 )
 
 
 (defun teaching ()
    (interactive)
-   (find-file "~/repos/org/teaching.org")
+   (find-file "~/ownCloud/org/teaching.org")
 )
 
 (defun admin ()
    (interactive)
-   (find-file "~/repos/org/admin.org")
+   (find-file "~/ownCloud/org/admin.org")
 )
 
 
 (defun personal ()
    (interactive)
-   (find-file "~/repos/org/personal.org")
+   (find-file "~/ownCloud/org/personal.org")
 )
 
 (defun tasks ()
   (interactive)
-  (find-file "~/repos/org/tasks.org")
+  (find-file "~/ownCloud/org/tasks.org")
   )
 
 
@@ -163,7 +161,7 @@
 (teaching)
 (personal)
 (refile)
-;(tasks)
+(tasks)
 
 (global-set-key "\C-cp" 'choose-personal)
 (global-set-key "\C-cr" 'choose-research)
@@ -190,8 +188,8 @@
   (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
 
 
-(setenv "or" "~/repos/org")
-(setenv "rm" "~/repos/readmes")
+(setenv "or" "~/ownCloud/org")
+(setenv "rm" "~/ownCloud/readmes")
 (setenv "a301" "~/repos/a301_2016")
 (setenv "a301w" "~/repos/a301_web")
 (setq dired-use-ls-dired nil)
@@ -291,7 +289,7 @@
  '(dired-listing-switches "-alh")
  '(package-selected-packages
    (quote
-    (ox-gfm rg json-mode org fill-column-indicator elpy yasnippet auctex ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ highlight-chars frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half)))
+    (orgit orglink cmake-mode pelican-mode magit ess ox-gfm rg json-mode org fill-column-indicator elpy yasnippet auctex ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ highlight-chars frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half)))
  '(safe-local-variable-values
    (quote
     ((flycheck-gcc-language-standard . "c++14")
@@ -323,3 +321,22 @@ to next buffer otherwise."
 
 (global-set-key (kbd "<f6>") #'other-window-or-switch-buffer)
 (require 'fill-column-indicator)
+
+(use-package pelican-mode
+  :after (:any org rst markdown-mode adoc-mode)
+  :config
+  (pelican-global-mode))
+
+
+;; easy spell check
+(global-set-key (kbd "<f8>") 'ispell-word)
+(global-set-key (kbd "C-S-<f8>") 'flyspell-mode)
+(global-set-key (kbd "C-M-<f8>") 'flyspell-buffer)
+(global-set-key (kbd "C-<f8>") 'flyspell-check-previous-highlighted-word)
+(defun flyspell-check-next-highlighted-word ()
+  "Custom function to spell check next highlighted word"
+  (interactive)
+  (flyspell-goto-next-error)
+  (ispell-word)
+  )
+(global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)

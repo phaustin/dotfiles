@@ -1,0 +1,10 @@
+{
+  "Editor": {
+    "codemirror_options": {
+      "lineNumbers": true
+    },
+    "file_extension_modes": {
+      ".txt": "Python"
+    }
+  }
+}

@@ -5,6 +5,7 @@
 [core]
         pager =
 	excludesfile = /Users/phil/.gitignore
+	autocrlf = input
 [man]
                 viewer = man
 [alias]
@@ -60,7 +61,7 @@ cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\
 
 
 [merge]
-	tool = kdiff3
+	tool = nbdime
 
 [github]
 	user = phaustin
@@ -69,9 +70,10 @@ cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\
 [diff]
 	tool = kdiff3
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	process = git-lfs filter-process
 	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

@@ -18,6 +18,14 @@
 ;; starts the new directory tracking if available, and
 ;; makes it difficult to kill.
 
+(defun nowrap_buffer ()
+  (interactive)
+  (set-fill-column 300)
+  (toggle-truncate-lines)
+)
+
+
+
 (defun make-shell (name)
   "Start a new shell and rename the buffer NAME"
   (shell)
@@ -39,7 +47,7 @@
 (defun ask-shell ()
   "Creates a new shell, and asks the user for the buffer name"
   (interactive)
-  (let ((dscpt (read-input "name: ")))
+  (let ((dscpt (read-string "name: ")))
   (make-shell dscpt)))
 
 ;; sun-keypad:

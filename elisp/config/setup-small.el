@@ -21,6 +21,10 @@
 (use-package plocal
   :load-path "~/repos/dotfiles/elisp")
 
+(use-package rst
+  :load-path "~/repos/dotfiles/elisp")
+
+
 (use-package dired-narrow
   :ensure t
   :bind (:map dired-mode-map
@@ -39,11 +43,30 @@
 (use-package mic-paren
   :ensure t)
 
+(use-package desktop+
+  :ensure t)
+
+(use-package json-mode
+  :ensure t)
+
+(use-package json-navigator
+  :ensure t)
+
+(use-package json-reformat
+  :ensure t)
+
 (use-package yaml-mode
+  :ensure t)
+
+(use-package highlight-chars
   :ensure t)
 
 (use-package toml-mode
   :ensure t)
+
+(use-package company
+  :ensure t)
+
 
 (use-package browse-kill-ring
   :ensure t
@@ -85,11 +108,12 @@
   ;;         elpy-rpc-project-specific 't)
   ;;   (when (fboundp 'flycheck-mode)
   ;;     (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
-  (setq elpy-interactive-python-command (expand-file-name "~/bin/ipyelpy.sh"))
-  (setq elpy-rpc-python-command "/Users/phil/mini36/bin/python")
+  (setq elpy-interactive-python-command "/Users/phil/bin/ipyelpy.sh")
+  (setq elpy-rpc-python-command "/Users/phil/mini37/bin/python")
   (setq python-shell-interpreter (expand-file-name "~/bin/ipyelpy.sh"))
-  (setq python-check-command (expand-file-name "~/mini36/bin/pyflakes"))
-  (elpy-use-ipython (expand-file-name "~/bin/ipyelpy.sh"))
+  (setq python-check-command (expand-file-name "~/mini37/bin/pyflakes"))
+  (setq python-shell-interpreter (expand-file-name "~/bin/ipyelpy.sh"))
+  (setq python-shell-interpreter-args "-i --simple-prompt")
   (setq elpy-modules (delq 'elpy-module-company elpy-modules)))
 
 ;(key-chord-define-global "el" 'elpy-shell-switch-to-shell)
@@ -159,23 +183,40 @@
   :ensure t
   :config
   (when (memq window-system '(mac ns))
-    (exec-path-from-shell-copy-env "PYTHONPATH")
     (exec-path-from-shell-copy-env "eweb")
     (exec-path-from-shell-copy-env "ecode")
     (exec-path-from-shell-copy-env "e340")
+    (exec-path-from-shell-copy-env "e340o")
     (exec-path-from-shell-copy-env "eold")
+    (exec-path-from-shell-copy-env "gtd")
     (exec-path-from-shell-copy-env "e340f")
+    (exec-path-from-shell-copy-env "ecopy")
     (exec-path-from-shell-copy-env "itunes")
     (exec-path-from-shell-copy-env "kindle")
+    (exec-path-from-shell-copy-env "dor")
     (exec-path-from-shell-copy-env "or")
-    (exec-path-from-shell-copy-env "e340code")
     (exec-path-from-shell-copy-env "rm")
+    (exec-path-from-shell-copy-env "a301")
+    (exec-path-from-shell-copy-env "e213")
+    (exec-path-from-shell-copy-env "e213s")
+    (exec-path-from-shell-copy-env "e213n")
+    (exec-path-from-shell-copy-env "e213a")
+    (exec-path-from-shell-copy-env "elisp")
+    (exec-path-from-shell-copy-env "a301w")
+    (exec-path-from-shell-copy-env "a301o")
+    (exec-path-from-shell-copy-env "e582")
+    (exec-path-from-shell-copy-env "e582w")
     (exec-path-from-shell-copy-env "a405")
-    (exec-path-from-shell-copy-env "a212")
-    (exec-path-from-shell-copy-env "a405_docs")
-    (exec-path-from-shell-copy-env "a212_docs")
+    (exec-path-from-shell-copy-env "a405w")
+    (exec-path-from-shell-copy-env "a301o")
+    (exec-path-from-shell-copy-env "a500")
+    (exec-path-from-shell-copy-env "a500d")
     (exec-path-from-shell-copy-env "e340g")
+    (exec-path-from-shell-copy-env "ec")
+    (exec-path-from-shell-copy-env "rg")
+    (exec-path-from-shell-copy-env "ct")
     (exec-path-from-shell-initialize)
     ))
+
 
 

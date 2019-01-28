@@ -1,15 +1,13 @@
 {
+  "version": 1,
   "Exporter": {
-    "preprocessors": [
-      "pre_codefolding.CodeFoldingPreprocessor",
-      "pre_pymarkdown.PyMarkdownPreprocessor"
-    ],
     "template_path": [
-      "/Users/phil/Library/Jupyter/templates"
+      ".",
+      "/Users/phil/mini36/lib/python3.6/site-packages/jupyter_contrib_nbextensions/templates"
+    ],
+    "preprocessors": [
+      "jupyter_contrib_nbextensions.nbconvert_support.CodeFoldingPreprocessor",
+      "jupyter_contrib_nbextensions.nbconvert_support.PyMarkdownPreprocessor"
     ]
-  },
-  "NbConvertApp": {
-    "postprocessor_class": "post_embedhtml.EmbedPostProcessor"
-  },
-  "version": 1
+  }
 }

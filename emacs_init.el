@@ -15,12 +15,10 @@
 ;;
 (setenv "EMACS" "TRUE")
 
-
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-
 ;
 ; loop over config files and load
 ;
@@ -47,7 +45,7 @@
 
 (global-set-key [f9] 'python-mode)
 (global-set-key [f8] 'org-mode)
-(global-set-key [f7] 'fill-paragraph)
+(global-set-key [f7] 'org-toggle-link-display)
 (global-set-key [f6] 'auto-fill-mode) 
 (global-set-key [f5] 'visual-fill-column-mode) 
 (global-set-key [f4] 'elpy-shell-switch-to-buffer) 
@@ -107,9 +105,9 @@
   (switch-to-buffer "refile.org"))
 
 
-(make-shell "csh1")    ; Create a shell called "csh1"
-(other-window 1)
-(make-shell "csh2")    ; Create another shell in the other window
+;(make-shell "csh1")    ; Create a shell called "csh1"
+;(other-window 1)
+;(make-shell "csh2")    ; Create another shell in the other window
 
 (put 'downcase-region 'disabled nil)
 
@@ -156,12 +154,12 @@
 
 
 ;;(gtd)
-(research)
-(admin)
-(teaching)
-(personal)
-(refile)
-(tasks)
+;; (research)
+;; (admin)
+;; (teaching)
+;; (personal)
+;; (refile)
+;; (tasks)
 
 (global-set-key "\C-cp" 'choose-personal)
 (global-set-key "\C-cr" 'choose-research)
@@ -187,11 +185,6 @@
     (and server-buffer-clients (server-done)))
   (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
 
-
-(setenv "or" "~/ownCloud/org")
-(setenv "rm" "~/ownCloud/readmes")
-(setenv "a301" "~/repos/a301_2016")
-(setenv "a301w" "~/repos/a301_web")
 (setq dired-use-ls-dired nil)
 
 
@@ -289,7 +282,7 @@
  '(dired-listing-switches "-alh")
  '(package-selected-packages
    (quote
-    (orgit orglink cmake-mode pelican-mode magit ess ox-gfm rg json-mode org fill-column-indicator elpy yasnippet auctex ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ highlight-chars frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half)))
+    (json-navigator json-reformat desktop+ orgit orglink cmake-mode pelican-mode magit ess ox-gfm rg json-mode org fill-column-indicator elpy yasnippet auctex ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ highlight-chars frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half)))
  '(safe-local-variable-values
    (quote
     ((flycheck-gcc-language-standard . "c++14")
@@ -340,3 +333,8 @@ to next buffer otherwise."
   (ispell-word)
   )
 (global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
+
+(add-to-list 'tramp-default-proxies-alist
+                 '("azure" nil "/ssh:compstaff@52.233.66.236:"))
+
+(setq tramp-default-method "ssh")

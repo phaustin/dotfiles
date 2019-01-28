@@ -1,20 +1,14 @@
 {
-  "Exporter": {
-    "preprocessors": [
-      "pre_codefolding.CodeFoldingPreprocessor",
-      "pre_pymarkdown.PyMarkdownPreprocessor"
-    ],
-    "template_path": [
-      "/Users/phil/Library/Jupyter/templates"
-    ]
-  },
-  "NbConvertApp": {
-    "postprocessor_class": "post_embedhtml.EmbedPostProcessor"
-  },
   "NotebookApp": {
-    "server_extensions": [
-      "nbextensions"
-    ]
+    "nbserver_extensions": {
+      "jupyter_nbextensions_configurator": true
+    }
   },
-  "version": 1
+ "CodeCell": {
+   "cm_config": {
+     "lineNumbers": true,
+     "autoCloseBrackets": false
+   }
+ }
 }
+

@@ -1,9 +1,11 @@
-export PATH="/Users/phil/mini36/bin:/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH"
-export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2015/bin/x86_64-darwin/:/usr/local/MacGPG2/bin:$PATH:${HOME}/.local/bin"
+export PATH="/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH" 
+export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2018/bin/x86_64-darwin:/usr/local/MacGPG2/bin:${HOME}/.local/bin:$PATH"
 alias dockerkill='docker rm -f $(docker ps -a -q)'
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
 alias emacs='open -a /Applications/Emacs.app $@'
+alias emacsnw='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+alias emacsdb='/Applications/Emacs.app/Contents/MacOS/Emacs --debug-init'
 alias par='open -a /Applications/Parallels\ Desktop.app'
 alias ipyelpy='ipython --simple-prompt'
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim $@'
@@ -13,6 +15,7 @@ function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
 function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 function google-chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 function chromium() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
+
 
 #set up prompt for emacs dirtrack see
 #.emacs file
@@ -55,9 +58,22 @@ function newp()
 {
     unset PS1
     if [ -n "$EMACS" ]; then
-        PS1="|Pr0mPT|\w|$1 "
+        PS1="|Pr0mPT|\w|\w-$1> "
     else
-        PS1="$1 "
+        PS1="$1 \W> "
+    fi
+}
+
+function condap()
+{
+    #the_name=$(hostname) -- Linux
+    the_name=$(scutil --get LocalHostName)
+    out=`basename $CONDA_PREFIX`
+    unset PS1
+    if [ -n "$EMACS" ]; then
+        PS1="|Pr0mPT|\w|\w ${out} \u@${the_name}\n% "
+    else
+        PS1="\w ${out} \u@${the_name}\n% "
     fi
 }
 
@@ -75,26 +91,24 @@ function oldp()
 #
 # need to mirror these in .emacs
 #
+export dropbox_dir="${HOME}/Nextcloud/e340_coursework"
 export numdocs=/Users/phil/repos/numeric_docs
 export numlabs=/Users/phil/repos/numeric
-export e340="${HOME}/Dropbox/e340_coursework/e340_2017_fall"
-export eold="${HOME}/Dropbox/e340_coursework/e340_2017_spring"
+export e340o="${HOME}/Nextcloud/e340_2018_fall"
+export e340="${HOME}/Nextcloud/e340_2018t2"
+export gtd="${HOME}/Dropbox/org"
+export eold="${HOME}/Dropbox/e340_coursework/e340_2017_fall"
 export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT"
+export ecopy="${HOME}/Nextcloud/e340_2018_fall/pythonprogs/copy_files.py"
 export itunes="${HOME}/Music/iTunes/iTunes Media/TV Shows"
 export kindle="${HOME}/Library/Containers/com.amazon.Kindle/Data/Library/Application Support/Kindle/My Kindle Content"
 export e340code="${HOME}/repos/e340repo"
-export or="${HOME}/repos/org"
-export rm="${HOME}/repos/readmes"
+export or="${HOME}/ownCloud/org"
+export dor="${HOME}/Dropbox/org"
+export rm="${HOME}/ownCloud/readmes"
 alias cf='cd "$e340f"'
 export git="ssh://jcole@roc.eos.ubc.ca/users/phil/repos/feedbacks"
-export rm=~/repos/readmes
-export or=~/repos/org
 export mac2=/Volumes/mac2/phil
-export CMAKE_PREFIX_PATH=/usr/local
-export CC=gcc
-export CXX=g++
-export CMAKE_COMPILER=gfortran
-export CMAKE_MACHINE=osx
 export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
 #export TEXINPUTS="${HOME}/texmf//:."
 export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
@@ -112,15 +126,32 @@ export e13="${HOME}/repos/e340_2013wT2"
 export econ="${HOME}/Dropbox/e340\ FILES\ FOR\ CONNECT"
 export aweb="${HOME}/repos/atsc301_web"
 export acode="${HOME}/repos/a301_2014"
-export a405="${HOME}/repos/A405"
-export a405d="${HOME}/repos/atsc405_docs"
+export a405="${HOME}/repos/atsc405_2018"
+export a405old="${HOME}/repos/A405"
+export a405w="${HOME}/repos/atsc405_docs"
+export a500="${HOME}/repos/atsc500"
+export a500d="${HOME}/repos/atsc500_docs"
 export a212="${HOME}/repos/A212"
 export a212d="${HOME}/repos/atsc212_docs"
-export a301="${HOME}/repos/a301_2016"
+export a301="${HOME}/repos/a301_code"
 export a301w="${HOME}/repos/a301_web"
-export ecode="${HOME}/repos/e582_code"
-export eweb="${HOME}/repos/e582_web"
+export e213="${HOME}/repos/eosc213"
+export e213s="${HOME}/repos/eosc213_students"
+export e213n="${HOME}/Nextcloud/213"
+export e213a="${HOME}/repos/e213_assignments"
+export elisp="${HOME}/repos/dotfiles/elisp"
+export a301o="${HOME}/repos/a301_2016"
+export ecode="${HOME}/repos/e340repo"
+export e582w="${HOME}/repos/e582_web"
+export e582="${HOME}/repos/e582_code"
 export e340g="/Users/phil/airwatch/Personal Content/EOSC 340 Student Info Share (Harris, Sara)"
+export ec="${HOME}/repos/eoas_canvas/tests"
+export rg="${HOME}/Nextcloud/e340_2018_spring/Exams/2018_Spring_Midterm_2_grades/raw_grades"
+export fg="${HOME}/Nextcloud/e340_2018_spring/Grades/course_total"
+export course_dir="/Users/phil/Nextcloud/e340_2018_spring"
+export student_visible_dir="/Users/phil/Dropbox/e340 FILES FOR CONNECT"
+export ct="${HOME}/Nextcloud/e340_2018_spring/Grades/course_total"
+
 #arg-complete for conda
 #eval $(register-python-argcomplete conda)
 export BITLY_ACCESS_TOKEN=c984e550ada5ef8846c5a9bf4bd602ca086154b3
@@ -155,3 +186,17 @@ function gitp()
 
 gitp
 
+# . /Users/phil/mb36/etc/profile.d/conda.sh
+# export PATH="/Users/phil/mb36/bin:/Users/phil/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+# conda activate root
+# condap
+
+# export RSTUDIO_WHICH_R=/Users/phil/mb36/envs/mro_env/bin/R
+
+. /Users/phil/mini37/etc/profile.d/conda.sh
+export PATH="/Users/phil/mini37/bin:/Users/phil/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+conda activate root
+condap
+
+
+echo "through ~/.bashrc"

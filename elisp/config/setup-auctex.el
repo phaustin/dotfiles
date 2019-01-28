@@ -40,7 +40,11 @@
   )
 
 (use-package auctex-latexmk
-  :ensure t)
+  :ensure t
+  :config
+  (auctex-latexmk-setup)
+  (setq auctex-latexmk-inherit-TeX-PDF-mode t)
+  )
 
 ;https://www.reddit.com/r/emacs/comments/44yxsq/pdf_tools/
 (use-package pdf-tools

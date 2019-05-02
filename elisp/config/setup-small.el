@@ -35,10 +35,10 @@
   :config
   ;;https://www.emacswiki.org/emacs/VisualLineMode
   (setq-default fill-column 100)
-  (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)) 
+  (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
   (add-hook 'minibuffer-setup-hook (lambda () (visual-line-mode -1)))
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
-  (add-hook 'text-mode-hook 'visual-fill-column-mode)) 
+  (add-hook 'text-mode-hook 'visual-fill-column-mode))
 
 (use-package mic-paren
   :ensure t)
@@ -58,9 +58,6 @@
 (use-package yaml-mode
   :ensure t)
 
-(use-package highlight-chars
-  :ensure t)
-
 (use-package toml-mode
   :ensure t)
 
@@ -72,10 +69,12 @@
   :ensure t
   :config (global-set-key (kbd "C-x C-y") `browse-kill-ring))
 
+
 (use-package highlight-chars
-  :ensure t
+  :load-path "~/repos/dotfiles/elisp"
   :config
-  (add-hook 'font-lock-mode-hook 'hc-highlight-tabs))
+  (add-hook 'font-lock-mode-hook 'hc-highlight-tabs)
+  (hc-toggle-highlight-trailing-whitespace)) 
 
 
 ;; (use-package company
@@ -99,7 +98,7 @@
 
 (use-package elpy
   :ensure t
-  :init (with-eval-after-load 'python (elpy-enable))      
+  :init (with-eval-after-load 'python (elpy-enable))
   :commands elpy-enable
   :config
   (setq elpy-rpc-backend "jedi")
@@ -109,11 +108,10 @@
   ;;   (when (fboundp 'flycheck-mode)
   ;;     (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
   (setq elpy-interactive-python-command "/Users/phil/bin/ipyelpy.sh")
-  (setq elpy-rpc-python-command "/Users/phil/mini37/bin/python")
-  (setq python-shell-interpreter (expand-file-name "~/bin/ipyelpy.sh"))
-  (setq python-check-command (expand-file-name "~/mini37/bin/pyflakes"))
-  (setq python-shell-interpreter (expand-file-name "~/bin/ipyelpy.sh"))
-  (setq python-shell-interpreter-args "-i --simple-prompt")
+  (setq python-shell-interpreter "/Users/phil/new37/envs/e213/bin/ipython"
+      python-shell-interpreter-args "--matplotlib --simple-prompt -c exec('__import__(\\'readline\\')') -i")
+  (setq elpy-rpc-python-command "/Users/phil/new37/envs/e213/bin/python")
+  (setq python-check-command (expand-file-name "~/new37/envs/e213/bin/pyflakes"))
   (setq elpy-modules (delq 'elpy-module-company elpy-modules)))
 
 ;(key-chord-define-global "el" 'elpy-shell-switch-to-shell)

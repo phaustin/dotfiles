@@ -123,13 +123,6 @@
           ("n" "Note" entry  (file+headline "~/ownCloud/org/refile.org" "Notes")
            "* %?   :NOTE: \n  %i\n  %a")))
   
-(add-to-list 'org-capture-templates
-               '("c" "Contacts" entry (file "~/ownCloud/org/contacts.org")
-                 "* %(org-contacts-template-name)
-  :PROPERTIES:
-  :EMAIL: %(org-contacts-template-email)
-  :END:"))
-
 (setq org-agenda-include-diary t)
 (setq org-agenda-diary-file "~/ownCloud/org/diary.org")
   ;;some unrelated customizations I made at the time (since I want the agenda front and center when I'm looking at it):
@@ -150,10 +143,6 @@
 (setq org-refile-allow-creating-parent-nodes t)
 (setq org-refile-use-outline-path t)
 (setq org-outline-path-complete-in-steps t)
-(use-package org-contacts
-  :load-path "~/ownCloud/org-mode/contrib/lisp/"
-  :config
-  (setq org-contacts-files '("~/ownCloud/org/contacts.org")))
 
 (use-package org-journal
   :ensure t        

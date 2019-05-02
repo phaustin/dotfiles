@@ -91,9 +91,10 @@ function oldp()
 #
 # need to mirror these in .emacs
 #
+export e213_gradebook="birwin_gradebook.db"
 export dropbox_dir="${HOME}/Nextcloud/e340_coursework"
-export numdocs=/Users/phil/repos/numeric_docs
-export numlabs=/Users/phil/repos/numeric
+export numdocs=$HOME/repos/numeric_docs
+export numlabs=$HOME/repos/numeric
 export e340o="${HOME}/Nextcloud/e340_2018_fall"
 export e340="${HOME}/Nextcloud/e340_2018t2"
 export gtd="${HOME}/Dropbox/org"
@@ -144,12 +145,12 @@ export a301o="${HOME}/repos/a301_2016"
 export ecode="${HOME}/repos/e340repo"
 export e582w="${HOME}/repos/e582_web"
 export e582="${HOME}/repos/e582_code"
-export e340g="/Users/phil/airwatch/Personal Content/EOSC 340 Student Info Share (Harris, Sara)"
+export e340g="$HOME/airwatch/Personal Content/EOSC 340 Student Info Share (Harris, Sara)"
 export ec="${HOME}/repos/eoas_canvas/tests"
 export rg="${HOME}/Nextcloud/e340_2018_spring/Exams/2018_Spring_Midterm_2_grades/raw_grades"
 export fg="${HOME}/Nextcloud/e340_2018_spring/Grades/course_total"
-export course_dir="/Users/phil/Nextcloud/e340_2018_spring"
-export student_visible_dir="/Users/phil/Dropbox/e340 FILES FOR CONNECT"
+export course_dir="$HOME/Nextcloud/e340_2018_spring"
+export student_visible_dir="$HOME/Dropbox/e340 FILES FOR CONNECT"
 export ct="${HOME}/Nextcloud/e340_2018_spring/Grades/course_total"
 
 #arg-complete for conda
@@ -174,6 +175,27 @@ parse_git_branch () {
 
 }
 
+export MYPYTHON=$HOME/mini37
+
+function e213()
+{
+  export MYPYTHON=$HOME/new37/envs/e213
+  . $HOME/new37/etc/profile.d/conda.sh
+  export PATH="$MYPYTHON/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+  conda activate e213
+  condap
+}
+
+function a448()
+{
+  export MYPYTHON=$HOME/new37/envs/a448
+  . $HOME/new37/etc/profile.d/conda.sh
+  export PATH="$MYPYTHON/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+  conda activate a448
+  condap
+}
+
+
 function gitp()
 {
     unset PS1
@@ -184,19 +206,4 @@ function gitp()
     fi
 }
 
-gitp
-
-# . /Users/phil/mb36/etc/profile.d/conda.sh
-# export PATH="/Users/phil/mb36/bin:/Users/phil/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-# conda activate root
-# condap
-
-# export RSTUDIO_WHICH_R=/Users/phil/mb36/envs/mro_env/bin/R
-
-. /Users/phil/mini37/etc/profile.d/conda.sh
-export PATH="/Users/phil/mini37/bin:/Users/phil/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-conda activate root
-condap
-
-
-echo "through ~/.bashrc"
+export PATH="$HOME/bin:$PATH"

@@ -9,4 +9,3 @@ export LANG=en_US.UTF-8
 
 echo "through bash profile"
 
-

@@ -105,9 +105,9 @@
   (switch-to-buffer "refile.org"))
 
 
-;(make-shell "csh1")    ; Create a shell called "csh1"
-;(other-window 1)
-;(make-shell "csh2")    ; Create another shell in the other window
+(make-shell "csh1")    ; Create a shell called "csh1"
+(other-window 1)
+(make-shell "csh2")    ; Create another shell in the other window
 
 (put 'downcase-region 'disabled nil)
 
@@ -188,10 +188,11 @@
 (setq dired-use-ls-dired nil)
 
 
+;; don't split windows
 ;;http://lists.gnu.org/archive/html/emacs-orgmode/2010-04/msg01057.html
 ;; 1. window gets split horizontally (one on TOP of the other), AND
 ;; 2. AFTER splitting, further "C-x 4 b" will NOT lead to any more splitting - reuse gets preferred
-(setq split-height-threshold 40) ; nil
+(setq split-height-threshold 100) ; nil
 (setq split-width-threshold nil) ; 100
 
 
@@ -282,7 +283,7 @@
  '(dired-listing-switches "-alh")
  '(package-selected-packages
    (quote
-    (json-navigator json-reformat desktop+ orgit orglink cmake-mode pelican-mode magit ess ox-gfm rg json-mode org fill-column-indicator elpy yasnippet auctex ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column use-package toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo org-journal offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ highlight-chars frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update auctex-latexmk anti-zenburn-theme ack-and-a-half)))
+    (elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme ack-and-a-half)))
  '(safe-local-variable-values
    (quote
     ((flycheck-gcc-language-standard . "c++14")

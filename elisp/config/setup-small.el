@@ -15,6 +15,16 @@
   :load-path "~/repos/dotfiles/elisp"
   :config (setq-default filladapt-mode t))
 
+(use-package dired-single
+    :ensure t)
+
+(use-package web-mode
+  :config (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+         (setq web-mode-engines-alist
+         '(("jinja"    . "\\.html\\'")))
+  )
+
+
 (use-package highlight-region
   :load-path "~/repos/dotfiles/elisp")
 
@@ -185,13 +195,14 @@
     (exec-path-from-shell-copy-env "ecode")
     (exec-path-from-shell-copy-env "e340")
     (exec-path-from-shell-copy-env "e340o")
+    (exec-path-from-shell-copy-env "e340lib")
     (exec-path-from-shell-copy-env "eold")
     (exec-path-from-shell-copy-env "gtd")
     (exec-path-from-shell-copy-env "e340f")
     (exec-path-from-shell-copy-env "ecopy")
     (exec-path-from-shell-copy-env "itunes")
     (exec-path-from-shell-copy-env "kindle")
-    (exec-path-from-shell-copy-env "dor")
+    (exec-path-from-shell-copy-env "oor")
     (exec-path-from-shell-copy-env "or")
     (exec-path-from-shell-copy-env "rm")
     (exec-path-from-shell-copy-env "a301")
@@ -208,6 +219,7 @@
     (exec-path-from-shell-copy-env "a405w")
     (exec-path-from-shell-copy-env "a301o")
     (exec-path-from-shell-copy-env "a500")
+    (exec-path-from-shell-copy-env "a500n")
     (exec-path-from-shell-copy-env "a500d")
     (exec-path-from-shell-copy-env "e340g")
     (exec-path-from-shell-copy-env "ec")

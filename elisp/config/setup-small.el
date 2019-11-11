@@ -117,17 +117,17 @@
   ;;         elpy-rpc-project-specific 't)
   ;;   (when (fboundp 'flycheck-mode)
   ;;     (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
-  (setq elpy-interactive-python-command "/Users/phil/bin/ipyelpy.sh")
-  (setq python-shell-interpreter "/Users/phil/new37/envs/e213/bin/ipython"
-      python-shell-interpreter-args "--matplotlib --simple-prompt -c exec('__import__(\\'readline\\')') -i")
-  (setq elpy-rpc-python-command "/Users/phil/new37/envs/e213/bin/python")
-  (setq python-check-command (expand-file-name "~/new37/envs/e213/bin/pyflakes"))
+  ;;(setq elpy-interactive-python-command "/Users/phil/bin/ipyelpy.sh")
+  (setq python-shell-interpreter "/Users/phil/a50037/envs/a500try2/bin/ipython"
+       python-shell-interpreter-args "--matplotlib --simple-prompt -c exec('__import__(\\'readline\\')') -i")
+  (setq elpy-rpc-python-command "/Users/phil/a50037/bin/python")
+  (setq python-check-command (expand-file-name "/Users/phil/a50037/bin/pyflakes"))
   (setq elpy-modules (delq 'elpy-module-company elpy-modules)))
 
 ;(key-chord-define-global "el" 'elpy-shell-switch-to-shell)
 ;(key-chord-define-global "eb" 'elpy-shell-switch-to-buffer)
 (elpy-enable)
-
+;(pyvenv-activate (expand-file-name "/Users/phil/a50037/envs/a500try2/bin"))
 
 (use-package yasnippet
   :ensure t

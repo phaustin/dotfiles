@@ -1,3 +1,5 @@
+import os
+
 # Configuration file for jupyter-notebook.
 
 # ------------------------------------------------------------------------------
@@ -41,11 +43,15 @@
 c.NotebookApp.allow_credentials = False
 c.NotebookApp.browser = u"chrome"  # noqa
 c.NotebookApp.contents_manager_class = "jupytext.TextFileContentsManager"  # noqa
-c.ContentsManager.preferred_jupytext_formats_save = "py:percent" # noqa
-c.ContentsManager.default_jupytext_formats = "ipynb,python//py" # noqa
+c.ContentsManager.preferred_jupytext_formats_save = "py:percent"  # noqa
+c.ContentsManager.default_jupytext_formats = "ipynb,py"  # noqa
 c.ContentsManager.default_notebook_metadata_filter = "all,-language_info"
-c.ContentsManager.default_cell_metadata_filter = "all"
+c.ContentsManager.default_notebook_metadata_filter = (
+    "all,-language_info,-toc,-latex_envs"
+)
 
+c.ContentsManager.default_cell_metadata_filter = "all"
+c.ContentsManager.outdated_text_notebook_margin = 5
 
 ## Set the Access-Control-Allow-Origin header
 #
@@ -126,6 +132,7 @@ c.ContentsManager.default_cell_metadata_filter = "all"
 #  authentication and security checks, with the full knowledge of what that
 #  implies.
 # c.NotebookApp.disable_check_xsrf = False
+
 
 ## Whether to enable MathJax for typesetting math/TeX
 #

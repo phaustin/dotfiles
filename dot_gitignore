@@ -113,6 +113,13 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
+# jupyter
+###################################
+
+*.ipynb
+.ipynb_checkpoints/
+
+
 # rst
 ###################################
 

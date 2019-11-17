@@ -19,9 +19,9 @@
   (setq org-agenada-start-day "-2d")
   (setq org-agenda-span 10)
   (setq org-capture-templates
-        '(("t" "Todo" entry (file+headline "~/ownCloud/org/refile.org" "Tasks")
+        '(("t" "Todo" entry (file+headline "~/Dropbox/org/refile.org" "Tasks")
            "* TODO %?    \n  %i\n  %a")
-          ("n" "Note" entry  (file+headline "~/ownCloud/org/refile.org" "Notes")
+          ("n" "Note" entry  (file+headline "~/Dropbox/org/refile.org" "Notes")
            "* %?   :NOTE: \n  %i\n  %a"))))
 
   (setq org-agenda-custom-commands
@@ -52,7 +52,7 @@
              (tags-todo "COMPUTER")))))
 
   (setq org-mobile-directory "~/orgtransfer")
-  (setq org-mobile-inbox-for-pull "~/ownCloud/org/from-mobile.org")
+  (setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
@@ -69,8 +69,8 @@
 ;
 (add-to-list 'org-file-apps '(directory . emacs))
 
-(setq org-agenda-files '("~/ownCloud/org/refile.org" "~/ownCloud/org/personal.org" "~/ownCloud/org/tasks.org"
-                         "~/ownCloud/org/teaching.org" "~/ownCloud/org/admin.org" "~/ownCloud/org/research.org" "~/ownCloud/org/someday.org"))
+(setq org-agenda-files '("~/Dropbox/org/next.org" "~/Dropbox/org/refile.org" "~/Dropbox/org/personal.org" "~/Dropbox/org/tasks.org"
+                         "~/Dropbox/org/teaching.org" "~/Dropbox/org/admin.org" "~/Dropbox/org/research.org" "~/Dropbox/org/someday.org"))
 
 (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
@@ -96,8 +96,8 @@
                 ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
                 ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
                 ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
-(setq org-directory "~/ownCloud/org")
-(setq org-default-notes-file "~/ownCloud/org/refile.org")
+(setq org-directory "~/Dropbox/org")
+(setq org-default-notes-file "~/Dropbox/org/refile.org")
 (global-set-key (kbd "C-c c") 'org-capture)
 (setq org-use-property-inheritance '("PRIORITY"))
                                         ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
@@ -118,13 +118,13 @@
 (setq org-agenda-span 10)
 
 (setq org-capture-templates
-        '(("t" "Todo" entry (file+headline "~/ownCloud/org/refile.org" "Tasks")
+        '(("t" "Todo" entry (file+headline "~/Dropbox/org/refile.org" "Tasks")
            "* TODO [#C] %?    \n  %i\n  %a")
-          ("n" "Note" entry  (file+headline "~/ownCloud/org/refile.org" "Notes")
+          ("n" "Note" entry  (file+headline "~/Dropbox/org/refile.org" "Notes")
            "* %?   :NOTE: \n  %i\n  %a")))
   
 (setq org-agenda-include-diary t)
-(setq org-agenda-diary-file "~/ownCloud/org/diary.org")
+(setq org-agenda-diary-file "~/Dropbox/org/diary.org")
   ;;some unrelated customizations I made at the time (since I want the agenda front and center when I'm looking at it):
 (setq org-agenda-window-setup 'reorganize-frame)
 (setq org-agenda-restore-windows-after-quit t)
@@ -148,7 +148,7 @@
   :ensure t        
   :config
                                         ;order is important to set org-mode correctly
-  (setq org-journal-dir "~/ownCloud/org/journal/")
+  (setq org-journal-dir "~/Dropboxy/org/journal/")
   (global-set-key (kbd "C-c j") 'org-journal-new-entry)
   (global-set-key (kbd "C-c b") 'org-journal-open-previous-entry)
   (global-set-key (kbd "C-c f") 'org-journal-open-next-entry))

@@ -287,13 +287,6 @@
     ;; execute the macro
     (execute-kbd-macro macro)))
 
-(defun select-keys ()
-  "Set up key bindings to allow assignment of buffers to function keys"
-  (interactive)
-  (global-set-key [f9] 'choose-a-buffer)
-  (global-set-key [f10] 'choose-a-buffer)
-  (global-set-key [f11] 'choose-a-buffer)
-  (global-set-key [f12] 'choose-a-buffer))
 
 ;from: http://trey-jackson.blogspot.com/2008/08/emacs-tip-25-shell-dirtrack-by-prompt.html
 (add-hook 'shell-mode-hook
@@ -317,7 +310,7 @@ zsh
 
   if [ $EMACS ]; then
      prompt='|Pr0mPT|%~|[%n@%m]%~%# '
-  fi
+string  fi
 
 The part that Emacs cares about is the '|Pr0mPT|%~|'
 Everything past that can be tailored to your liking.

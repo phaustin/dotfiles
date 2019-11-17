@@ -69,10 +69,10 @@
         token = e129c84b8fdeaf4fbf24bdc67c3a9806b932c037
         
 [filter "lfs"]
-        clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
-        process = git-lfs filter-process
-        required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 
 [commit]
         gpgsign = true

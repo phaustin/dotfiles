@@ -9,7 +9,11 @@
     "equation-numbering/main": true,
     "hide_input/main": true,
     "bqplot/extension": true,
-    "autoscroll/main": true
+    "autoscroll/main": true,
+    "latex_envs/latex_envs": true,
+    "latex_envs": false,
+    "latex_envs/static/latex_envs": true,
+    "/Users/phil/a50037/envs/a500try2/lib/python3.7/site-packages/latex_envs": false
   },
   "toc2": {
     "threshold": "3",
@@ -26,5 +30,21 @@
   "autoscroll_set_on_load": true,
   "rise": {
     "scroll": true
+  },
+  "Notebook": {
+    "Header": false,
+    "Toolbar": true
+  },
+  "latex_envs": {
+    "hotkeys": {
+      "equation": "meta-9"
+    },
+    "LaTeX_envs_menu_present": true,
+    "autocomplete": true
+  },
+  "Cell": {
+    "cm_config": {
+      "lineNumbers": true
+    }
   }
 }

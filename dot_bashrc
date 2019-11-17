@@ -1,5 +1,5 @@
 export PATH="/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH" 
-export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2018/bin/x86_64-darwin:/usr/local/MacGPG2/bin:${HOME}/.local/bin:$PATH"
+export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2019/bin/x86_64-darwin:/usr/local/MacGPG2/bin:${HOME}/.local/bin:$PATH"
 alias dockerkill='docker rm -f $(docker ps -a -q)'
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
@@ -70,10 +70,11 @@ function condap()
     the_name=$(scutil --get LocalHostName)
     out=`basename $CONDA_PREFIX`
     unset PS1
+    
     if [ -n "$EMACS" ]; then
-        PS1="|Pr0mPT|\w|\w ${out} \u@${the_name}\n% "
+        PS1='|Pr0mPT|\w|\w ${out} $(parse_git_branch) \u@${the_name}\n% '
     else
-        PS1="\w ${out} \u@${the_name}\n% "
+        PS1='\w ${out} $(parse_git_branch) \u@${the_name}\n% '
     fi
 }
 
@@ -96,16 +97,16 @@ export dropbox_dir="${HOME}/Nextcloud/e340_coursework"
 export numdocs=$HOME/repos/numeric_docs
 export numlabs=$HOME/repos/numeric
 export e340o="${HOME}/Nextcloud/e340_2018_fall"
-export e340="${HOME}/Nextcloud/e340_2018t2"
+export e340="${HOME}/Nextcloud/e340_2019_fall"
 export gtd="${HOME}/Dropbox/org"
 export eold="${HOME}/Dropbox/e340_coursework/e340_2017_fall"
 export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT"
-export ecopy="${HOME}/Nextcloud/e340_2018_fall/pythonprogs/copy_files.py"
+export ecopy="${HOME}/Nextcloud/e340_2019_fall/pythonprogs/copy_files.py"
 export itunes="${HOME}/Music/iTunes/iTunes Media/TV Shows"
 export kindle="${HOME}/Library/Containers/com.amazon.Kindle/Data/Library/Application Support/Kindle/My Kindle Content"
 export e340code="${HOME}/repos/e340repo"
-export or="${HOME}/ownCloud/org"
-export dor="${HOME}/Dropbox/org"
+export oor="${HOME}/ownCloud/org"
+export or="${HOME}/Dropbox/org"
 export rm="${HOME}/ownCloud/readmes"
 alias cf='cd "$e340f"'
 export git="ssh://jcole@roc.eos.ubc.ca/users/phil/repos/feedbacks"
@@ -179,6 +180,8 @@ export MYPYTHON=$HOME/mini37
 
 function e213()
 {
+
+
   export MYPYTHON=$HOME/new37/envs/e213
   . $HOME/new37/etc/profile.d/conda.sh
   export PATH="$MYPYTHON/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
@@ -188,11 +191,90 @@ function e213()
 
 function a448()
 {
-  export MYPYTHON=$HOME/new37/envs/a448
-  . $HOME/new37/etc/profile.d/conda.sh
-  export PATH="$MYPYTHON/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-  conda activate a448
-  condap
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/phil/new37/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/phil/new37/etc/profile.d/conda.sh" ]; then
+        . "/Users/phil/new37/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/phil/new37/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+export MYPYTHON=$HOME/new37/envs/a448
+conda activate a448
+condap
+}
+
+
+function a500()
+{
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/phil/a50037/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/phil/a50037/etc/profile.d/conda.sh" ]; then
+        . "/Users/phil/a50037/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/phil/a50037/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+export PATH="/Users/phil/a50037/bin:$PATH"
+export MYPYTHON=$HOME/a50037/envs/a500
+conda activate a500
+condap
+}
+
+
+function satpy()
+{
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/phil/new37/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/phil/new37/etc/profile.d/conda.sh" ]; then
+        . "/Users/phil/new37/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/phil/new37/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+export MYPYTHON=$HOME/new37/envs/satpy
+conda activate satpy
+condap
+}
+
+
+function mtest()
+{
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/phil/mtest/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/phil/mtest/etc/profile.d/conda.sh" ]; then
+        . "/Users/phil/mtest/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/phil/mtest/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+export MYPYTHON=$HOME/new37/envs/satpy
+conda activate work
+condap
 }
 
 
@@ -206,4 +288,4 @@ function gitp()
     fi
 }
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.6.0/bin:$HOME/bin:$PATH"

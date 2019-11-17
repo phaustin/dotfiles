@@ -29,7 +29,7 @@
       (mapcar (lambda (item) (concat relative-config-dir setup-files-dir item))
            (list "setup-org.el"         ;org-mode
                  ;;"setup-mu4e.el"        ;mu4e
-                 "setup-auctex.el"
+                 ;;"setup-auctex.el"
                  ;;filladapt, highlight-region, plocal, browse-kiil-ring, highlight-chars
                  ;;browse-url, gist, magit, elpy
                  ;;"setup-sr.el"
@@ -41,9 +41,18 @@
 
 ;end modernize
 
+
+(defun select-keys ()
+  "Set up key bindings to allow assignment of buffers to function keys"
+  (interactive)
+  (global-set-key [f9] 'choose-a-buffer)
+  (global-set-key [f10] 'choose-a-buffer)
+  (global-set-key [f11] 'choose-a-buffer)
+  (global-set-key [f12] 'choose-a-buffer))
+
 (select-keys) ; choose-a-buffer for keys f3 and f9-f12
 
-(global-set-key [f9] 'python-mode)
+(global-set-key [f9] 'dired-single-buffer)
 (global-set-key [f8] 'org-mode)
 (global-set-key [f7] 'org-toggle-link-display)
 (global-set-key [f6] 'auto-fill-mode) 
@@ -192,8 +201,24 @@
 ;;http://lists.gnu.org/archive/html/emacs-orgmode/2010-04/msg01057.html
 ;; 1. window gets split horizontally (one on TOP of the other), AND
 ;; 2. AFTER splitting, further "C-x 4 b" will NOT lead to any more splitting - reuse gets preferred
-(setq split-height-threshold 100) ; nil
-(setq split-width-threshold nil) ; 100
+;; (setq split-height-threshold 2000) ; nil
+;; (setq split-width-threshold 2000) ; 100
+
+
+;;https://stackoverflow.com/questions/23207958/how-to-prevent-emacs-dired-from-splitting-frame-into-more-than-two-windows
+(setq split-width-threshold (- (window-width) 10))
+(setq split-height-threshold nil)
+
+(defun count-visible-buffers (&optional frame)
+  "Count how many buffers are currently being shown. Defaults to selected frame."
+  (length (mapcar #'window-buffer (window-list frame))))
+
+(defun do-not-split-more-than-two-windows (window &optional horizontal)
+  (if (and horizontal (> (count-visible-buffers) 1))
+      nil
+    t))
+
+(advice-add 'window-splittable-p :before-while #'do-not-split-more-than-two-windows)
 
 
 ;http://www.emacswiki.org/emacs/FrameSize
@@ -283,7 +308,7 @@
  '(dired-listing-switches "-alh")
  '(package-selected-packages
    (quote
-    (elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme ack-and-a-half)))
+    (filladapt auctex dired-single web-mode elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme ack-and-a-half)))
  '(safe-local-variable-values
    (quote
     ((flycheck-gcc-language-standard . "c++14")
@@ -339,3 +364,29 @@ to next buffer otherwise."
                  '("azure" nil "/ssh:compstaff@52.233.66.236:"))
 
 (setq tramp-default-method "ssh")
+
+;https://www.masteringemacs.org/article/evaluating-elisp-emacs
+
+(require 'auto-complete)
+(add-hook 'emacs-lisp-mode-hook 'ielm-auto-complete)
+
+(defun ielm-auto-complete ()
+  "Enables `auto-complete' support in \\[ielm]."
+  (setq ac-sources '(ac-source-functions
+                     ac-source-variables
+                     ac-source-features
+                     ac-source-symbols
+                     ac-source-words-in-same-mode-buffers))
+  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
+  (auto-complete-mode 1))
+(add-hook 'ielm-mode-hook 'ielm-auto-complete)
+
+(defun my-ielm-mode-defaults ()
+  (turn-on-eldoc-mode))
+
+(setq my-ielm-mode-hook 'my-ielm-mode-defaults)
+
+;https://stackoverflow.com/questions/17118305/how-do-i-print-a-string-in-emacs-lisp-with-ielm
+(add-hook 'ielm-mode-hook (lambda () (run-hooks 'my-ielm-mode-hook)))
+
+(defun p (x) (move-end-of-line 0) (insert (format "\n%s" x)))

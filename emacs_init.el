@@ -23,7 +23,7 @@
 ; loop over config files and load
 ;
 ;https://github.com/krgn/mu4e-setup/blob/master/init.el
-(setq relative-config-dir "~phil/repos/dotfiles/elisp/")
+(setq relative-config-dir "~/repos/dotfiles/elisp/")
 (setq setup-files-dir "config/")
 (setq dot-files 
       (mapcar (lambda (item) (concat relative-config-dir setup-files-dir item))

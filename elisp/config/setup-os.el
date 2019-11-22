@@ -6,23 +6,23 @@
 
 (setq-default ispell-program-name "/usr/local/bin/ispell")
 
-(setq exec-path
-      '(
-        "/usr/local/texlive/2015/bin/x86_64-darwin"
-        "/Users/phil/bin"
-        "/usr/local/bin"
-        "/usr/bin"
-        "/bin"
-        "/usr/sbin"
-        "/Users/phil/.local/bin"
-        ))
+;; (setq exec-path
+;;       '(
+;;         "/usr/local/texlive/2015/bin/x86_64-darwin"
+;;         "/Users/phil/bin"
+;;         "/usr/local/bin"
+;;         "/usr/bin"
+;;         "/bin"
+;;         "/usr/sbin"
+;;         "/Users/phil/.local/bin"
+;;         ))
 
-(getenv "PATH")
-(setenv "PATH"
-        (concat
-         "/usr/local/texlive/2015/bin/x86_64-darwin" ":"
-         "/usr/local/bin" ":"
-         (getenv "PATH")))
+;; (getenv "PATH")
+;; (setenv "PATH"
+;;         (concat
+;;          "/usr/local/texlive/2015/bin/x86_64-darwin" ":"
+;;          "/usr/local/bin" ":"
+;;          (getenv "PATH")))
 
 
 ;; http://emacs.stackexchange.com/questions/10900/copy-text-from-emacs-to-os-x-clipboard

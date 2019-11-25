@@ -10,9 +10,9 @@
     "hide_input/main": true,
     "bqplot/extension": true,
     "autoscroll/main": true,
-    "latex_envs/latex_envs": true,
+    "latex_envs/latex_envs": false,
     "latex_envs": false,
-    "latex_envs/static/latex_envs": true,
+    "latex_envs/static/latex_envs": false,
     "/Users/phil/a50037/envs/a500try2/lib/python3.7/site-packages/latex_envs": false
   },
   "toc2": {

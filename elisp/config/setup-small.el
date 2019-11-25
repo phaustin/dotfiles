@@ -122,6 +122,10 @@
   ;;     (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))))
   ;;(setq elpy-interactive-python-command "/Users/phil/bin/ipyelpy.sh")
   (setq conda_prefix (getenv "CONDA_PREFIX"))
+  ;; (if conda_prefix nil
+  ;;     (setq conda_prefix "/Users/phil/a50037/envs/a500try2"))
+  (if conda_prefix nil
+      (setq conda_prefix (getenv "CONDA_PREFIX")))
   (setq python_path (format "%s/bin/python" conda_prefix))
   (setq ipython_path (format "%s/bin/ipython" conda_prefix))
   (setq pyflakes_path (format "%s/bin/pyflakes" conda_prefix))

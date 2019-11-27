@@ -1,21 +1,20 @@
 export PATH="/usr/local/bin:/Applications/MATLAB_R2015b.app/bin:$PATH" 
-export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2019/bin/x86_64-darwin:/usr/local/MacGPG2/bin:${HOME}/.local/bin:$PATH"
-alias dockerkill='docker rm -f $(docker ps -a -q)'
-alias gitx='open -a /Applications/GitX.app $@'
-alias gimp='open -a /Applications/Gimp.app $@'
-alias emacs='open -a /Applications/Emacs.app $@'
-alias skim='open -a /Applications/Skim.app $@'
-alias emacsnw='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-alias emacsdb='/Applications/Emacs.app/Contents/MacOS/Emacs --debug-init'
-alias par='open -a /Applications/Parallels\ Desktop.app'
+# alias dockerkill='docker rm -f $(docker ps -a -q)'
+# alias gitx='open -a /Applications/GitX.app $@'
+# alias gimp='open -a /Applications/Gimp.app $@'
+# alias emacs='open -a /Applications/Emacs.app $@'
+# alias skim='open -a /Applications/Skim.app $@'
+# alias emacsnw='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+# alias emacsdb='/Applications/Emacs.app/Contents/MacOS/Emacs --debug-init'
+# alias par='open -a /Applications/Parallels\ Desktop.app'
 alias ipyelpy='ipython --simple-prompt'
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim $@'
-function acroread() { open -a /Applica~tions/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
-function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
-function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
-function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
-function google-chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
-function chromium() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
+# function acroread() { open -a /Applica~tions/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
+# function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
+# function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
+# function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
+# function google-chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
+# function chromium() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
 
 
 #set up prompt for emacs dirtrack see
@@ -67,8 +66,8 @@ function newp()
 
 function condap()
 {
-    #the_name=$(hostname) -- Linux
-    the_name=$(scutil --get LocalHostName)
+    the_name=$(hostname)
+    #the_name=$(scutil --get LocalHostName)
     out=`basename $CONDA_PREFIX`
     unset PS1
     
@@ -216,19 +215,19 @@ function a500()
 {
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/a50037/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/phil/mini37/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/phil/a50037/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/a50037/etc/profile.d/conda.sh"
+    if [ -f "/home/phil/mini37/etc/profile.d/conda.sh" ]; then
+        . "/home/phil/mini37/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/phil/a50037/bin:$PATH"
+        export PATH="/home/phil/mini37/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-export PATH="/Users/phil/a50037/bin:$PATH"
+export PATH="/home/phil/mini37/bin:$PATH"
 export MYPYTHON=$HOME/a50037/envs/a500
 conda activate a500
 condap
@@ -290,3 +289,18 @@ function gitp()
 }
 
 export PATH="$HOME/.gem/ruby/2.6.0/bin:$HOME/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/phil/mini37/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/phil/mini37/etc/profile.d/conda.sh" ]; then
+        . "/home/phil/mini37/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/phil/mini37/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

@@ -11,9 +11,9 @@
 ;(key-chord-mode 1)
 ;(setq key-chord-two-keys-delay 0.03)
 
-(use-package filladapt
-  :ensure t
-  :config (setq-default filladapt-mode t))
+;; (use-package filladapt
+;;   :ensure t
+;;   :config (setq-default filladapt-mode t))
 
 (use-package dired-single
     :ensure t)
@@ -33,6 +33,10 @@
 
 (use-package plocal
   :load-path "~/repos/dotfiles/elisp")
+
+(use-package filladapt
+  :load-path "~/repos/dotfiles/elisp")
+
 
 (use-package rst
   :load-path "~/repos/dotfiles/elisp")

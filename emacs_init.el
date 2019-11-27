@@ -29,7 +29,7 @@
       (mapcar (lambda (item) (concat relative-config-dir setup-files-dir item))
            (list "setup-org.el"         ;org-mode
                  ;;"setup-mu4e.el"        ;mu4e
-                 "setup-auctex.el"
+                 ;; "setup-auctex.el"
                  ;;filladapt, highlight-region, plocal, browse-kiil-ring, highlight-chars
                  ;;browse-url, gist, magit, elpy
                  ;;"setup-sr.el"

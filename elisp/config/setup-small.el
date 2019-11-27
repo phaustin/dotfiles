@@ -125,7 +125,7 @@
   ;; (if conda_prefix nil
   ;;     (setq conda_prefix "/Users/phil/a50037/envs/a500try2"))
   (if conda_prefix nil
-      (setq conda_prefix (getenv "CONDA_PREFIX")))
+      (setq conda_prefix (getenv "CONDA_DEFAULT")))
   (setq python_path (format "%s/bin/python" conda_prefix))
   (setq ipython_path (format "%s/bin/ipython" conda_prefix))
   (setq pyflakes_path (format "%s/bin/pyflakes" conda_prefix))

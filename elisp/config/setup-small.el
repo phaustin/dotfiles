@@ -115,6 +115,8 @@
   :commands elpy-enable
   :config
   (setq elpy-rpc-backend "jedi")
+  (setq elpy-rpc-timeout 5)
+  (add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
   ;; (progn
   ;;   (setq elpy-rpc-backend "jedi"
   ;;         elpy-rpc-project-specific 't)
@@ -130,7 +132,8 @@
   (setq ipython_path (format "%s/bin/ipython" conda_prefix))
   (setq pyflakes_path (format "%s/bin/pyflakes" conda_prefix))
   (setq python-shell-interpreter ipython_path
-       python-shell-interpreter-args "--matplotlib --simple-prompt -c exec('__import__(\\'readline\\')') -i")
+        python-shell-interpreter-args "--simple-prompt --matplotlib")
+  (setq elpy-syntax-check-command "pyflakes")
   (setq elpy-rpc-python-command python_path)
   (setq python-check-command (expand-file-name pyflakes_path))
   (setq elpy-modules (delq 'elpy-module-company elpy-modules)))
@@ -202,45 +205,12 @@
   :ensure t
   :config
   (when (memq window-system '(mac ns))
-    (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "ecopy"
+    (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "e340n" "ecopy" "oecopy"
                                                  "or" "rm" "e340lib" "a500n" "a500d"
-                                                 "e213" "a405" "E582")))
-    ;; (exec-path-from-shell-copy-env "eweb")
-    ;; (exec-path-from-shell-copy-env "ecode")
-    ;; (exec-path-from-shell-copy-env "e340")
-    ;; (exec-path-from-shell-copy-env "e340o")
-    ;; (exec-path-from-shell-copy-env "e340lib")
-    ;; (exec-path-from-shell-copy-env "eold")
-    ;; (exec-path-from-shell-copy-env "gtd")
-    ;; (exec-path-from-shell-copy-env "e340f")
-    ;; (exec-path-from-shell-copy-env "ecopy")
-    ;; (exec-path-from-shell-copy-env "itunes")
-    ;; (exec-path-from-shell-copy-env "kindle")
-    ;; (exec-path-from-shell-copy-env "oor")
-     ;; (exec-path-from-shell-copy-env "or")
-     ;; (exec-path-from-shell-copy-env "rm")
-    ;; (exec-path-from-shell-copy-env "a301")
-    ;; (exec-path-from-shell-copy-env "e213")
-    ;; (exec-path-from-shell-copy-env "e213s")
-    ;; (exec-path-from-shell-copy-env "e213n")
-    ;; (exec-path-from-shell-copy-env "e213a")
-    ;; (exec-path-from-shell-copy-env "elisp")
-    ;; (exec-path-from-shell-copy-env "a301w")
-    ;; (exec-path-from-shell-copy-env "a301o")
-    ;; (exec-path-from-shell-copy-env "e582")
-    ;; (exec-path-from-shell-copy-env "e582w")
-    ;; (exec-path-from-shell-copy-env "a405")
-    ;; (exec-path-from-shell-copy-env "a405w")
-    ;; (exec-path-from-shell-copy-env "a301o")
-    ;; (exec-path-from-shell-copy-env "a500")
-     ;; (exec-path-from-shell-copy-env "a500n")
-     ;; (exec-path-from-shell-copy-env "a500d")
-    ;; (exec-path-from-shell-copy-env "e340g")
-    ;; (exec-path-from-shell-copy-env "ec")
-    ;; (exec-path-from-shell-copy-env "rg")
-    ;; (exec-path-from-shell-copy-env "ct")
-    (exec-path-from-shell-initialize)
-    ))
+                                                 "e213" "e213s" "a405" "e582" "sphinxlib")))
+    (exec-path-from-shell-initialize)))
+  
+
 
 
 

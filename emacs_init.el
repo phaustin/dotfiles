@@ -308,7 +308,7 @@
  '(dired-listing-switches "-alh")
  '(package-selected-packages
    (quote
-    (grip-mode filladapt auctex dired-single web-mode elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme ack-and-a-half)))
+    (flymake-json flymake-jslint gnu-elpa-keyring-update auctex-latexmk grip-mode filladapt auctex dired-single web-mode elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme ack-and-a-half)))
  '(safe-local-variable-values
    (quote
     ((flycheck-gcc-language-standard . "c++14")
@@ -390,3 +390,14 @@ to next buffer otherwise."
 (add-hook 'ielm-mode-hook (lambda () (run-hooks 'my-ielm-mode-hook)))
 
 (defun p (x) (move-end-of-line 0) (insert (format "\n%s" x)))
+
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+  backup-by-copying t    ; Don't delink hardlinks
+  version-control t      ; Use version numbers on backups
+  delete-old-versions t  ; Automatically delete excess backups
+  kept-new-versions 20   ; how many of the newest versions to keep
+  kept-old-versions 5    ; and how many of the old
+  )
+
+;;https://github.com/purcell/flymake-json
+(add-hook 'json-mode-hook 'flymake-json-load)

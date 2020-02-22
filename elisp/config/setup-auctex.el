@@ -47,70 +47,70 @@
   )
 
 ;https://www.reddit.com/r/emacs/comments/44yxsq/pdf_tools/
-(use-package pdf-tools
-    :ensure t
-    :config
-    (pdf-tools-install))
-    ;; (setq TeX-view-program-selection '((output-pdf "pdf-tools")))
-    ;; (setq TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view"))))
+;; (use-package pdf-tools
+;;     :ensure t
+;;     :config
+;;     (pdf-tools-install))
+;;     ;; (setq TeX-view-program-selection '((output-pdf "pdf-tools")))
+;;     ;; (setq TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view"))))
 
 
-(defun th/pdf-view-revert-buffer-maybe (file)
-  (let ((buf (find-buffer-visiting file)))
-    (when buf 
-  (with-current-buffer buf
-    (when (derived-mode-p 'pdf-view-mode)
-      (pdf-view-revert-buffer nil t))))))
-(add-hook 'TeX-after-TeX-LaTeX-command-finished-hook
-          #'th/pdf-view-revert-buffer-maybe)
+;; (defun th/pdf-view-revert-buffer-maybe (file)
+;;   (let ((buf (find-buffer-visiting file)))
+;;     (when buf 
+;;   (with-current-buffer buf
+;;     (when (derived-mode-p 'pdf-view-mode)
+;;       (pdf-view-revert-buffer nil t))))))
+;; (add-hook 'TeX-after-TeX-LaTeX-command-finished-hook
+;;           #'th/pdf-view-revert-buffer-maybe)
 
 
-;; ;http://mbork.pl/2016-06-13_Displaying_pdfs_on_the_right
+;; ;; ;http://mbork.pl/2016-06-13_Displaying_pdfs_on_the_right
 
-(defvar pdf-minimal-width 72
-  "Minimal width of a window displaying a pdf.
-If an integer, number of columns.  If a float, fraction of the
-original window.")
+;; (defvar pdf-minimal-width 72
+;;   "Minimal width of a window displaying a pdf.
+;; If an integer, number of columns.  If a float, fraction of the
+;; original window.")
 
-(defvar pdf-split-width-threshold 120
-  "Minimum width a window should have to split it horizontally
-for displaying a pdf in the right.")
+;; (defvar pdf-split-width-threshold 120
+;;   "Minimum width a window should have to split it horizontally
+;; for displaying a pdf in the right.")
 
-(defun pdf-split-window-sensibly (&optional window)
-  "A version of `split-window-sensibly' for pdfs.
-It prefers splitting horizontally, and takes `pdf-minimal-width'
-into account."
-  (let ((window (or window (selected-window)))
-        (width (- (if (integerp pdf-minimal-width)
-                      pdf-minimal-width
-                    (round (* pdf-minimal-width (window-width window)))))))
-    (or (and (window-splittable-p window t)
-             ;; Split window horizontally.
-             (with-selected-window window
-               (split-window-right width)))
-        (and (window-splittable-p window)
-             ;; Split window vertically.
-             (with-selected-window window
-               (split-window-below)))
-        (and (eq window (frame-root-window (window-frame window)))
-             (not (window-minibuffer-p window))
-             ;; If WINDOW is the only window on its frame and is not the
-             ;; minibuffer window, try to split it vertically disregarding
-             ;; the value of `split-height-threshold'.
-             (let ((split-height-threshold 0))
-               (when (window-splittable-p window)
-                 (with-selected-window window
-                   (split-window-below))))))))
+;; (defun pdf-split-window-sensibly (&optional window)
+;;   "A version of `split-window-sensibly' for pdfs.
+;; It prefers splitting horizontally, and takes `pdf-minimal-width'
+;; into account."
+;;   (let ((window (or window (selected-window)))
+;;         (width (- (if (integerp pdf-minimal-width)
+;;                       pdf-minimal-width
+;;                     (round (* pdf-minimal-width (window-width window)))))))
+;;     (or (and (window-splittable-p window t)
+;;              ;; Split window horizontally.
+;;              (with-selected-window window
+;;                (split-window-right width)))
+;;         (and (window-splittable-p window)
+;;              ;; Split window vertically.
+;;              (with-selected-window window
+;;                (split-window-below)))
+;;         (and (eq window (frame-root-window (window-frame window)))
+;;              (not (window-minibuffer-p window))
+;;              ;; If WINDOW is the only window on its frame and is not the
+;;              ;; minibuffer window, try to split it vertically disregarding
+;;              ;; the value of `split-height-threshold'.
+;;              (let ((split-height-threshold 0))
+;;                (when (window-splittable-p window)
+;;                  (with-selected-window window
+;;                    (split-window-below))))))))
 
-(defun display-buffer-pop-up-window-pdf-split-horizontally (buffer alist)
-  "Call `display-buffer-pop-up-window', using `pdf-split-window-sensibly'
-when needed."
-  (let ((split-height-threshold nil)
-        (split-width-threshold pdf-split-width-threshold)
-        (split-window-preferred-function #'pdf-split-window-sensibly))
-    (display-buffer-pop-up-window buffer alist)))
+;; (defun display-buffer-pop-up-window-pdf-split-horizontally (buffer alist)
+;;   "Call `display-buffer-pop-up-window', using `pdf-split-window-sensibly'
+;; when needed."
+;;   (let ((split-height-threshold nil)
+;;         (split-width-threshold pdf-split-width-threshold)
+;;         (split-window-preferred-function #'pdf-split-window-sensibly))
+;;     (display-buffer-pop-up-window buffer alist)))
 
-(add-to-list 'display-buffer-alist '("\\.pdf\\(<[^>]+>\\)?$" . (display-buffer-pop-up-window-pdf-split-horizontally)))
+;; (add-to-list 'display-buffer-alist '("\\.pdf\\(<[^>]+>\\)?$" . (display-buffer-pop-up-window-pdf-split-horizontally)))
 
 ;https://github.com/politza/pdf-tools/issues/25
 

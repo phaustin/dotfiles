@@ -45,7 +45,6 @@ c.NotebookApp.browser = u"chrome"  # noqa
 c.NotebookApp.contents_manager_class = "jupytext.TextFileContentsManager"  # noqa
 c.ContentsManager.preferred_jupytext_formats_save = "py:percent"  # noqa
 c.ContentsManager.default_jupytext_formats = "ipynb,py"  # noqa
-c.ContentsManager.default_notebook_metadata_filter = "all,-language_info"
 c.ContentsManager.default_notebook_metadata_filter = (
     "all,-language_info,-toc,-latex_envs"
 )

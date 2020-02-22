@@ -107,6 +107,13 @@
   :config
   (global-set-key (kbd "C-x g") 'magit-status))
 
+
+(use-package flymake-json
+  :ensure t
+  :config
+  (add-hook 'json-mode-hook 'flymake-json-load))
+
+
 ;;http://emacs.stackexchange.com/questions/10065/how-can-i-defer-loading-elpy-using-use-package
 
 (use-package elpy
@@ -205,7 +212,7 @@
   :ensure t
   :config
   (when (memq window-system '(mac ns))
-    (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "e340n" "ecopy" "oecopy"
+    (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "e340o" "e340n" "ecopy" "oecopy"
                                                  "or" "rm" "e340lib" "a500n" "a500d"
                                                  "e213" "e213s" "a405" "e582" "sphinxlib")))
     (exec-path-from-shell-initialize)))

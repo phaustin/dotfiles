@@ -325,6 +325,15 @@ Everything past that can be tailored to your liking.
   string))
 
 
+;;https://stackoverflow.com/questions/6997387/how-to-archive-all-the-done-tasks-using-a-single-command/27043756#27043756
+(defun org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+   "/DONE" 'agenda))
+
 (provide 'plocal)
 
 

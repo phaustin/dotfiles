@@ -7,5 +7,20 @@ fi
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-echo "through bash profile"
+echo "through dot_bashprofile"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/phil/a50037/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/phil/a50037/etc/profile.d/conda.sh" ]; then
+        . "/Users/phil/a50037/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/phil/a50037/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 

@@ -97,12 +97,9 @@ export e213_gradebook="birwin_gradebook.db"
 export dropbox_dir="${HOME}/Nextcloud/e340_coursework"
 export numdocs=$HOME/repos/numeric_docs
 export numlabs=$HOME/repos/numeric
-export e340o="${HOME}/Nextcloud/e340_2018_fall"
-export e340="${HOME}/Nextcloud/e340_2019_fall"
 export gtd="${HOME}/Dropbox/org"
 export eold="${HOME}/Dropbox/e340_coursework/e340_2017_fall"
 export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT"
-export ecopy="${HOME}/Nextcloud/e340_2019_fall/pythonprogs/copy_files.py"
 export itunes="${HOME}/Music/iTunes/iTunes Media/TV Shows"
 export kindle="${HOME}/Library/Containers/com.amazon.Kindle/Data/Library/Application Support/Kindle/My Kindle Content"
 export e340code="${HOME}/repos/e340repo"
@@ -177,14 +174,14 @@ parse_git_branch () {
 
 }
 
-export MYPYTHON=$HOME/mini37
+#export MYPYTHON=$HOME/mini37
 
 function e213()
 {
 
 
-  export MYPYTHON=$HOME/new37/envs/e213
-  . $HOME/new37/etc/profile.d/conda.sh
+  export MYPYTHON=$HOME/a50037/envs/e213
+  . $HOME/a50037/etc/profile.d/conda.sh
   export PATH="$MYPYTHON/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
   conda activate e213
   condap
@@ -194,25 +191,25 @@ function a448()
 {
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/new37/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/phil/a50037/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/phil/new37/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/new37/etc/profile.d/conda.sh"
+    if [ -f "/Users/phil/a50037/etc/profile.d/conda.sh" ]; then
+        . "/Users/phil/a50037/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/phil/new37/bin:$PATH"
+        export PATH="/Users/phil/a50037/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-export MYPYTHON=$HOME/new37/envs/a448
+export MYPYTHON=$HOME/a50037/envs/a448
 conda activate a448
 condap
 }
 
 
-function a500()
+function e213()
 {
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -229,29 +226,53 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 export PATH="/Users/phil/a50037/bin:$PATH"
-export MYPYTHON=$HOME/a50037/envs/a500
-conda activate a500
+export MYPYTHON=$HOME/a50037/envs/e213
+conda activate e213
 condap
 }
+
+
+function numeric()
+{
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/phil/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/phil/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/phil/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/phil/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+export PATH="/Users/phil/opt/miniconda3/bin:$PATH"
+export MYPYTHON=$HOME/a50037/envs/numeric
+conda activate numeric
+condap
+}
+
 
 
 function satpy()
 {
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/new37/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/phil/a50037/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/phil/new37/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/new37/etc/profile.d/conda.sh"
+    if [ -f "/Users/phil/a50037/etc/profile.d/conda.sh" ]; then
+        . "/Users/phil/a50037/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/phil/new37/bin:$PATH"
+        export PATH="/Users/phil/a50037/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-export MYPYTHON=$HOME/new37/envs/satpy
+export MYPYTHON=$HOME/a50037/envs/satpy
 conda activate satpy
 condap
 }
@@ -273,7 +294,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-export MYPYTHON=$HOME/new37/envs/satpy
+export MYPYTHON=$HOME/a50037/envs/satpy
 conda activate work
 condap
 }
@@ -289,4 +310,3 @@ function gitp()
     fi
 }
 
-export PATH="$HOME/.gem/ruby/2.6.0/bin:$HOME/bin:$PATH"

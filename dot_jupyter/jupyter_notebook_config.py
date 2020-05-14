@@ -43,10 +43,10 @@ import os
 c.NotebookApp.allow_credentials = False
 c.NotebookApp.browser = u"chrome"  # noqa
 c.NotebookApp.contents_manager_class = "jupytext.TextFileContentsManager"  # noqa
-c.ContentsManager.preferred_jupytext_formats_save = "py:percent"  # noqa
-c.ContentsManager.default_jupytext_formats = "ipynb,py"  # noqa
+c.ContentsManager.preferred_jupytext_formats_save = "myst"  # noqa
+c.ContentsManager.default_jupytext_formats = "ipynb,myst"  # noqa
 c.ContentsManager.default_notebook_metadata_filter = (
-    "all,-language_info,-toc,-latex_envs"
+    "all,-toc,-latex_envs"
 )
 
 c.ContentsManager.default_cell_metadata_filter = "all"
@@ -616,3 +616,6 @@ c.ContentsManager.outdated_text_notebook_margin = 5
 #
 #  By default, all installed kernels are allowed.
 # c.KernelSpecManager.whitelist = set()
+#c.update({"CodeCell": {"cm_config": {"autoCloseBrackets": False}}})
+
+

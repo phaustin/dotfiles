@@ -69,12 +69,12 @@
 (defun choose-csh1 (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
-  (switch-to-buffer "csh1"))
+  (switch-to-buffer "s1"))
 
 (defun choose-csh2 (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
-  (switch-to-buffer "csh2"))
+  (switch-to-buffer "s2"))
 
 (defun choose-python (&optional re-assign)
   "Set a key to a buffer"
@@ -114,9 +114,9 @@
   (switch-to-buffer "refile.org"))
 
 
-(make-shell "csh1")    ; Create a shell called "csh1"
+(make-shell "s1")    ; Create a shell called "s1"
 (other-window 1)
-(make-shell "csh2")    ; Create another shell in the other window
+(make-shell "s2")    ; Create another shell in the other window
 
 (put 'downcase-region 'disabled nil)
 

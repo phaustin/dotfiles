@@ -6,11 +6,11 @@
     "usability/edit-emacs/main": true,
     "qtconsole/qtconsole": true,
     "toc2/main": true,
-    "equation-numbering/main": true,
+    "equation-numbering/main": false,
     "hide_input/main": true,
     "bqplot/extension": true,
     "autoscroll/main": true,
-    "latex_envs/latex_envs": true,
+    "latex_envs/latex_envs": false,
     "latex_envs": false,
     "latex_envs/static/latex_envs": false,
     "/Users/phil/a50037/envs/a500try2/lib/python3.7/site-packages/latex_envs": false

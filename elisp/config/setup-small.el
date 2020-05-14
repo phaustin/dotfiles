@@ -140,7 +140,7 @@
   (setq pyflakes_path (format "%s/bin/pyflakes" conda_prefix))
   (setq python-shell-interpreter ipython_path
         python-shell-interpreter-args "--simple-prompt --matplotlib")
-  (setq elpy-syntax-check-command "pyflakes")
+  (setq elpy-syntax-check-command (format "%s/bin/pyflakes" conda_prefix))
   (setq elpy-rpc-python-command python_path)
   (setq python-check-command (expand-file-name pyflakes_path))
   (setq elpy-modules (delq 'elpy-module-company elpy-modules)))

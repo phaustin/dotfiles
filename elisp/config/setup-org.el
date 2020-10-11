@@ -148,7 +148,7 @@
   :ensure t        
   :config
                                         ;order is important to set org-mode correctly
-  (setq org-journal-dir "~/Dropboxy/org/journal/")
+  (setq org-journal-dir "~/Dropbox/org/journal/")
   (global-set-key (kbd "C-c j") 'org-journal-new-entry)
   (global-set-key (kbd "C-c b") 'org-journal-open-previous-entry)
   (global-set-key (kbd "C-c f") 'org-journal-open-next-entry))

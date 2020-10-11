@@ -68,8 +68,8 @@ function newp()
 
 function condap()
 {
-    #the_name=$(hostname) -- Linux
-    the_name=$(scutil --get LocalHostName)
+    the_name=$(hostname) # Linux
+    #the_name=$(scutil --get LocalHostName)
     out=`basename $CONDA_PREFIX`
     unset PS1
     
@@ -77,6 +77,16 @@ function condap()
         PS1='|Pr0mPT|\w|\w ${out} $(parse_git_branch) \u@${the_name}\n% '
     else
         PS1='\w ${out} $(parse_git_branch) \u@${the_name}\n% '
+    fi
+}
+
+function gitp()
+{
+    unset PS1
+    if [ -n "$EMACS" ]; then
+        PS1="|Pr0mPT|\w|\w $(parse_git_branch) \u@\h%\n$ "
+    else
+        PS1="\w $(parse_git_branch) \u@\h%\n% "
     fi
 }
 
@@ -175,139 +185,5 @@ parse_git_branch () {
 
 }
 
-#export MYPYTHON=$HOME/mini37
 
-function e213()
-{
-
-
-  export MYPYTHON=$HOME/a50037/envs/e213
-  . $HOME/a50037/etc/profile.d/conda.sh
-  export PATH="$MYPYTHON/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-  conda activate e213
-  condap
-}
-
-function a448()
-{
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/a50037/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/phil/a50037/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/a50037/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/phil/a50037/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-export MYPYTHON=$HOME/a50037/envs/a448
-conda activate a448
-condap
-}
-
-
-function cdp()
-{
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/a50037/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/phil/a50037/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/a50037/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/phil/a50037/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-export PATH="/Users/phil/a50037/bin:$PATH"
-export MYPYTHON=$HOME/a50037/envs/cdp
-conda activate cdp
-condap
-}
-
-
-function numeric()
-{
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/phil/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/phil/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-export PATH="/Users/phil/opt/miniconda3/bin:$PATH"
-export MYPYTHON=$HOME/a50037/envs/numeric
-conda activate numeric
-condap
-}
-
-
-
-function satpy()
-{
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/a50037/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/phil/a50037/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/a50037/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/phil/a50037/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-export MYPYTHON=$HOME/a50037/envs/satpy
-conda activate satpy
-condap
-}
-
-
-function mtest()
-{
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/mtest/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/phil/mtest/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/mtest/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/phil/mtest/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-export MYPYTHON=$HOME/a50037/envs/satpy
-conda activate work
-condap
-}
-
-
-function gitp()
-{
-    unset PS1
-    if [ -n "$EMACS" ]; then
-        PS1="|Pr0mPT|\w|\w $(parse_git_branch) \u@\h%\n$ "
-    else
-        PS1="\w $(parse_git_branch) \u@\h%\n% "
-    fi
-}
 

@@ -13,7 +13,8 @@
     "latex_envs/latex_envs": false,
     "latex_envs": false,
     "latex_envs/static/latex_envs": false,
-    "/Users/phil/a50037/envs/a500try2/lib/python3.7/site-packages/latex_envs": false
+    "/Users/phil/a50037/envs/a500try2/lib/python3.7/site-packages/latex_envs": false,
+    "splitcell/splitcell": true
   },
   "toc2": {
     "threshold": "3",
@@ -23,7 +24,8 @@
     "widenNotebook": true,
     "navigate_menu": true,
     "moveMenuLeft": true,
-    "collapse_to_match_collapsible_headings": false
+    "collapse_to_match_collapsible_headings": false,
+    "number_sections": false
   },
   "autoscroll_show_button": true,
   "autoscroll_starting_threshold": "-1",

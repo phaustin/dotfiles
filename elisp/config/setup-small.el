@@ -119,6 +119,8 @@
   :commands elpy-enable
   :config
   (setq elpy-rpc-backend "jedi")
+  (setq elpy-rpc-timeout 5)
+  (add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
   ;; (progn
   ;;   (setq elpy-rpc-backend "jedi"
   ;;         elpy-rpc-project-specific 't)
@@ -205,8 +207,7 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (when (memq window-system '(mac ns))
-    (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "ecopy"
+  (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "ecopy"
                                                  "or" "rm" "e340lib" "a500n" "a500d"
                                                  "e213" "a405" "E582")))
     ;; (exec-path-from-shell-copy-env "eweb")
@@ -244,7 +245,7 @@
     ;; (exec-path-from-shell-copy-env "rg")
     ;; (exec-path-from-shell-copy-env "ct")
     (exec-path-from-shell-initialize)
-    ))
+    )
 
 
 

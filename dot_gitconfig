@@ -1,7 +1,7 @@
 [user]
         name = Phil Austin
         email = paustin@eos.ubc.ca
-        signingkey = 2D7C24A175EA474B
+        #signingkey = 2D7C24A175EA474B
 [core]
         pager =
         excludesfile = /Users/phil/.gitignore
@@ -76,8 +76,4 @@
 
 [commit]
         gpgsign = false
-[gpg]
-        program = /usr/local/MacGPG2/bin/gpg2
         
-[credential]
-        helper = osxkeychain

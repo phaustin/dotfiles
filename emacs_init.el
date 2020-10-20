@@ -308,7 +308,7 @@
  '(dired-listing-switches "-alh")
  '(package-selected-packages
    (quote
-    (grip-mode filladapt auctex dired-single web-mode elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme ack-and-a-half)))
+    (spinner deadgrep grip-mode filladapt auctex dired-single web-mode elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander pdf-tools osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme ack-and-a-half)))
  '(safe-local-variable-values
    (quote
     ((flycheck-gcc-language-standard . "c++14")

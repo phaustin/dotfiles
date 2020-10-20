@@ -46,7 +46,7 @@ c.NotebookApp.contents_manager_class = "jupytext.TextFileContentsManager"  # noq
 c.ContentsManager.preferred_jupytext_formats_save = "myst"  # noqa
 c.ContentsManager.default_jupytext_formats = "ipynb,myst"  # noqa
 c.ContentsManager.default_notebook_metadata_filter = (
-    "all,-toc,-latex_envs"
+    "all,-language_info,-toc,-latex_envs"
 )
 
 c.ContentsManager.default_cell_metadata_filter = "all"

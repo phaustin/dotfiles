@@ -11,3 +11,4 @@ from jupyter_core.paths import jupyter_path
 print(f"here is my path: {jupyter_path('nbconvert','templates')}")
 c.PDFExporter.latex_count = 1
 c.PDFExporter.latex_command = ['latexmk', '-cd', '-lualatex', '{filename}']
+c.SlidesExporter.reveal_transition = 'none'

@@ -1,165 +1,64 @@
-export BASH_SILENCE_DEPRECATION_WARNING=1
-export PATH="/usr/local/bin:$PATH" 
-export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2019/bin/x86_64-darwin:/usr/local/MacGPG2/bin:${HOME}/.local/bin:$PATH"
-alias dockerkill='docker rm -f $(docker ps -a -q)'
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+set -m
 
-#set up prompt for emacs dirtrack see
-#.emacs file
-unset PS1
-the_name=$(hostname) # Linux
-PS1="\w \u@${the_name}\n% "
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
 
-if [ -n "$EMACS" ]; then
-    unset PS1
-    PS1='|Pr0mPT|\w|\w \u@${the_name}\n% '
+__conda_setup="$('/home/phil/mini38/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/phil/mini38/etc/profile.d/conda.sh" ]; then
+        . "/home/phil/mini38/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/phil/mini38/bin:$PATH"
+    fi
 fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-function cd() { command cd "$@"; }
-function pd() { command pushd "$@"; }
-function s() { command pushd +"$@"; }
-function dt() { command popd +"$@"; }
-alias d='dirs'
+. ~/repos/dotfiles/dot_bashrc
+. ~/repos/dotfiles/docker_aliases.sh
 
-function smallp()
+
+function con()
 {
-    unset PS1
-    if [ -n "$EMACS" ]; then
-        PS1='|Pr0mPT|\w|\W \u@\h% '
-    else
-        PS1="\W \u@\h% "
-    fi
+    conda activate $1
+    condap
 }
 
 
+. ~/repos/dotfiles/dot_bashrc
 
 
-function newp()
-{
-    unset PS1
-    if [ -n "$EMACS" ]; then
-        PS1="|Pr0mPT|\w|\w-$1> "
-    else
-        PS1="$1 \W> "
-    fi
-}
+export PATH="${HOME}/bin/matlab/bin:${PATH}"
 
-function condap()
-{
-    the_name=$(hostname) # Linux
-    #the_name=$(scutil --get LocalHostName)
-    out=`basename $CONDA_PREFIX`
-    unset PS1
-    
-    if [ -n "$EMACS" ]; then
-        PS1='|Pr0mPT|\w|\w ${out} $(parse_git_branch) \u@${the_name}\n% '
-    else
-        PS1='\w ${out} $(parse_git_branch) \u@${the_name}\n% '
-    fi
-}
+export rm=/home/phil/roc_cloud/readmes
+export or=/home/phil/Dropbox/org
 
-function gitp()
-{
-    unset PS1
-    if [ -n "$EMACS" ]; then
-        PS1="|Pr0mPT|\w|\w $(parse_git_branch) \u@\h%\n$ "
-    else
-        PS1="\w $(parse_git_branch) \u@\h%\n% "
-    fi
-}
+export e211=/mnt/c/Users/phil/Nextcloud/EOSC211
+export a301=/media/phil/ssd1/repos/a301_2020
+export ssd1=/media/phil/ssd1
+export jovyan=/media/phil/ssd1/jovyan
+export backups=/media/phil/ssd1/backups
 
 
-function oldp()
-{
-    unset PS1
-    if [ -n "$EMACS" ]; then
-        PS1='|Pr0mPT|\w|\w \u@\h% '
-    else
-        PS1="\w \u@\h% "
-    fi
-}
+con climlab
+export JUPYTER_TOKEN=d737aecbec007b116767a546cc794d315112dc5b56ac597
+export JUPYTER_NOTEBOOK_PORT=9000
+export d340=/home/phil/Dropbox/e340_courses/e340_2020
+export g340=/home/phil/google_drive/e340_2020
+#google-drive-ocamlfuse ~/google_drive
+echo "through bashrc"
 
-#
-# need to mirror these in .emacs
-#
-export e213_gradebook="birwin_gradebook.db"
-export dropbox_dir="${HOME}/Nextcloud/e340_coursework"
-export numdocs=$HOME/repos/numeric_docs
-export numlabs=$HOME/repos/numeric
-export gtd="${HOME}/Dropbox/org"
-export eold="${HOME}/Dropbox/e340_coursework/e340_2017_fall"
-export e340f="${HOME}/Dropbox/e340 FILES FOR CONNECT"
-export itunes="${HOME}/Music/iTunes/iTunes Media/TV Shows"
-export kindle="${HOME}/Library/Containers/com.amazon.Kindle/Data/Library/Application Support/Kindle/My Kindle Content"
-export e340code="${HOME}/repos/e340repo"
-export oor="${HOME}/ownCloud/org"
-export or="${HOME}/Dropbox/org"
-export rm="${HOME}/ownCloud/readmes"
-alias cf='cd "$e340f"'
-export git="ssh://jcole@roc.eos.ubc.ca/users/phil/repos/feedbacks"
-export mac2=/Volumes/mac2/phil
-export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
-#export TEXINPUTS="${HOME}/texmf//:."
-export VISUAL=emacsclient
-export stat="${HOME}/repos/les_plots/stat_plot"
-
-
-export RSTUDIO_WHICH_R=/usr/local/bin/R
-
-export LC_ALL=en_US.UTF-8  
-export LANG=en_US.UTF-8
-
-export e14=${HOME}/Dropbox/e340_2012/2014\ -\ Fall
-export e13="${HOME}/repos/e340_2013wT2"
-export econ="${HOME}/Dropbox/e340\ FILES\ FOR\ CONNECT"
-export aweb="${HOME}/repos/atsc301_web"
-export acode="${HOME}/repos/a301_2014"
-export a405="${HOME}/repos/atsc405_2018"
-export a405old="${HOME}/repos/A405"
-export a405w="${HOME}/repos/atsc405_docs"
-export a500="${HOME}/repos/atsc500"
-export a500d="${HOME}/repos/atsc500_docs"
-export a212="${HOME}/repos/A212"
-export a212d="${HOME}/repos/atsc212_docs"
-export a301="${HOME}/repos/a301_code"
-export a301w="${HOME}/repos/a301_web"
-export e213="${HOME}/repos/eosc213"
-export e213s="${HOME}/repos/eosc213_students"
-export e213n="${HOME}/Nextcloud/213"
-export e213a="${HOME}/repos/e213_assignments"
-export elisp="${HOME}/repos/dotfiles/elisp"
-export a301o="${HOME}/repos/a301_2016"
-export ecode="${HOME}/repos/e340repo"
-export e582w="${HOME}/repos/e582_web"
-export e582="${HOME}/repos/e582_code"
-export e340g="$HOME/airwatch/Personal Content/EOSC 340 Student Info Share (Harris, Sara)"
-export ec="${HOME}/repos/eoas_canvas/tests"
-export rg="${HOME}/Nextcloud/e340_2018_spring/Exams/2018_Spring_Midterm_2_grades/raw_grades"
-export fg="${HOME}/Nextcloud/e340_2018_spring/Grades/course_total"
-export course_dir="$HOME/Nextcloud/e340_2018_spring"
-export student_visible_dir="$HOME/Dropbox/e340 FILES FOR CONNECT"
-export ct="${HOME}/Nextcloud/e340_2018_spring/Grades/course_total"
-
-#arg-complete for conda
-#eval $(register-python-argcomplete conda)
-export BITLY_ACCESS_TOKEN=c984e550ada5ef8846c5a9bf4bd602ca086154b3
-export MATLAB_EXECUTABLE=/Applications/MATLAB_R2015b.app/bin/matlab
-
-#only read for interactive python
-export GISTY_ACCESS_TOKEN=4de9fac7f7c980509bc97264766ee31c6d66a85c
-export GISTY_DIR="$HOME/repos/gists"
-
-#https://coderwall.com/p/fasnya/add-git-branch-name-to-bash-prompt
-#http://stackoverflow.com/questions/17811327/git-branch-name-in-prompt
-
-parse_git_branch () {
-
-    while read -r branch; do
-        [[ $branch = \** ]] && current_branch=${branch#* }
-    done < <(git branch 2>/dev/null)
-
-    [[ $current_branch ]] && printf '[%s]' "$current_branch"
-
-}
-
-export PATH="${HOME}/.cargo/bin:${PATH}"
-
+export d192=/home/phil/Dropbox/e340_courses/e340_2019t2
+export d191=/home/phil/Dropbox/e340_courses/e340_2019t1
+export JUPYTER_TOKEN=be5b7760bdf178b9b52a8ace9c5ffe5eb51ecca6e195f82002e0d8468322b406
+alias rweb='xdg-open http://127.0.0.1:8000/?token="${JUPYTER_TOKEN}"'
+alias pyweb='xdg-open http://127.0.0.1:8001/?token="${JUPYTER_TOKEN}"'
+export TMUX_TMPDIR=/tmp/tmuxpha
+export DO_OAUTH_TOKEN="612eccc3094fcf2cad84bf4ad4128d9806fd4ffb838439095fb47e5517afd368"
+#bitwarden
+export BW_SESSION="5Y/xDSvPQ4Yl4Pt8ckJQ2EcXcuRH1gNG/vei0qJoZ4mNx2+jX60f4enV20Mp8OhVy/3wmf8Oq7d/s9YkXMWmsQ=="

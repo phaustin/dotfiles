@@ -4,7 +4,7 @@
   (osx-browse-mode 1)
   (global-set-key "\C-xw" 'browse))
 
-(setq-default ispell-program-name "/usr/local/bin/ispell")
+(setq-default ispell-program-name "/usr/bin/ispell")
 
 ;; (setq exec-path
 ;;       '(

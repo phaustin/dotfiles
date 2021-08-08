@@ -211,12 +211,9 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (when (memq window-system '(mac ns))
-    (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "e340o" "e340n" "ecopy" "oecopy"
+  (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "d340" "g340" "e340o" "e340n" "ecopy" "oecopy"
                                                  "or" "rm" "e340lib" "a500n" "a500d"
-                                                 "e213" "e213s" "a405" "e582" "sphinxlib")))
-    (exec-path-from-shell-initialize)))
-  
+                                                 "e213" "e213s" "a405" "e582" "sphinxlib d192 d191"))))
 
 
 

@@ -2,31 +2,16 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH="/usr/local/bin:$PATH" 
 export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2019/bin/x86_64-darwin:/usr/local/MacGPG2/bin:${HOME}/.local/bin:$PATH"
 alias dockerkill='docker rm -f $(docker ps -a -q)'
-alias gitx='open -a /Applications/GitX.app $@'
-alias gimp='open -a /Applications/Gimp.app $@'
-alias emacs='open -a /Applications/Emacs.app $@'
-alias skim='open -a /Applications/Skim.app $@'
-alias emacsnw='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-alias emacsdb='/Applications/Emacs.app/Contents/MacOS/Emacs --debug-init'
-alias par='open -a /Applications/Parallels\ Desktop.app'
-alias ipyelpy='ipython --simple-prompt'
-alias skim='/Applications/Skim.app/Contents/MacOS/Skim $@'
-function acroread() { open -a /Applica~tions/Adobe\ Acrobat\ XI\ Pro/Adobe\ Acrobat\ Pro.app "$@" ;}
-function firefox() { open -a /Applications/Firefox.app/ "$@" ;}
-function ooffice() { open -a /Applications/LibreOffice.app/ "$@" ;}
-function chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
-function google-chrome() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
-function chromium() { open -a /Applications/Google\ Chrome.app/ "$@" ;}
-
 
 #set up prompt for emacs dirtrack see
 #.emacs file
 unset PS1
-PS1="\w \u@raild% "
+the_name=$(hostname) # Linux
+PS1="\w \u@${the_name}\n% "
 
 if [ -n "$EMACS" ]; then
     unset PS1
-    PS1='|Pr0mPT|\w|\w \u@raild% '
+    PS1='|Pr0mPT|\w|\w \u@${the_name}\n% '
 fi
 
 function cd() { command cd "$@"; }
@@ -45,15 +30,7 @@ function smallp()
     fi
 }
 
-function railp()
-{
-    unset PS1
-    if [ -n "$EMACS" ]; then
-        PS1='|Pr0mPT|\w|\W \u@\h% '
-    else
-        PS1="\W \u@rail "
-    fi
-}
+
 
 
 function newp()
@@ -122,7 +99,6 @@ export git="ssh://jcole@roc.eos.ubc.ca/users/phil/repos/feedbacks"
 export mac2=/Volumes/mac2/phil
 export XTIDE_DEFAULT_LOCATION="Vancouver, British Columbia"
 #export TEXINPUTS="${HOME}/texmf//:."
-export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 export VISUAL=emacsclient
 export stat="${HOME}/repos/les_plots/stat_plot"
 
@@ -185,5 +161,5 @@ parse_git_branch () {
 
 }
 
-
+export PATH="${HOME}/.cargo/bin:${PATH}"
 

@@ -1,12 +1,19 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 ;; marmalade needed for eldoro
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;;melpa needed for use-package
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.milkbox.net/packages/") t)
+;; Hack for using a different set of repositories when ELPA is down
+;; https://github.com/syl20bnr/spacemacs/issues/4453#issuecomment-676439117
+(setq package-archives
+      '(("melpa" . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/melpa/")
+        ("org"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/org/")
+        ("gnu"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/gnu/")))
+;; (setq package-check-signature nil) ;; probably not necessary
 ;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+;; (add-to-list 'package-archives
+;;              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 ;;http://pragmaticemacs.com/emacs/double-dired-with-sunrise-commander/
 (package-initialize)
 
@@ -306,18 +313,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(dired-listing-switches "-alh")
+ '(nil nil t)
  '(package-selected-packages
    (quote
-    (lorem-ipsum flymake-json flymake-jslint gnu-elpa-keyring-update auctex-latexmk grip-mode filladapt auctex dired-single web-mode elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme ack-and-a-half)))
- '(safe-local-variable-values
-   (quote
-    ((flycheck-gcc-language-standard . "c++14")
-     (eval c-set-offset
-           (quote innamespace)
-           4)))))
-
-;(require 'material-theme)
-(put 'upcase-region 'disabled nil)
+    (zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ sunrise-commander simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm osx-browse orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode gnu-elpa-keyring-update frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy eldoro dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete auctex-latexmk anti-zenburn-theme ack-and-a-half))))
 ;(require 'better-defaults)
 ;(load-theme 'material t)
 
@@ -401,3 +400,29 @@ to next buffer otherwise."
 
 ;;https://github.com/purcell/flymake-json
 (add-hook 'json-mode-hook 'flymake-json-load)
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "/usr/bin/google-chrome-stable")
+
+(global-set-key "\C-xw" 'browse-url)
+
+;https://www.emacswiki.org/emacs/CuaMode
+;; (cua-mode t)
+;;     (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+;;     (transient-mark-mode 1) ;; No region when it is not highlighted
+;;     (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+
+
+(require 'simpleclip)
+(simpleclip-mode 1)
+
+(require 'flyspell)
+(flyspell-mode +1)
+(setq ispell-program-name "/usr/bin/ispell")
+
+(require 'indent-tools)
+(global-set-key (kbd "C-c >") 'indent-tools-hydra/body)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+(put 'upcase-region 'disabled nil)

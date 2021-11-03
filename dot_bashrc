@@ -1,6 +1,6 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export PATH="/usr/local/bin:$PATH" 
-export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2019/bin/x86_64-darwin:/usr/local/MacGPG2/bin:${HOME}/.local/bin:$PATH"
+#export PATH="/usr/local/bin:$PATH" 
+#export PATH="/usr/local/opt/ccache/libexec:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:${HOME}/bin:/usr/local/texlive/2019/bin/x86_64-darwin:/usr/local/MacGPG2/bin:${HOME}/.local/bin:$PATH"
 alias dockerkill='docker rm -f $(docker ps -a -q)'
 alias gitx='open -a /Applications/GitX.app $@'
 alias gimp='open -a /Applications/Gimp.app $@'
@@ -185,32 +185,8 @@ parse_git_branch () {
 
 }
 
-#export MYPYTHON=$HOME/mini7
-
-function e213()
-{
 
 
-  export MYPYTHON=$HOME/a50037/envs/e213
-  . $HOME/a50037/etc/profile.d/conda.sh
-  export PATH="$MYPYTHON/bin:$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-  conda activate e213
-  condap
-}
 
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/a50037/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/phil/a50037/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/a50037/etc/profile.d/conda.sh"
-    else
-        echo "failed in dot_bashrc"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-export MYPYTHON=$HOME/a50037/envs/cdp
 
 

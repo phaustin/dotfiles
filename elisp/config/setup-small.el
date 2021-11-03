@@ -213,9 +213,10 @@
   :config
   (when (memq window-system '(mac ns))
     (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "e340o" "e340n" "ecopy" "oecopy"
-                                                 "or" "rm" "e340lib" "a500n" "a500d"
-                                                 "e213" "e213s" "a405" "e582" "sphinxlib")))
+                                                 "or" "rm" "e340lib" "a500n" "a500d" "d340" "g340"
+                                                 "e213" "e213s" "a405" "e582" "sphinxlib" "g211" "g340" "g211old")))
     (exec-path-from-shell-initialize)))
+
   
 
 

@@ -6,7 +6,7 @@
         pager =
         excludesfile = /Users/phil/.gitignore
         autocrlf = input
-	editor = code --wait
+	editor = /usr/local/bin/emacs -nw
 [man]
                 viewer = man
 [alias]
@@ -43,10 +43,6 @@
 [instaweb]
         httpd=webrick
 
-[filter "nbstrip"]        
-      clean = /Users/phil/bin/nbstripout.py
-      smudge =cat
-      required
 
 #[core]
 #     attributesfile= ~/.gitattributes

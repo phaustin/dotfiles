@@ -1,15 +1,8 @@
-(require 'package)
+(require 'package)  
+(setq package-enable-at-startup nil)  
+(add-to-list 'package-archives        
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)   
 (setq package-enable-at-startup nil)
-;; marmalade needed for eldoro
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;;melpa needed for use-package
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-;;http://pragmaticemacs.com/emacs/double-dired-with-sunrise-commander/
-(package-initialize)
-
 ;;
 ;; needed for dirtrack prompt in .bashrc
 ;;
@@ -39,6 +32,8 @@
                  )))
 (dolist (file dot-files) (load-file file))
 
+
+
 ;end modernize
 
 
@@ -64,6 +59,7 @@
 
 
 (setq grep-command "grep -n -H -i ")
+
 
 
 (defun choose-csh1 (&optional re-assign)
@@ -151,6 +147,8 @@
 )
 
 
+
+
 (defun personal ()
    (interactive)
    (find-file "~/ownCloud/org/personal.org")
@@ -221,6 +219,8 @@
 (advice-add 'window-splittable-p :before-while #'do-not-split-more-than-two-windows)
 
 
+
+
 ;http://www.emacswiki.org/emacs/FrameSize
 (add-to-list 'default-frame-alist '(height . 55))
 (add-to-list 'default-frame-alist '(width . 180))
@@ -256,6 +256,8 @@
 ;;   :ensure t
 ;;   :config
 ;;   (load-theme 'anti-zenburn t))
+
+
 
 
 (defun markdown-preview-file ()
@@ -307,14 +309,10 @@
  ;; If there is more than one, they won't work right.
  '(dired-listing-switches "-alh")
  '(package-selected-packages
-   (quote
-    (lorem-ipsum flymake-json flymake-jslint gnu-elpa-keyring-update auctex-latexmk grip-mode filladapt auctex dired-single web-mode elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme ack-and-a-half)))
+   '(deadgrep lorem-ipsum flymake-json flymake-jslint gnu-elpa-keyring-update auctex-latexmk grip-mode filladapt auctex dired-single web-mode elpy org-gcal helm-descbinds json-navigator desktop+ orgit orglink cmake-mode pelican-mode ox-gfm rg fill-column-indicator yasnippet ripgrep cpputils-cmake markdown-mode bm zenburn-theme yaml-mode yagist visual-fill-column toml-mode thingatpt+ tablist sunrise-commander osx-browse org-toodledo offlineimap mu4e-maildirs-extension mic-paren material-theme key-chord~/ frame-cmds exec-path-from-shell eldoro dired-narrow browse-kill-ring auto-package-update anti-zenburn-theme)
  '(safe-local-variable-values
-   (quote
-    ((flycheck-gcc-language-standard . "c++14")
-     (eval c-set-offset
-           (quote innamespace)
-           4)))))
+   '((flycheck-gcc-language-standard . "c++14")
+     (eval c-set-offset 'innamespace 4)))))
 
 ;(require 'material-theme)
 (put 'upcase-region 'disabled nil)
@@ -339,12 +337,12 @@ to next buffer otherwise."
 	(other-window 1)))
 
 (global-set-key (kbd "<f6>") #'other-window-or-switch-buffer)
-(require 'fill-column-indicator)
+;(require 'fill-column-indicator)
 
-(use-package pelican-mode
-  :after (:any org rst markdown-mode adoc-mode)
-  :config
-  (pelican-global-mode))
+;; (use-package pelican-mode
+;;   :after (:any org rst markdown-mode adoc-mode)
+;;   :config
+;;   (pelican-global-mode))
 
 
 ;; easy spell check
@@ -401,3 +399,6 @@ to next buffer otherwise."
 
 ;;https://github.com/purcell/flymake-json
 (add-hook 'json-mode-hook 'flymake-json-load)
+
+(require 'rg)
+(rg-enable-default-bindings)

@@ -21,13 +21,6 @@
 (use-package auto-complete
     :ensure t)
 
-(use-package web-mode
-  :config (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-         (setq web-mode-engines-alist
-         '(("jinja"    . "\\.html\\'")))
-  )
-
-
 (use-package highlight-region
   :load-path "~/repos/dotfiles/elisp")
 
@@ -38,11 +31,6 @@
   :load-path "~/repos/dotfiles/elisp")
 
 
-(use-package dired-narrow
-  :ensure t
-  :bind (:map dired-mode-map
-              ("/" . dired-narrow)))
-
 (use-package visual-fill-column
   :ensure t
   :config
@@ -52,9 +40,6 @@
   (add-hook 'minibuffer-setup-hook (lambda () (visual-line-mode -1)))
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
   (add-hook 'text-mode-hook 'visual-fill-column-mode))
-
-(use-package mic-paren
-  :ensure t)
 
 (use-package desktop+
   :ensure t)
@@ -69,9 +54,6 @@
   :ensure t)
 
 (use-package yaml-mode
-  :ensure t)
-
-(use-package toml-mode
   :ensure t)
 
 (use-package company
@@ -173,8 +155,6 @@
   ;; Either the Key ID or set to nil to use symmetric encryption.
   (setq org-crypt-key nil))
 
-(use-package eldoro
-  :ensure t)
 
 (use-package auto-package-update
   :ensure t)
@@ -183,21 +163,6 @@
 ;; (auto-package-update-maybe)
 ;; (auto-package-update-now)
 
-
-;;https://github.com/jhelwig/ack-and-a-half
-;;http://beyondgrep.com/
-;;curl http://beyondgrep.com/ack-2.10-single-file > ~/bin/ack && chmod 0755 !#:3
-;;(add-to-list 'load-path "/path/to/ack-and-a-half")
-
-(use-package ack-and-a-half
-  :ensure t
-  :config
-  ;; Create shorter aliases
-  (defalias 'ack 'ack-and-a-half)
-  (defalias 'ack-same 'ack-and-a-half-same)
-  (defalias 'ack-find-file 'ack-and-a-half-find-file)
-  (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
-  (setq ack-and-a-half-executable "~/bin/ack"))
 
 (use-package ripgrep
   :ensure t
@@ -211,9 +176,19 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "d340" "g340" "e340o" "e340n" "ecopy" "oecopy"
+  (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "d340" "g340" "e340o" "a340" "n340" "ecopy" "oecopy"
                                                  "or" "rm" "e340lib" "a500n" "a500d"
                                                  "e213" "e213s" "a405" "e582" "sphinxlib d192 d191"))))
+
+;; ;;https://github.com/purcell/exec-path-from-shell
+;; (use-package exec-path-from-shell
+;;   :ensure t
+;;   :config
+;;   (when (memq window-system '(mac ns))
+;;     (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "e340o" "e340n" "ecopy" "oecopy"
+;;                                                  "or" "rm" "e340lib" "a500n" "a500d" "d340" "g340"
+;;                                                  "e213" "e213s" "a405" "e582" "sphinxlib" "g211" "g340" "g211old")))))
+
 
 
 

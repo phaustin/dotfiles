@@ -3,9 +3,61 @@
 # for examples
 set -m
 
+. ~/repos/dotfiles/dot_bashrc_functions
+. ~/repos/dotfiles/docker_aliases.sh
+
+
+function con()
+{
+    conda activate $1
+    condap
+}
+
+
+. ~/repos/dotfiles/dot_bashrc_functions
+
+
+export rm=/home/phil/roc_cloud/readmes
+export or=/home/phil/Dropbox/org
+
+export e211=/mnt/c/Users/phil/Nextcloud/EOSC211
+export a301=/media/phil/ssd1/repos/a301_2020
+export ssd1=/media/phil/ssd1
+export jovyan=/media/phil/ssd1/jovyan
+export backups=/media/phil/ssd1/backups
+
+
+export JUPYTER_TOKEN=d737aecbec007b116767a546cc794d315112dc5b56ac597
+export JUPYTER_NOTEBOOK_PORT=9000
+export d340=/home/phil/Dropbox/e340_courses/e340_2020
+export g340=/home/phil/google_drive/e340_2020
+#google-drive-ocamlfuse ~/google_drive
+#echo " base in basement through bashrc"
+
+export d192=/home/phil/Dropbox/e340_courses/e340_2019t2
+export d191=/home/phil/Dropbox/e340_courses/e340_2019t1
+export JUPYTER_TOKEN=be5b7760bdf178b9b52a8ace9c5ffe5eb51ecca6e195f82002e0d8468322b406
+alias rweb='xdg-open http://127.0.0.1:8000/?token="${JUPYTER_TOKEN}"'
+alias pyweb='xdg-open http://127.0.0.1:8001/?token="${JUPYTER_TOKEN}"'
+#export TMUX_TMPDIR=/tmp/tmuxpha
+export DO_OAUTH_TOKEN="612eccc3094fcf2cad84bf4ad4128d9806fd4ffb838439095fb47e5517afd368"
+#bitwarden
+export BW_SESSION="5Y/xDSvPQ4Yl4Pt8ckJQ2EcXcuRH1gNG/vei0qJoZ4mNx2+jX60f4enV20Mp8OhVy/3wmf8Oq7d/s9YkXMWmsQ=="
+#export DO_AUTH_TOKEN="612eccc3094fcf2cad84bf4ad4128d9806fd4ffb838439095fb47e5517afd368"
+export DO_AUTH_TOKEN="e5c493f1c8e9d264cc5d7c5dfe2809fd264f5efd73d1d07d7b0f40c716e4bb21"
+export d340quiz=${HOME}/Dropbox/e340_courses/e340_2021t1
+export g211="${HOME}/Nextcloud/eosc211_2021/tests/e211_2021_grading/"
+export g340=${HOME}/repos/e340repo/grades_2021
+export g340old=${HOME}/repos/e340repo/grades_2020
+export g211old=${HOME}/Nextcloud/EOSC211/tests/final_exam_grading
+export d340=${HOME}/Dropbox/e340_courses/e340_2020
+export e340final=${HOME}/repos/e340repo/grades_2021/final
+export n340=${HOME}/Nextcloud/e340_2022
+export a340=${HOME}/Nextcloud/e340_courses
+
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-
 __conda_setup="$('/home/phil/mini38/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -18,47 +70,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+#con e211dev
 
-. ~/repos/dotfiles/dot_bashrc
-. ~/repos/dotfiles/docker_aliases.sh
-
-
-function con()
-{
-    conda activate $1
-    condap
-}
-
-
-. ~/repos/dotfiles/dot_bashrc
-
-
-export PATH="${HOME}/bin/matlab/bin:${PATH}"
-
-export rm=/home/phil/roc_cloud/readmes
-export or=/home/phil/Dropbox/org
-
-export e211=/mnt/c/Users/phil/Nextcloud/EOSC211
-export a301=/media/phil/ssd1/repos/a301_2020
-export ssd1=/media/phil/ssd1
-export jovyan=/media/phil/ssd1/jovyan
-export backups=/media/phil/ssd1/backups
-
-
-con climlab
-export JUPYTER_TOKEN=d737aecbec007b116767a546cc794d315112dc5b56ac597
-export JUPYTER_NOTEBOOK_PORT=9000
-export d340=/home/phil/Dropbox/e340_courses/e340_2020
-export g340=/home/phil/google_drive/e340_2020
-#google-drive-ocamlfuse ~/google_drive
-echo "through bashrc"
-
-export d192=/home/phil/Dropbox/e340_courses/e340_2019t2
-export d191=/home/phil/Dropbox/e340_courses/e340_2019t1
-export JUPYTER_TOKEN=be5b7760bdf178b9b52a8ace9c5ffe5eb51ecca6e195f82002e0d8468322b406
-alias rweb='xdg-open http://127.0.0.1:8000/?token="${JUPYTER_TOKEN}"'
-alias pyweb='xdg-open http://127.0.0.1:8001/?token="${JUPYTER_TOKEN}"'
-export TMUX_TMPDIR=/tmp/tmuxpha
-export DO_OAUTH_TOKEN="612eccc3094fcf2cad84bf4ad4128d9806fd4ffb838439095fb47e5517afd368"
-#bitwarden
-export BW_SESSION="5Y/xDSvPQ4Yl4Pt8ckJQ2EcXcuRH1gNG/vei0qJoZ4mNx2+jX60f4enV20Mp8OhVy/3wmf8Oq7d/s9YkXMWmsQ=="

@@ -1,22 +1,8 @@
 (require 'package)
 (setq package-enable-at-startup nil)
-;; marmalade needed for eldoro
-;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;;melpa needed for use-package
-(add-to-list 'package-archives '("melpa" . "https://melpa.milkbox.net/packages/") t)
-;; Hack for using a different set of repositories when ELPA is down
-;; https://github.com/syl20bnr/spacemacs/issues/4453#issuecomment-676439117
-(setq package-archives
-      '(("melpa" . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/melpa/")
-        ("org"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/org/")
-        ("gnu"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/gnu/")))
-;; (setq package-check-signature nil) ;; probably not necessary
-;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;; (add-to-list 'package-archives
-;;              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
-;;http://pragmaticemacs.com/emacs/double-dired-with-sunrise-commander/
-(package-initialize)
-
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;; (package-initialize)
 ;;
 ;; needed for dirtrack prompt in .bashrc
 ;;
@@ -29,17 +15,14 @@
 ;
 ; loop over config files and load
 ;
-;https://github.com/krgn/mu4e-setup/blob/master/init.el
 (setq relative-config-dir "~/repos/dotfiles/elisp/")
 (setq setup-files-dir "config/")
 (setq dot-files 
       (mapcar (lambda (item) (concat relative-config-dir setup-files-dir item))
            (list "setup-org.el"         ;org-mode
-                 ;;"setup-mu4e.el"        ;mu4e
                  "setup-auctex.el"
                  ;;filladapt, highlight-region, plocal, browse-kiil-ring, highlight-chars
                  ;;browse-url, gist, magit, elpy
-                 ;;"setup-sr.el"
                  "setup-small.el"
                  ;; os specific 
                  "setup-os.el"
@@ -48,26 +31,6 @@
 
 ;end modernize
 
-
-(defun select-keys ()
-  "Set up key bindings to allow assignment of buffers to function keys"
-  (interactive)
-  (global-set-key [f9] 'choose-a-buffer)
-  (global-set-key [f10] 'choose-a-buffer)
-  (global-set-key [f11] 'choose-a-buffer)
-  (global-set-key [f12] 'choose-a-buffer))
-
-(select-keys) ; choose-a-buffer for keys f3 and f9-f12
-
-(global-set-key [f9] 'dired-single-buffer)
-(global-set-key [f8] 'org-mode)
-(global-set-key [f7] 'org-toggle-link-display)
-(global-set-key [f6] 'auto-fill-mode) 
-(global-set-key [f5] 'visual-fill-column-mode) 
-(global-set-key [f4] 'elpy-shell-switch-to-buffer) 
-(global-set-key [f3] 'elpy-shell-switch-to-shell) 
-(global-set-key [f2] 'choose-csh2) 
-(global-set-key [f1] 'choose-csh1) 
 
 
 (setq grep-command "grep -n -H -i ")
@@ -132,47 +95,47 @@
 
 (defun gtd ()
    (interactive)
-   (find-file "~/ownCloud/org/gtd.org")
+   (find-file "~/Dropbox/phil_files/org/gtd.org")
 )
 
 
 (defun research ()
    (interactive)
-   (find-file "~/ownCloud/org/research.org")
+   (find-file "~/Dropbox/phil_files/org/research.org")
 )
 
 (defun refile ()
    (interactive)
-   (find-file "~/ownCloud/org/refile.org")
+   (find-file "~/Dropbox/phil_files/org/refile.org")
 )
 
 
 (defun teaching ()
    (interactive)
-   (find-file "~/ownCloud/org/teaching.org")
+   (find-file "~/Dropbox/phil_files/org/teaching.org")
 )
 
 (defun admin ()
    (interactive)
-   (find-file "~/ownCloud/org/admin.org")
+   (find-file "~/Dropbox/phil_files/org/admin.org")
 )
 
 
 (defun personal ()
    (interactive)
-   (find-file "~/ownCloud/org/personal.org")
+   (find-file "~/Dropbox/phil_files/org/personal.org")
 )
 
 (defun tasks ()
   (interactive)
-  (find-file "~/ownCloud/org/tasks.org")
+  (find-file "~/Dropbox/phil_files/org/tasks.org")
   )
 
 
 ;;(gtd)
-;; (research)
-;; (admin)
-;; (teaching)
+(research)
+(admin)
+(teaching)
 ;; (personal)
 ;; (refile)
 ;; (tasks)
@@ -315,18 +278,10 @@
  '(dired-listing-switches "-alh")
  '(nil nil t)
  '(package-selected-packages
-   (quote
-    (zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ sunrise-commander simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm osx-browse orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode gnu-elpa-keyring-update frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy eldoro dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete auctex-latexmk anti-zenburn-theme ack-and-a-half))))
+   '(zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ sunrise-commander simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm osx-browse orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode gnu-elpa-keyring-update frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy eldoro dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete auctex-latexmk anti-zenburn-theme ack-and-a-half)))
 ;(require 'better-defaults)
 ;(load-theme 'material t)
 
-;;http://pragmaticemacs.com/emacs/use-visible-bookmarks-to-quickly-jump-around-a-file/
-(use-package bm
-  :bind (("<C-f10>" . bm-toggle)
-         ("<f10>" . bm-next)
-         ("<S-f10>" . bm-previous)))
-;(require `org-mu4e)
-(put 'set-goal-column 'disabled nil)
 
 ;http://mbork.pl/2017-02-26_other-window-or-switch-buffer
 (defun other-window-or-switch-buffer ()
@@ -337,16 +292,8 @@ to next buffer otherwise."
 	  (switch-to-buffer nil)
 	(other-window 1)))
 
-(global-set-key (kbd "<f6>") #'other-window-or-switch-buffer)
-(require 'fill-column-indicator)
-
-(use-package pelican-mode
-  :after (:any org rst markdown-mode adoc-mode)
-  :config
-  (pelican-global-mode))
-
-
 ;; easy spell check
+(global-set-key (kbd "C-<f8>") 'fill-paragraph)
 (global-set-key (kbd "<f8>") 'ispell-word)
 (global-set-key (kbd "C-S-<f8>") 'flyspell-mode)
 (global-set-key (kbd "C-M-<f8>") 'flyspell-buffer)
@@ -413,16 +360,38 @@ to next buffer otherwise."
 ;;     (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 
 
-(require 'simpleclip)
-(simpleclip-mode 1)
-
 (require 'flyspell)
 (flyspell-mode +1)
 (setq ispell-program-name "/usr/bin/ispell")
 
-(require 'indent-tools)
-(global-set-key (kbd "C-c >") 'indent-tools-hydra/body)
-
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
 (put 'upcase-region 'disabled nil)
+
+(require 'deadgrep)
+
+
+(defun select-keys ()
+  "Set up key bindings to allow assignment of buffers to function keys"
+  (interactive)
+  (global-set-key [f10] 'choose-a-buffer)
+  (global-set-key [f11] 'choose-a-buffer)
+  (global-set-key [f12] 'choose-a-buffer))
+
+(select-keys) ; choose-a-buffer for keys f3 and f9-f12
+
+(global-set-key [f8] 'org-mode)
+(global-set-key [f7] 'org-toggle-link-display)
+(global-set-key [f6] 'auto-fill-mode) 
+(global-set-key (kbd "<f5>") #'deadgrep)
+(global-set-key [f3] 'visual-fill-column-mode) 
+(global-set-key [f2] 'choose-csh2) 
+(global-set-key [f1] 'choose-csh1) 
+
+(use-package bm
+  :bind (("<C-f9>" . bm-toggle)
+         ("<f9>" . bm-next)
+         ("<S-f>" . bm-previous)))
+
+;; https://github.com/dajva/rg.el
+
+(require 'rg)
+(rg-enable-default-bindings)

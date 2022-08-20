@@ -16,6 +16,10 @@
 ; loop over config files and load
 ;
 ;https://github.com/krgn/mu4e-setup/blob/master/init.el
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 (setq relative-config-dir "~/repos/dotfiles/elisp/")
 (setq setup-files-dir "config/")
 (setq dot-files 

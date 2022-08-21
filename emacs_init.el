@@ -278,7 +278,7 @@
  '(dired-listing-switches "-alh")
  '(nil nil t)
  '(package-selected-packages
-   '(zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ sunrise-commander simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm osx-browse orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode gnu-elpa-keyring-update frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy eldoro dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete auctex-latexmk anti-zenburn-theme ack-and-a-half)))
+   '(zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ sunrise-commander simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm  orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode  frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy eldoro dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete auctex-latexmk anti-zenburn-theme ack-and-a-half)))
 ;(require 'better-defaults)
 ;(load-theme 'material t)
 
@@ -366,8 +366,6 @@ to next buffer otherwise."
 
 (put 'upcase-region 'disabled nil)
 
-(require 'deadgrep)
-
 
 (defun select-keys ()
   "Set up key bindings to allow assignment of buffers to function keys"
@@ -395,3 +393,4 @@ to next buffer otherwise."
 
 (require 'rg)
 (rg-enable-default-bindings)
+

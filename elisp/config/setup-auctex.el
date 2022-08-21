@@ -42,12 +42,16 @@
   (setq TeX-view-program-selection '((output-pdf "Evince"))))
 
 
-(use-package auctex-latexmk
-  :ensure t
-  :config
-  (auctex-latexmk-setup)
-  (setq auctex-latexmk-inherit-TeX-PDF-mode t)
-  )
+;#
+;# tex-buf bug
+;# https://github.com/tom-tan/auctex-latexmk/pull/40/files
+;# 
+;; (use-package auctex-latexmk
+;;   :ensure t
+;;   :config
+;;   (auctex-latexmk-setup)
+;;   (setq auctex-latexmk-inherit-TeX-PDF-mode t)
+;;   )
 
 ;https://www.reddit.com/r/emacs/comments/44yxsq/pdf_tools/
 ;; (use-package pdf-tools

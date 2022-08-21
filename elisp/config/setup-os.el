@@ -1,8 +1,8 @@
-(use-package osx-browse
-  :ensure t
-  :config
-  (osx-browse-mode 1)
-  (global-set-key "\C-xw" 'browse))
+;; (use-package osx-browse
+;;   :ensure t
+;;   :config
+;;   (osx-browse-mode 1)
+;;   (global-set-key "\C-xw" 'browse))
 
 (setq-default ispell-program-name "/usr/bin/ispell")
 

@@ -1,8 +1,21 @@
-;; (require 'package)
-;; (setq package-enable-at-startup nil)
+;; require package
+(require 'package)
+
+;; add melpa stable
 (add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-;; (package-initialize)
+         '("melpa-stable" . "https://stable.melpa.org/packages/"))
+
+;; add melpa
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
+
+(package-refresh-contents)
+
+;; Initialise packages
+(package-initialize)
+
+;; add use package
+(package-install 'use-package)
 ;;
 ;; needed for dirtrack prompt in .bashrc
 ;;

@@ -15,11 +15,14 @@
   :ensure t
   :config (setq-default filladapt-mode t))
 
+(use-package rg
+  :ensure t)
+
 (use-package dired-single
-    :ensure t)
+  :ensure t)
 
 (use-package auto-complete
-    :ensure t)
+  :ensure t)
 
 (use-package highlight-region
   :load-path "~/repos/dotfiles/elisp")

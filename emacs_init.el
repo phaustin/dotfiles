@@ -1,5 +1,5 @@
-(require 'package)
-(setq package-enable-at-startup nil)
+;; (require 'package)
+;; (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 ;; (package-initialize)
@@ -8,10 +8,10 @@
 ;;
 (setenv "EMACS" "TRUE")
 
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; ;; Bootstrap `use-package'
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;   (package-install 'use-package))
 ;
 ; loop over config files and load
 ;
@@ -278,7 +278,10 @@
  '(dired-listing-switches "-alh")
  '(nil nil t)
  '(package-selected-packages
-   '(zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete anti-zenburn-theme)))
+   '(zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete anti-zenburn-theme))
+ '(warning-suppress-types
+   '(((package reinitialization))
+     ((package reinitialization)))))
 ;(require 'better-defaults)
 ;(load-theme 'material t)
 
@@ -349,7 +352,8 @@ to next buffer otherwise."
 (add-hook 'json-mode-hook 'flymake-json-load)
 
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "/usr/bin/google-chrome-stable")
+      browse-url-generic-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+
 
 (global-set-key "\C-xw" 'browse-url)
 

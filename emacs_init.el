@@ -6,8 +6,8 @@
          '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 ;; add melpa
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
+;; (add-to-list 'package-archives
+;;              '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 (package-refresh-contents)
 
@@ -251,8 +251,8 @@
 (global-set-key "\C-cm" 'markdown-preview-file)
 
 ;;https://www.emacswiki.org/emacs/FlySpell
-(dolist (hook '(rst-mode-hook))
-      (add-hook hook (lambda () (flyspell-mode 1))))
+;; (dolist (hook '(rst-mode-hook))
+;;       (add-hook hook (lambda () (flyspell-mode 1))))
       
 (autoload 'vkill "vkill" nil t)
 (autoload 'list-unix-processes "vkill" nil t)

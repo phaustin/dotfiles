@@ -7,7 +7,7 @@ alias dockerkill='docker rm -f $(docker ps -a -q)'
 #.emacs file
 unset PS1
 the_name=$(hostname) # Linux
-the_name=$(scutil --get LocalHostName)  #macos
+#the_name=$(scutil --get LocalHostName)  #macos
 PS1="\w \u@${the_name}\n% "
 
 if [ -n "$EMACS" ]; then

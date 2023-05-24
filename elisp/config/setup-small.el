@@ -15,8 +15,9 @@
   :ensure t
   :config (setq-default filladapt-mode t))
 
-(use-package rg
-  :ensure t)
+;; (use-package rg
+;;   (rg-enable-default-bindings)
+;;   :ensure t)
 
 (use-package dired-single
   :ensure t)
@@ -135,6 +136,71 @@
 (elpy-enable)
 ;(pyvenv-activate (expand-file-name "/Users/phil/a50037/envs/a500try2/bin"))
 
+;; Configure Tempel
+;; https://github.com/minad/corfu
+;; https://github.com/minad/tempel
+(use-package tempel
+  ;; Require trigger prefix before template name when completing.
+  ;; :custom
+  ;; (tempel-trigger-prefix "<")
+
+  :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
+         ("M-*" . tempel-insert))
+
+  :init
+  
+  (defun tempel-setup-capf ()
+    ;; Add the Tempel Capf to `completion-at-point-functions'.
+    ;; `tempel-expand' only triggers on exact matches. Alternatively use
+    ;; `tempel-complete' if you want to see all matches, but then you
+    ;; should also configure `tempel-trigger-prefix', such that Tempel
+    ;; does not trigger too often when you don't expect it. NOTE: We add
+    ;; `tempel-expand' *before* the main programming mode Capf, such
+    ;; that it will be tried first.
+    (setq-local completion-at-point-functions
+                (cons #'tempel-expand
+                      completion-at-point-functions)))
+
+  (add-hook 'prog-mode-hook 'tempel-setup-capf)
+  (add-hook 'text-mode-hook 'tempel-setup-capf)
+
+  ;; Optionally make the Tempel templates available to Abbrev,
+  ;; either locally or globally. `expand-abbrev' is bound to C-x '.
+ (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
+ (global-tempel-abbrev-mode)
+)
+
+
+;; Optional: Add tempel-collection.
+;; The package is young and doesn't have comprehensive coverage.
+;;(use-package tempel-collection)
+
+
+(setq tempel-path "~/Dropbox/phil_files/emacs/snippets/*eld")
+
+;; Optional: Use the Corfu completion UI
+
+
+(use-package corfu
+  :init
+  (global-corfu-mode))
+
+
+;; (use-package yasnippet
+;;   :ensure t
+;;   :config
+;;   (setq yas-triggers-in-field t)
+;;   (setq yas-snippet-dirs
+;;         '("~/Dropbox/phil_files/emacs/snippets"
+;;           yas-installed-snippets-dir))
+;;   (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
+;;                                         ;http://orgmode.org/manual/Conflicts.html
+;;   (yas-reload-all)
+;;   (add-hook 'prog-mode-hook #'yas-minor-mode)
+;;   (add-hook 'org-mode-hook
+;;             (lambda ()
+;;               (setq-local yas/trigger-key [tab])
+;;               (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand))))
 
 (use-package org-crypt
   :config

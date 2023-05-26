@@ -140,7 +140,7 @@
   :config
   (setq yas-triggers-in-field t)
   (setq yas-snippet-dirs
-        '("~/repos/snippets"
+        '("~/Dropbox/phil_files/snippets"
           yas-installed-snippets-dir))
   (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
                                         ;http://orgmode.org/manual/Conflicts.html

@@ -289,7 +289,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(dired-listing-switches "-alh")
- '(nil nil t)
+ '(nil onil t)
+ '(org-agenda-files
+   '("~/Dropbox/phil_files/org/teaching.org" "~/Dropbox/phil_files/org/next.org" "~/Dropbox/phil_files/org/refile.org" "~/Dropbox/phil_files/org/personal.org" "~/Dropbox/phil_files/org/tasks.org" "~/Dropbox/phil_files/org/admin.org" "~/Dropbox/phil_files/org/research.org" "~/Dropbox/phil_files/org/someday.org"))
  '(package-selected-packages
    '(zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete anti-zenburn-theme))
  '(warning-suppress-types
@@ -411,3 +413,4 @@ to next buffer otherwise."
 (require 'rg)
 (rg-enable-default-bindings)
 
+(setq save-interprogram-paste-before-kill t)

@@ -14,7 +14,6 @@ if [ -n "$EMACS" ]; then
     unset PS1
     PS1='|Pr0mPT|\w|\w \u@${the_name}\n% '
 fi
-
 function cd() { command cd "$@"; }
 function pd() { command pushd "$@"; }
 function s() { command pushd +"$@"; }

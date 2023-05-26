@@ -34,7 +34,7 @@
   (rename-buffer name)
   (make-local-variable 'kill-buffer-hook)
   (add-hook 'kill-buffer-hook 
-            '(lambda ()
+            #'(lambda ()
                (if (not (yes-or-no-p 
                          "Last chance not to kill a SHELL buffer: Kill it? "))
                    (keyboard-quit)))))

@@ -1,5 +1,5 @@
 ;; require package
-(require 'package)
+;;(require 'package)
 
 ;; add melpa stable
 (add-to-list 'package-archives
@@ -9,7 +9,7 @@
 ;; (add-to-list 'package-archives
 ;;              '("melpa" . "http://melpa.milkbox.net/packages/"))
 
-(package-refresh-contents)
+;;(package-refresh-contents)
 
 ;; Initialise packages
 ;(package-initialize)

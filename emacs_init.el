@@ -12,10 +12,10 @@
 (package-refresh-contents)
 
 ;; Initialise packages
-(package-initialize)
+;(package-initialize)
 
 ;; add use package
-(package-install 'use-package)
+;;(package-install 'use-package)
 ;;
 ;; needed for dirtrack prompt in .bashrc
 ;;

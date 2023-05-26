@@ -9,7 +9,11 @@
 
 ;(quelpa '(key-chord :fetcher wiki))
 ;(key-chord-mode 1)
-;(setq key-chord-two-keys-delay 0.03)
+;ey-chord-two-keys-delay 0.03)
+
+(use-package markdown-mode
+  :ensure t
+)
 
 (use-package filladapt
   :ensure t
@@ -140,6 +144,7 @@
 ;; https://github.com/minad/corfu
 ;; https://github.com/minad/tempel
 (use-package tempel
+  :ensure t
   ;; Require trigger prefix before template name when completing.
   ;; :custom
   ;; (tempel-trigger-prefix "<")
@@ -182,6 +187,7 @@
 
 
 (use-package corfu
+  :ensure t
   :init
   (global-corfu-mode))
 

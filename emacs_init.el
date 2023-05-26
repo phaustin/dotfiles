@@ -103,7 +103,7 @@
 
 (put 'downcase-region 'disabled nil)
 
-;######################
+;; ;######################
 
 
 (defun gtd ()
@@ -167,102 +167,102 @@
 ;;                            (insert "_")))
 
 
-(put 'dired-find-alternate-file 'disabled nil)
+;; ;; (put 'dired-find-alternate-file 'disabled nil)
 
 
-(defvar server-buffer-clients)
-(when (and (fboundp 'server-start) (string-equal (getenv "TERM") 'xterm))
-  (server-start)
-  (defun fp-kill-server-with-buffer-routine ()
-    (and server-buffer-clients (server-done)))
-  (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
+;; ;; (defvar server-buffer-clients)
+;; ;; (when (and (fboundp 'server-start) (string-equal (getenv "TERM") 'xterm))
+;; ;;   (server-start)
+;; ;;   (defun fp-kill-server-with-buffer-routine ()
+;; ;;     (and server-buffer-clients (server-done)))
+;; ;;   (add-hook 'kill-buffer-hook 'fp-kill-server-with-buffer-routine))
 
-(setq dired-use-ls-dired nil)
-
-
-;; don't split windows
-;;http://lists.gnu.org/archive/html/emacs-orgmode/2010-04/msg01057.html
-;; 1. window gets split horizontally (one on TOP of the other), AND
-;; 2. AFTER splitting, further "C-x 4 b" will NOT lead to any more splitting - reuse gets preferred
-;; (setq split-height-threshold 2000) ; nil
-;; (setq split-width-threshold 2000) ; 100
+;; ;; (setq dired-use-ls-dired nil)
 
 
-;;https://stackoverflow.com/questions/23207958/how-to-prevent-emacs-dired-from-splitting-frame-into-more-than-two-windows
-(setq split-width-threshold (- (window-width) 10))
-(setq split-height-threshold nil)
-
-(defun count-visible-buffers (&optional frame)
-  "Count how many buffers are currently being shown. Defaults to selected frame."
-  (length (mapcar #'window-buffer (window-list frame))))
-
-(defun do-not-split-more-than-two-windows (window &optional horizontal)
-  (if (and horizontal (> (count-visible-buffers) 1))
-      nil
-    t))
-
-(advice-add 'window-splittable-p :before-while #'do-not-split-more-than-two-windows)
+;; ;; ;; don't split windows
+;; ;; ;;http://lists.gnu.org/archive/html/emacs-orgmode/2010-04/msg01057.html
+;; ;; ;; 1. window gets split horizontally (one on TOP of the other), AND
+;; ;; ;; 2. AFTER splitting, further "C-x 4 b" will NOT lead to any more splitting - reuse gets preferred
+;; ;; ;; (setq split-height-threshold 2000) ; nil
+;; ;; ;; (setq split-width-threshold 2000) ; 100
 
 
-;http://www.emacswiki.org/emacs/FrameSize
-(add-to-list 'default-frame-alist '(height . 55))
-(add-to-list 'default-frame-alist '(width . 180))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; ;; ;;https://stackoverflow.com/questions/23207958/how-to-prevent-emacs-dired-from-splitting-frame-into-more-than-two-windows
+;; ;; (setq split-width-threshold (- (window-width) 10))
+;; ;; (setq split-height-threshold nil)
+
+;; ;; (defun count-visible-buffers (&optional frame)
+;; ;;   "Count how many buffers are currently being shown. Defaults to selected frame."
+;; ;;   (length (mapcar #'window-buffer (window-list frame))))
+
+;; ;; (defun do-not-split-more-than-two-windows (window &optional horizontal)
+;; ;;   (if (and horizontal (> (count-visible-buffers) 1))
+;; ;;       nil
+;; ;;     t))
+
+;; ;; (advice-add 'window-splittable-p :before-while #'do-not-split-more-than-two-windows)
+
+
+;; ;; ;http://www.emacswiki.org/emacs/FrameSize
+;; ;; (add-to-list 'default-frame-alist '(height . 55))
+;; ;; (add-to-list 'default-frame-alist '(width . 180))
+;; ;; (custom-set-faces
+;; ;;  ;; custom-set-faces was added by Custom.
+;; ;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;; ;;  ;; Your init file should contain only one such instance.
+;; ;;  ;; If there is more than one, they won't work right.
+;; ;;  )
 
 ;(setq inhibit-startup-screen t)
 ;(setq initial-major-mode 'org-mode)
 (require 'magit)
 
-;; (require 'ein-loaddefs)
-;; (eval-when-compile (require 'ein-notebooklist))
-;; (require 'ein)
+;; ;; ;; (require 'ein-loaddefs)
+;; ;; ;; (eval-when-compile (require 'ein-notebooklist))
+;; ;; ;; (require 'ein)
 
-;http://tex.stackexchange.com/questions/24510/pdflatex-fails-within-emacs-app-but-works-in-terminal
-;http://ergoemacs.org/emacs/emacs_env_var_paths.html
+;; ;; ;http://tex.stackexchange.com/questions/24510/pdflatex-fails-within-emacs-app-but-works-in-terminal
+;; ;; ;http://ergoemacs.org/emacs/emacs_env_var_paths.html
 
 
 (setq-default indent-tabs-mode nil)
 
 (load-theme 'adwaita t)
 
-;; (use-package zenburn-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'zenburn t))
+;; ;; ;; (use-package zenburn-theme
+;; ;; ;;   :ensure t
+;; ;; ;;   :config
+;; ;; ;;   (load-theme 'zenburn t))
 
-;; (use-package anti-zenburn-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'anti-zenburn t))
+;; ;; ;; (use-package anti-zenburn-theme
+;; ;; ;;   :ensure t
+;; ;; ;;   :config
+;; ;; ;;   (load-theme 'anti-zenburn t))
 
 
-(defun markdown-preview-file ()
-  "use Marked 2 to preview the current file"
-  (interactive)
-  (shell-command 
-   (format "open -a 'Marked 2.app' %s" 
-           (shell-quote-argument (buffer-file-name))))
-  )
-(global-set-key "\C-cm" 'markdown-preview-file)
+;; ;; (defun markdown-preview-file ()
+;; ;;   "use Marked 2 to preview the current file"
+;; ;;   (interactive)
+;; ;;   (shell-command 
+;; ;;    (format "open -a 'Marked 2.app' %s" 
+;; ;;            (shell-quote-argument (buffer-file-name))))
+;; ;;   )
+;; ;; (global-set-key "\C-cm" 'markdown-preview-file)
 
-;;https://www.emacswiki.org/emacs/FlySpell
-;; (dolist (hook '(rst-mode-hook))
-;;       (add-hook hook (lambda () (flyspell-mode 1))))
+;; ;; ;;https://www.emacswiki.org/emacs/FlySpell
+;; ;; ;; (dolist (hook '(rst-mode-hook))
+;; ;; ;;       (add-hook hook (lambda () (flyspell-mode 1))))
       
-(autoload 'vkill "vkill" nil t)
-(autoload 'list-unix-processes "vkill" nil t)
+;; ;; (autoload 'vkill "vkill" nil t)
+;; ;; (autoload 'list-unix-processes "vkill" nil t)
 
 
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;; ;; (autoload 'markdown-mode "markdown-mode"
+;; ;;    "Major mode for editing Markdown files" t)
+;; ;; (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;; ;; (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;; ;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 (setq org-ellipsis "⤵")
 (show-paren-mode 1)
@@ -274,41 +274,40 @@
 
 ;;http://emacsredux.com/blog/2016/02/07/auto-indent-your-code-with-aggressive-indent-mode/
 
-;;(global-aggressive-indent-mode 1)
-;;(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+;; ;; ;;(global-aggressive-indent-mode 1)
+;; ;; ;;(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
-;(key-chord-define-global "qw" 'eldoro)
-(setq fill-column 120)
+;; ;; ;(key-chord-define-global "qw" 'eldoro)
+;; ;; (setq fill-column 120)
 
-;(setq split-width-threshold nil)
-(setq split-width-threshold 1 )
+;; ;; ;(setq split-width-threshold nil)
+;; ;; (setq split-width-threshold 1 )
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(dired-listing-switches "-alh")
- '(nil onil t)
- '(org-agenda-files
-   '("~/Dropbox/phil_files/org/teaching.org" "~/Dropbox/phil_files/org/next.org" "~/Dropbox/phil_files/org/refile.org" "~/Dropbox/phil_files/org/personal.org" "~/Dropbox/phil_files/org/tasks.org" "~/Dropbox/phil_files/org/admin.org" "~/Dropbox/phil_files/org/research.org" "~/Dropbox/phil_files/org/someday.org"))
- '(package-selected-packages
-   '(zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete anti-zenburn-theme))
- '(warning-suppress-types
-   '(((package reinitialization))
-     ((package reinitialization)))))
-;(require 'better-defaults)
-;(load-theme 'material t)
+;; ;; (custom-set-variables
+;; ;;  ;; custom-set-variables was added by Custom.
+;; ;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;; ;;  ;; Your init file should contain only one such instance.
+;; ;;  ;; If there is more than one, they won't work right.
+;; ;;  '(dired-listing-switches "-alh")
+;; ;;  '(nil nil t)
+;; ;;  '(package-selected-packages
+;; ;;    '(corfu tempel zenburn-theme yaml-mode yagist web-mode visual-fill-column use-package toml-mode thingatpt+ simpleclip ripgrep rg pelican-mode pdf-tools ox-gfm orglink orgit org-toodledo org-journal org-gcal offlineimap mu4e-maildirs-extension mic-paren matlab-mode material-theme markdown-mode lorem-ipsum json-navigator json-mode indent-tools helm-descbinds grip-mode frame-cmds flymake-json flymake-jslint filladapt fill-column-indicator exec-path-from-shell elpy dired-single dired-narrow desktop+ cpputils-cmake cmake-mode browse-kill-ring bm auto-package-update auto-complete anti-zenburn-theme))
+;; ;;  '(tempel-path "~/Dropbox/phil_files/emacs/snippets/*eld")
+;; ;;  '(warning-suppress-types
+;; ;;    '(((package reinitialization))
+;; ;;      ((package reinitialization)))))
+;; ;; ;(require 'better-defaults)
+;; ;; ;(load-theme 'material t)
 
 
-;http://mbork.pl/2017-02-26_other-window-or-switch-buffer
-(defun other-window-or-switch-buffer ()
-  "Call `other-window' if more than one window is visible, switch
-to next buffer otherwise."
-  (interactive)
-  (if (one-window-p)
-	  (switch-to-buffer nil)
-	(other-window 1)))
+;; ;; ;http://mbork.pl/2017-02-26_other-window-or-switch-buffer
+;; ;; (defun other-window-or-switch-buffer ()
+;; ;;   "Call `other-window' if more than one window is visible, switch
+;; ;; to next buffer otherwise."
+;; ;;   (interactive)
+;; ;;   (if (one-window-p)
+;; ;; 	  (switch-to-buffer nil)
+;; ;; 	(other-window 1)))
 
 ;; easy spell check
 (global-set-key (kbd "C-<f8>") 'fill-paragraph)
@@ -331,52 +330,55 @@ to next buffer otherwise."
 
 ;https://www.masteringemacs.org/article/evaluating-elisp-emacs
 
-(require 'auto-complete)
-(add-hook 'emacs-lisp-mode-hook 'ielm-auto-complete)
+;; ;; (require 'auto-complete)
+;; ;; (add-hook 'emacs-lisp-mode-hook 'ielm-auto-complete)
 
-(defun ielm-auto-complete ()
-  "Enables `auto-complete' support in \\[ielm]."
-  (setq ac-sources '(ac-source-functions
-                     ac-source-variables
-                     ac-source-features
-                     ac-source-symbols
-                     ac-source-words-in-same-mode-buffers))
-  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
-  (auto-complete-mode 1))
-(add-hook 'ielm-mode-hook 'ielm-auto-complete)
+;; ;; (defun ielm-auto-complete ()
+;; ;;   "Enables `auto-complete' support in \\[ielm]."
+;; ;;   (setq ac-sources '(ac-source-functions
+;; ;;                      ac-source-variables
+;; ;;                      ac-source-features
+;; ;;                      ac-source-symbols
+;; ;;                      ac-source-words-in-same-mode-buffers))
+;; ;;   (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
+;; ;;   (auto-complete-mode 1))
+;; ;; (add-hook 'ielm-mode-hook 'ielm-auto-complete)
 
-(defun my-ielm-mode-defaults ()
-  (turn-on-eldoc-mode))
+;; ;; (defun my-ielm-mode-defaults ()
+;; ;;   (turn-on-eldoc-mode))
 
-(setq my-ielm-mode-hook 'my-ielm-mode-defaults)
+;; ;; (setq my-ielm-mode-hook 'my-ielm-mode-defaults)
 
-;https://stackoverflow.com/questions/17118305/how-do-i-print-a-string-in-emacs-lisp-with-ielm
-(add-hook 'ielm-mode-hook (lambda () (run-hooks 'my-ielm-mode-hook)))
+;; ;; ;https://stackoverflow.com/questions/17118305/how-do-i-print-a-string-in-emacs-lisp-with-ielm
+;; ;; (add-hook 'ielm-mode-hook (lambda () (run-hooks 'my-ielm-mode-hook)))
 
-(defun p (x) (move-end-of-line 0) (insert (format "\n%s" x)))
+;; ;; (defun p (x) (move-end-of-line 0) (insert (format "\n%s" x)))
 
-(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
-  backup-by-copying t    ; Don't delink hardlinks
-  version-control t      ; Use version numbers on backups
-  delete-old-versions t  ; Automatically delete excess backups
-  kept-new-versions 20   ; how many of the newest versions to keep
-  kept-old-versions 5    ; and how many of the old
-  )
+;; ;; (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+;; ;;   backup-by-copying t    ; Don't delink hardlinks
+;; ;;   version-control t      ; Use version numbers on backups
+;; ;;   delete-old-versions t  ; Automatically delete excess backups
+;; ;;   kept-new-versions 20   ; how many of the newest versions to keep
+;; ;;   kept-old-versions 5    ; and how many of the old
+;; ;;   )
 
-;;https://github.com/purcell/flymake-json
-(add-hook 'json-mode-hook 'flymake-json-load)
+;; ;; ;;https://github.com/purcell/flymake-json
+;; ;; (add-hook 'json-mode-hook 'flymake-json-load)
+
+;; ;; ;; (setq browse-url-browser-function 'browse-url-generic
+;; ;; ;;       browse-url-generic-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+      browse-url-generic-program "/usr/bin/google-chrome")
 
 
 (global-set-key "\C-xw" 'browse-url)
 
-;https://www.emacswiki.org/emacs/CuaMode
-;; (cua-mode t)
-;;     (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
-;;     (transient-mark-mode 1) ;; No region when it is not highlighted
-;;     (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+;; ;; ;https://www.emacswiki.org/emacs/CuaMode
+;; ;; ;; (cua-mode t)
+;; ;; ;;     (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+;; ;; ;;     (transient-mark-mode 1) ;; No region when it is not highlighted
+;; ;; ;;     (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 
 
 (require 'flyspell)
@@ -413,4 +415,17 @@ to next buffer otherwise."
 (require 'rg)
 (rg-enable-default-bindings)
 
-(setq save-interprogram-paste-before-kill t)
+;; ;; (setq save-interprogram-paste-before-kill t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(yaml-mode visual-fill-column use-package tempel ripgrep rg ox-gfm osx-browse org-journal markdown-mode magit json-reformat json-navigator json-mode flymake-json filladapt exec-path-from-shell elpy dired-single desktop+ deadgrep corfu browse-kill-ring bm auto-package-update auto-complete auctex-latexmk)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

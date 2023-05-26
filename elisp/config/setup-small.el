@@ -135,21 +135,6 @@
 (elpy-enable)
 ;(pyvenv-activate (expand-file-name "/Users/phil/a50037/envs/a500try2/bin"))
 
-(use-package yasnippet
-  :ensure t
-  :config
-  (setq yas-triggers-in-field t)
-  (setq yas-snippet-dirs
-        '("~/Dropbox/phil_files/snippets"
-          yas-installed-snippets-dir))
-  (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
-                                        ;http://orgmode.org/manual/Conflicts.html
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook #'yas-minor-mode)
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (setq-local yas/trigger-key [tab])
-              (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand))))
 
 (use-package org-crypt
   :config

@@ -401,8 +401,88 @@ to next buffer otherwise."
   kept-old-versions 5    ; and how many of the old
   )
 
+<<<<<<< Updated upstream
 ;;https://github.com/purcell/flymake-json
 (add-hook 'json-mode-hook 'flymake-json-load)
 
 (require 'rg)
 (rg-enable-default-bindings)
+=======
+;; ;; ;;https://github.com/purcell/flymake-json
+;; ;; (add-hook 'json-mode-hook 'flymake-json-load)
+
+;; ;; ;; (setq browse-url-browser-function 'browse-url-generic
+;; ;; ;;       browse-url-generic-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "/usr/bin/google-chrome")
+
+(when (memq window-system '(mac ns))
+   (setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"))
+
+
+(global-set-key "\C-xw" 'browse-url)
+
+;; ;; ;https://www.emacswiki.org/emacs/CuaMode
+;; ;; ;; (cua-mode t)
+;; ;; ;;     (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+;; ;; ;;     (transient-mark-mode 1) ;; No region when it is not highlighted
+;; ;; ;;     (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+
+
+(require 'flyspell)
+(flyspell-mode +1)
+(setq ispell-program-name "/usr/bin/ispell")
+
+(when (memq window-system '(mac ns))
+  (setq ispell-program-name "/opt/homebrew/bin/aspell"))
+
+
+
+(put 'upcase-region 'disabled nil)
+
+
+(defun select-keys ()
+  "Set up key bindings to allow assignment of buffers to function keys"
+  (interactive)
+  (global-set-key [f10] 'choose-a-buffer)
+  (global-set-key [f11] 'choose-a-buffer)
+  (global-set-key [f12] 'choose-a-buffer))
+
+(select-keys) ; choose-a-buffer for keys f3 and f9-f12
+
+(global-set-key [f8] 'org-mode)
+(global-set-key [f7] 'org-toggle-link-display)
+(global-set-key [f6] 'auto-fill-mode) 
+(global-set-key (kbd "<f5>") #'deadgrep)
+(global-set-key [f3] 'visual-fill-column-mode) 
+(global-set-key [f2] 'choose-csh2) 
+(global-set-key [f1] 'choose-csh1) 
+
+(use-package bm
+  :bind (("<C-f9>" . bm-toggle)
+         ("<f9>" . bm-next)
+         ("<S-f9>" . bm-previous)))
+
+;; https://github.com/dajva/rg.el
+
+(require 'rg)
+(rg-enable-default-bindings)
+
+;; ;; (setq save-interprogram-paste-before-kill t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(TeX-view-program-list '(("xpdf" "xpdf %o")))
+ '(TeX-view-program-selection '((output-pdf "xpdf")))
+ '(package-selected-packages
+   '(yaml-mode visual-fill-column use-package tempel ripgrep rg ox-gfm osx-browse org-journal markdown-mode magit json-reformat json-navigator json-mode flymake-json filladapt exec-path-from-shell elpy dired-single desktop+ deadgrep corfu browse-kill-ring bm auto-package-update auto-complete auctex-latexmk)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

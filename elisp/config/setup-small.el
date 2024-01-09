@@ -168,11 +168,26 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
+<<<<<<< Updated upstream
   (when (memq window-system '(mac ns))
     (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "e340o" "e340n" "ecopy" "oecopy"
                                                  "or" "rm" "e340lib" "a500n" "a500d" "d340" "g340"
                                                  "e213" "e213s" "a405" "e582" "sphinxlib" "g211" "g340" "g211old" "g340old")))
     (exec-path-from-shell-initialize)))
+=======
+  (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "d340" "g340" "e340o" "a340" "n340" "ecopy" "oecopy"
+                                                 "or" "rm" "e340lib" "a500n" "a500d"
+                                                 "e213" "e213s" "a405" "e582" "sphinxlib pf d192 d191"))))
+
+;; ;;https://github.com/purcell/exec-path-from-shell
+;; (use-package exec-path-from-shell
+;;   :ensure t
+;;   :config
+;;   (when (memq window-system '(mac ns))
+;;     (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "e340o" "e340n" "ecopy" "oecopy"
+;;                                                  "or" "rm" "e340lib" "a500n" "a500d" "d340" "g340"
+;;                                                  "e213" "e213s" "a405" "e582" "sphinxlib" "g211" "g340" "g211old")))))
+>>>>>>> Stashed changes
 
   
 

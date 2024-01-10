@@ -20,7 +20,8 @@
 ;; needed for dirtrack prompt in .bashrc
 ;;
 (setenv "EMACS" "TRUE")
-
+;; https://emacs.stackexchange.com/questions/74289/emacs-28-2-error-in-macos-ventura-image-type-invalid-image-type-svg
+(setq image-types (cons 'svg image-types))
 ;; ;; Bootstrap `use-package'
 ;; (unless (package-installed-p 'use-package)
 ;;   (package-refresh-contents)

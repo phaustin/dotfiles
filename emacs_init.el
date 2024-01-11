@@ -390,6 +390,11 @@
 (flyspell-mode +1)
 (setq ispell-program-name "/usr/bin/ispell")
 
+(when (memq window-system '(mac ns))
+  (setq ispell-program-name "/opt/homebrew/bin/aspell"))
+
+
+
 (put 'upcase-region 'disabled nil)
 
 

@@ -372,6 +372,10 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "/usr/bin/google-chrome")
 
+(when (memq window-system '(mac ns))
+   (setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"))
+
 
 (global-set-key "\C-xw" 'browse-url)
 

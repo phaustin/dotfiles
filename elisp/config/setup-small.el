@@ -236,7 +236,7 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "d340" "g340" "e340o" "a340" "n340" "ecopy" "oecopy"
+  (setq exec-path-from-shell-variables (quote ("PATH" "MANPATH" "e340" "g340" "e340t1" "a340" "n340" "ecopy" "oecopy"
                                                "or" "rm" "e340lib" "a500n" "a500d" "a500r" "a448d" "a448r"
                                                "a405d" "a405r"
                                                ))))

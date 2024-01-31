@@ -443,4 +443,5 @@
 (setq TeX-view-program-list `(("xpdf" "xpdf -fullscreen %o")))
 (setq TeX-view-program-selection `((output-pdf "xpdf")))
 
+(setq rg-executable  "/Users/phil/.cargo/bin/rg")
 (rg-enable-default-bindings)

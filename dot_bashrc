@@ -78,4 +78,5 @@ export a448d=${HOME}/Dropbox/phil_files/a448
 export a500d=${HOME}/Dropbox/phil_files/a500
 export e340t1=${HOME}/Dropbox/phil_files/e340_2023term1
 export e340=${HOME}/Dropbox/phil_files/e340_2023term2
+export a405text=${HOME}/Dropbox/phil_files/a405/a405_text
 . "$HOME/.cargo/env"

@@ -324,9 +324,6 @@
   )
 (global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
 
-(add-to-list 'tramp-default-proxies-alist
-                 '("azure" nil "/ssh:compstaff@52.233.66.236:"))
-
 (setq tramp-default-method "ssh")
 
 ;https://www.masteringemacs.org/article/evaluating-elisp-emacs

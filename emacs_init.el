@@ -324,7 +324,6 @@
   )
 (global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
 
-(setq tramp-default-method "ssh")
 
 ;https://www.masteringemacs.org/article/evaluating-elisp-emacs
 

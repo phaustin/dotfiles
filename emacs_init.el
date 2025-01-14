@@ -66,37 +66,36 @@
   (switch-to-buffer "*ABI Ipython*"))
 
 
-(defun choose-research (&optional re-assign)
+(defun research (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
   (switch-to-buffer "research.org"))
 
 
-(defun choose-teaching (&optional re-assign)
+(defun teaching (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
   (switch-to-buffer "teaching.org"))
 
-(defun choose-admin (&optional re-assign)
+(defun admin (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
   (switch-to-buffer "admin.org"))
 
-(defun choose-personal (&optional re-assign)
+(defun personal (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
   (switch-to-buffer "personal.org"))
 
-(defun choose-gtd (&optional re-assign)
+(defun home (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
-  (switch-to-buffer "gtd.org"))
+  (switch-to-buffer "home.org"))
 
-(defun choose-refile (&optional re-assign)
+(defun refile (&optional re-assign)
   "Set a key to a buffer"
   (interactive "P")
   (switch-to-buffer "refile.org"))
-
 
 (make-shell "s1")    ; Create a shell called "s1"
 (other-window 1)
@@ -107,9 +106,14 @@
 ;; ;######################
 
 
-(defun gtd ()
+(defun home ()
    (interactive)
-   (find-file "~/Dropbox/phil_files/org/gtd.org")
+   (find-file "~/Dropbox/phil_files/org/home.org")
+)
+
+(defun diary ()
+   (interactive)
+   (find-file "~/Dropbox/phil_files/org/diary.org")
 )
 
 
@@ -154,12 +158,12 @@
 ;; (refile)
 ;; (tasks)
 
-(global-set-key "\C-cp" 'choose-personal)
-(global-set-key "\C-cr" 'choose-research)
-(global-set-key "\C-ci" 'choose-teaching)
-(global-set-key "\C-cw" 'choose-admin)
-(global-set-key "\C-cg" 'choose-gtd)
-(global-set-key "\C-ct" 'choose-refile)
+(global-set-key "\C-cp" 'diary)
+(global-set-key "\C-cr" 'research)
+(global-set-key "\C-ci" 'teaching)
+(global-set-key "\C-cw" 'admin)
+(global-set-key "\C-cg" 'home)
+(global-set-key "\C-ct" 'refile)
 
 ;; (key-chord-define-global "--"
 ;;                          (lambda ()

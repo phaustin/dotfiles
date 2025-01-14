@@ -3,21 +3,6 @@ set -m
 . ~/repos/dotfiles/dot_bashrc_functions
 . ~/repos/dotfiles/docker_aliases.sh
 # . ~/repos/dotfiles/docker_aliases.sh
-export sat19="${HOME}/repos/sat2019"
-export can340_token="11224~4B6jssVVA260pzMp2fpxhgasBqoe8qjLBKeiEiFp4PjGMegAqx5zIiIvkgMoFiJo"
-export a500n="$HOME/repos/a500_notebooks"
-export E340dropbox="${HOME}/Dropbox"
-export E340root="${HOME}/Nextcloud"
-export e340lib="${HOME}/repos/nbpython/e340lib"
-export exams="${e340}/Exams"
-export sphinxlib="${HOME}/repos/nbpython/sphinxlib"
-export e340o="${HOME}/Nextcloud/e340_2019t1"
-export e340="${HOME}/Nextcloud/e340_2019t2"
-export e340n="${HOME}/papers_ipad/e340/2019t2"
-export ecopy="${e340}/Admin_-_no_student_info/python/copy_files.py"
-export oecopy="${e340o}/pythonprogs/copy_files_cleanup.py"
-export rm="${HOME}/Dropbox/phil_files/readmes"
-export or="${HOME}/Dropbox/phil_files/org"
 
 function con()
 {
@@ -25,23 +10,14 @@ function con()
     condap
 }
 
-# e213
-# con e213
 
-# numeric
-# con numeric
-
-# # #
-# # # for emacs elpy
-# # #
+export rm="${HOME}/Dropbox/phil_files/readmes"
+export or="${HOME}/Dropbox/phil_files/org"
+export a301="${HOME}/repos/a301_eoas"
+export a301drop="${HOME}/Dropbox/phil_files/a301"
 export e340=${HOME}/Dropbox/phil_files/e340_2022_RHW
-export g211="${HOME}/Nextcloud/eosc211_2021/tests/e211_2021_grading/"
-export g340=${HOME}/repos/e340repo/grades_2021
-export g340old=${HOME}/repos/e340repo/grades_2020
-export g211old=${HOME}/Nextcloud/EOSC211/tests/final_exam_grading
 export n340=${HOME}/Nextcloud/e340_2022
 #echo "through .bashrc"
-export JULIA_NUM_THREADS=4
 export CARGO_HOME=${HOME}/.cargo
 export RUSTUP_HOME=${HOME}/.rustup
 
@@ -65,19 +41,6 @@ unset __conda_setup
 export PATH="${HOME}/.local/bin:$PATH"
 export PYDEVD_DISABLE_FILE_VALIDATION=1
 
-export old_grades=${HOME}/Nextcloud/e340_2022/admin/grades_2021t2
-export grades=${HOME}/Dropbox/phil_files/e340_2022_RHW/grading/
-export a301=${HOME}/repos/a301_students_eoas
-export a301grades=${HOME}/repos/
-export cmath=${HOME}/Dropbox/phil_files/climatemath
-export a405r=${HOME}/repos/a405_2024
-export a448r=${HOME}/repos/a448_2024
-export a500r=${HOME}/repos/a500_2024
-export a405d=${HOME}/Dropbox/phil_files/a405
-export a448d=${HOME}/Dropbox/phil_files/a448
-export a500d=${HOME}/Dropbox/phil_files/a500
-export e340t1=${HOME}/Dropbox/phil_files/e340_2023term1
-export e340=${HOME}/Dropbox/phil_files/e340_2023term2
-export a405text=${HOME}/Dropbox/phil_files/a405/a405_text
+export PATH="${HOME}/Applications/quarto/bin:$PATH"
 . "$HOME/.cargo/env"
-con a405
+con a301

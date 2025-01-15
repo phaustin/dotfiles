@@ -14,6 +14,7 @@ function con()
 export rm="${HOME}/Dropbox/phil_files/readmes"
 export or="${HOME}/Dropbox/phil_files/org"
 export a301="${HOME}/repos/a301_eoas"
+export a301old="${HOME}/repos/a301_students_eoas"
 export a301drop="${HOME}/Dropbox/phil_files/a301"
 export e340=${HOME}/Dropbox/phil_files/e340_2022_RHW
 export n340=${HOME}/Nextcloud/e340_2022

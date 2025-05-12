@@ -69,8 +69,14 @@
 ;
 (add-to-list 'org-file-apps '(directory . emacs))
 
-(setq org-agenda-files '("~/Dropbox/phil_files/org/next.org" "~/Dropbox/phil_files/org/refile.org" "~/Dropbox/phil_files/org/personal.org" "~/Dropbox/phil_files/org/tasks.org"
-                         "~/Dropbox/phil_files/org/teaching.org" "~/Dropbox/phil_files/org/admin.org" "~/Dropbox/phil_files/org/research.org" "~/Dropbox/phil_files/org/someday.org"))
+(setq org-agenda-files '("~/Dropbox/phil_files/org/next.org"
+                         "~/Dropbox/phil_files/org/refile.org"
+                         "~/Dropbox/phil_files/org/personal.org"
+                         "~/Dropbox/phil_files/org/tasks.org"
+                         "~/Dropbox/phil_files/org/teaching.org"
+                         "~/Dropbox/phil_files/org/admin.org"
+                         "~/Dropbox/phil_files/org/research.org"
+                         "~/Dropbox/phil_files/org/someday.org"))
 
 (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")

@@ -431,6 +431,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ ;; '(org-agenda-files
+ ;;   '("/Users/phil/Dropbox/phil_files/org/next.org" "/Users/phil/Dropbox/phil_files/org/refile.org" "/Users/phil/Dropbox/phil_files/org/personal.org" "/Users/phil/Dropbox/phil_files/org/tasks.org" "/Users/phil/Dropbox/phil_files/org/admin.org" "/Users/phil/Dropbox/phil_files/org/research.org" "/Users/phil/Dropbox/phil_files/org/someday.org"))
  '(package-selected-packages
    '(yaml-mode visual-fill-column use-package tempel ripgrep rg ox-gfm osx-browse org-journal markdown-mode magit json-reformat json-navigator json-mode flymake-json filladapt exec-path-from-shell elpy dired-single desktop+ deadgrep corfu browse-kill-ring bm auto-package-update auto-complete auctex-latexmk)))
 (custom-set-faces

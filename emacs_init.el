@@ -445,5 +445,6 @@
 (setq TeX-view-program-list `(("xpdf" "xpdf -fullscreen %o")))
 (setq TeX-view-program-selection `((output-pdf "xpdf")))
 
-(setq rg-executable  "/Users/phil/.cargo/bin/rg")
+(setq homedir (expand-file-name "~"))
+(setq rg-executable  (format "%s/.cargo/bin/rg" homedir))
 (rg-enable-default-bindings)

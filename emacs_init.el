@@ -431,10 +431,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ;; '(org-agenda-files
- ;;   '("/Users/phil/Dropbox/phil_files/org/next.org" "/Users/phil/Dropbox/phil_files/org/refile.org" "/Users/phil/Dropbox/phil_files/org/personal.org" "/Users/phil/Dropbox/phil_files/org/tasks.org" "/Users/phil/Dropbox/phil_files/org/admin.org" "/Users/phil/Dropbox/phil_files/org/research.org" "/Users/phil/Dropbox/phil_files/org/someday.org"))
  '(package-selected-packages
-   '(yaml-mode visual-fill-column use-package tempel ripgrep rg ox-gfm osx-browse org-journal markdown-mode magit json-reformat json-navigator json-mode flymake-json filladapt exec-path-from-shell elpy dired-single desktop+ deadgrep corfu browse-kill-ring bm auto-package-update auto-complete auctex-latexmk)))
+   '(auctex-latexmk auto-complete auto-package-update bm browse-kill-ring corfu deadgrep desktop+
+                    dired-single elpy exec-path-from-shell filladapt flymake-json json-mode
+                    json-navigator json-reformat magit markdown-mode org org-gtd org-journal
+                    osx-browse ox-gfm rg ripgrep tempel use-package visual-fill-column yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -448,3 +449,53 @@
 (setq homedir (expand-file-name "~"))
 (setq rg-executable  (format "%s/.cargo/bin/rg" homedir))
 (rg-enable-default-bindings)
+
+(with-eval-after-load 'markdown-mode
+  (define-key markdown-mode-map (kbd "C-c C-l") 'org-insert-link))
+
+
+(use-package org-gtd
+  :ensure t
+  :after org
+  :demand t
+  :init
+  ;; Suppress upgrade warnings (must be set before package loads)
+  (setq org-gtd-update-ack "4.0.0")
+  ;; Where org-gtd will keep its files (defaults to ~/gtd/)
+  ;; (setq org-gtd-directory "~/my-gtd/")
+
+  :custom
+  ;; Configure TODO keyword states (options like "TODO(t)" or "DONE(d!)" are fine)
+  (org-todo-keywords '((sequence "TODO" "NEXT" "WAIT" "|" "DONE" "CNCL")))
+
+  ;; Map GTD semantic states to your keywords
+  (org-gtd-keyword-mapping '((todo . "TODO")
+                             (next . "NEXT")
+                             (wait . "WAIT")
+                             (canceled . "CNCL")))
+
+  :config
+  ;; REQUIRED: Enable org-edna for project dependencies
+  (org-edna-mode 1)
+
+  ;; Add org-gtd files to your agenda (must be in :config so org-gtd-directory is defined).
+  ;; A directory entry is valid: org-mode scans every .org file inside it.
+  ;; Already using org-agenda-files? Don't overwrite it - merge instead, e.g.:
+  ;;   (add-to-list 'org-agenda-files org-gtd-directory)
+  (setq org-agenda-files (list org-gtd-directory))
+
+  :bind
+  ;; Global keybindings (work anywhere in Emacs)
+  (("C-c d c" . org-gtd-capture)
+   ("C-c d e" . org-gtd-engage)
+   ("C-c d p" . org-gtd-process-inbox)
+   ("C-c d n" . org-gtd-show-all-next)
+   ("C-c d s" . org-gtd-reflect-stuck-projects)
+
+   ;; Keybinding for organizing items (only works in clarify buffers)
+   :map org-gtd-clarify-mode-map
+   ("C-c c" . org-gtd-organize)
+
+   ;; Quick actions on tasks in agenda views (optional but recommended)
+   :map org-agenda-mode-map
+   ("C-c ." . org-gtd-agenda-transient)))

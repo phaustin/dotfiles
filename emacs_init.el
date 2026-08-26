@@ -33,8 +33,7 @@
 (setq setup-files-dir "config/")
 (setq dot-files 
       (mapcar (lambda (item) (concat relative-config-dir setup-files-dir item))
-           (list "setup-org.el"         ;org-mode
-                 "setup-auctex.el"
+           (list "setup-auctex.el"
                  ;;filladapt, highlight-region, plocal, browse-kiil-ring, highlight-chars
                  ;;browse-url, gist, magit, elpy
                  "setup-small.el"
@@ -431,6 +430,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files nil)
  '(package-selected-packages
    '(auctex-latexmk auto-complete auto-package-update bm browse-kill-ring corfu deadgrep desktop+
                     dired-single elpy exec-path-from-shell filladapt flymake-json json-mode
@@ -462,7 +462,7 @@
   ;; Suppress upgrade warnings (must be set before package loads)
   (setq org-gtd-update-ack "4.0.0")
   ;; Where org-gtd will keep its files (defaults to ~/gtd/)
-  ;; (setq org-gtd-directory "~/my-gtd/")
+  (setq org-gtd-directory "~/Dropbox/phil_files/org")
 
   :custom
   ;; Configure TODO keyword states (options like "TODO(t)" or "DONE(d!)" are fine)
@@ -477,7 +477,7 @@
   :config
   ;; REQUIRED: Enable org-edna for project dependencies
   (org-edna-mode 1)
-
+  (org-gtd-mode 1)
   ;; Add org-gtd files to your agenda (must be in :config so org-gtd-directory is defined).
   ;; A directory entry is valid: org-mode scans every .org file inside it.
   ;; Already using org-agenda-files? Don't overwrite it - merge instead, e.g.:
@@ -491,6 +491,8 @@
    ("C-c d p" . org-gtd-process-inbox)
    ("C-c d n" . org-gtd-show-all-next)
    ("C-c d s" . org-gtd-reflect-stuck-projects)
+   ("C-c d" . org-gtd-command-center)
+   
 
    ;; Keybinding for organizing items (only works in clarify buffers)
    :map org-gtd-clarify-mode-map
@@ -499,3 +501,4 @@
    ;; Quick actions on tasks in agenda views (optional but recommended)
    :map org-agenda-mode-map
    ("C-c ." . org-gtd-agenda-transient)))
+

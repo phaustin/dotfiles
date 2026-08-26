@@ -4,6 +4,7 @@ set -m
 . ~/repos/dotfiles/docker_aliases.sh
 # . ~/repos/dotfiles/docker_aliases.sh
 
+
 function con()
 {
     conda activate $1
@@ -11,34 +12,15 @@ function con()
 }
 
 export budget="${HOME}/repos/financelib/docs/notebooks"
-export e340="${HOME}/Dropbox/e340_2024t2"
-export e440="${HOME}/repos/climate_students_eoas"
 export admin="${HOME}/Dropbox/phil_files/admin"
 export books="${HOME}/Dropbox/phil_files/books"
 export rm="${HOME}/Dropbox/phil_files/readmes"
 export or="${HOME}/Dropbox/phil_files/org"
-export a301="${HOME}/repos/a301_eoas"
-export a301old="${HOME}/repos/a301_students_eoas"
-export a301dl="${HOME}/gdrive/a301/downloads"
-export e340dl="${HOME}/gdrive/e340/downloads"
+export fl="${HOME}/repos/financelib"
+export bs="${HOME}/Dropbox/statements"
 #echo "through .bashrc"
 export CARGO_HOME=${HOME}/.cargo
 export RUSTUP_HOME=${HOME}/.rustup
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/phil/mini310/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/phil/mini310/etc/profile.d/conda.sh" ]; then
-        . "/Users/phil/mini310/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/phil/mini310/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 
 # Created by `userpath` on 2023-01-16 19:22:05
@@ -47,6 +29,5 @@ export PYDEVD_DISABLE_FILE_VALIDATION=1
 
 export PATH="${HOME}/Applications/quarto/bin:$PATH"
 . "$HOME/.cargo/env"
-con a301
 export PATH="/Users/phil/.pixi/bin:$PATH"
 eval "$(pixi completion --shell bash)"

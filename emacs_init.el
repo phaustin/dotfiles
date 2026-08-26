@@ -484,6 +484,11 @@
   ;;   (add-to-list 'org-agenda-files org-gtd-directory)
   (setq org-agenda-files (list org-gtd-directory))
 
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-c \C-l" 'org-insert-link)
+  (setq org-return-follows-link t)
+
+  
   :bind
   ;; Global keybindings (work anywhere in Emacs)
   (("C-c d c" . org-gtd-capture)
